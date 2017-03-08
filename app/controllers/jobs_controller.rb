@@ -9,8 +9,6 @@ class JobsController < ApplicationController
     @jobs = Job.get_list(params[:job_title], params[:city_id], params[:page])
 
   end
-  #end index
-
 
   def new
     @job = Job.new

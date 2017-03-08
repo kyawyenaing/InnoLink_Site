@@ -56,11 +56,12 @@ Rails.application.routes.draw do
   #   end
   root :to =>'jobs#index'
 
-  resources :jobs
   get "dashboard" => "dashboard#index"
 
   namespace :api, defaults: {format: :json} do
     resources :jobs
   end
 
+  resources :jobs do
+  end
 end
