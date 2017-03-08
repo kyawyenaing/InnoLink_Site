@@ -49,3 +49,8 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development, :production do
+  gem 'rails_12factor'
+  gem 'heroku-deflater'
+end
+
