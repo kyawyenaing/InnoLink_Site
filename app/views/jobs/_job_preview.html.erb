@@ -1,0 +1,44 @@
+<a class="item-block" href="/jobs/<%= job.id %>">
+  <header>
+    <!-- <img src="assets/logo-google.jpg" alt=""> -->
+    <div class="hgroup">
+      <h4>
+        <%= job.title %> <span><small>(<%= job.salary_range.name %>)</small></span>
+      </h4> 
+      <h5>
+        <%= job.company_name %>
+      </h5>   
+    </div>
+          
+    <div class="header-meta">
+      <span class="location">
+        <%= job.city.name %>
+      </span>
+      <% if job.job_type == "FULLTIME" %>
+      <span class="label label-success">
+        <%= job.job_type %>                    
+      </span>
+      <% end %>
+      <% if job.job_type == "PARTTIME" %>
+        <span class="label label-warning">
+          <%= job.job_type %>                  
+        </span>
+      <% end %>
+      <% if job.job_type == "FREELANCE" %>
+        <span class="label label-info">
+          <%= job.status %>                  
+        </span>
+      <% end %>
+      <% if job.job_type == "INTERNSHIP" %>
+        <span class="label label-danger">
+          <%= job.job_type %>                 
+        </span>
+      <% end %>
+    </div>
+          
+  </header>       
+</a>
+
+<% if user_signed_in? and current_user.id = job.user_id %>
+  <%= link_to "Edit", edit_job_path(job), class: "btn btn-link" %>
+<% end %>

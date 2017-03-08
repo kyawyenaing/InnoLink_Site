@@ -1,0 +1,41 @@
+<!-- Navigation bar -->
+<nav class="navbar">
+  <div class="container">
+    <!-- Logo -->
+    <div class="pull-left">
+
+      <a class="navbar-toggle" href="#" data-toggle="offcanvas">
+        <i class="ti-menu"></i>
+      </a>
+
+      <div class="logo-wrapper">
+
+        <a class="logo" href="/">
+          <img src="../assets/logo-jobPortal.png" alt="logo">
+        </a>
+
+        <a class="logo-alt" href="/">
+          <img src="../assets/logo-jobPortal.png" alt="logo-alt">
+        </a>
+
+      </div>
+
+    </div>
+    <!-- END Logo -->
+
+
+    <!-- User account -->
+    <div class="pull-right user-login">
+      <% if user_signed_in? %>
+        <a href="/dashboard" class="btn btn-sm btn-primary">Dashboard</a>
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path, :class=>"btn btn-sm btn-primary", :method => :get %>
+        or 
+        <%= link_to "Sign Up", new_user_registration_path, :method => :get %>
+    <% end %>
+    </div>
+    <!-- END User account -->
+  </div>
+</nav>
+<!-- END Navigation bar -->

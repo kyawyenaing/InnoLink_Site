@@ -1,0 +1,71 @@
+
+    <!-- Page header -->
+    <!-- <header class="page-header bg-img size-lg" style="background-color: #29aafe;"> -->
+      <div class="container">
+        <div class="header-detail m-t-extra">
+        <!--
+          <img class="logo" src="../assets/logo-google.jpg" alt="">
+        -->
+          <div class="hgroup">
+            <h1><%= @job.title %></h1>
+            <h3>
+              <a href="#"><%= @job.company_name %></a>
+            </h3>
+          </div>
+          <time datetime="2016-03-03 20:00">
+            <%= @job.decorated_created_at %>
+          </time>
+          <hr>
+          <ul class="details cols-3">
+            <li>
+              <i class="fa fa-map-marker"></i>
+              <span><%= @job.city.name %></span>
+            </li>
+
+            <li>
+              <i class="fa fa-briefcase"></i>
+              <span><%= @job.job_type %></span>
+            </li>
+
+            <li>
+              <i class="fa fa-money"></i>
+              <span><%= @job.salary_range.name %></span>
+            </li>
+          </ul>
+          <p class="lead">
+            <%= @job.description %>
+          </p>
+        </div>
+      </div>
+    <!-- </header> -->
+    <!-- END Page header -->
+    <hr>
+
+    <!-- Main container -->
+    <main>
+      <!-- Job detail -->
+      <section class="no-padder">
+        <div class="container">
+        
+          <h4>Job Requirement</h4>
+          <p><%= @job.requirement %></p><br>
+
+          <h4>How To Apply</h4>
+          <p><%= @job.how_to %></p>
+          <br>
+
+          <% if user_signed_in? and current_user.id = @job.user_id %>
+            <%= link_to "Edit", edit_job_path(@job), class: "btn btn-success btn-xl btn-round" %>
+          <% end %>
+          <br>
+        </div>
+      </section><br>
+      <!-- END Job detail -->
+
+
+    </main>
+    <!-- END Main container -->
+
+    <!-- Back to top button -->
+    <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+    <!-- END Back to top button -->

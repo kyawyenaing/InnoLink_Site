@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Post a job position or create your online resume by TheJobs!">
+    <meta name="keywords" content="">
+
+    <title>InnoLink Job Portal</title>
+
+    <!-- Styles -->
+    <link href="assets/app.min.css" rel="stylesheet">
+    <link href="assets/custom.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="icon" href="assets/favicon.ico">
+  </head>
+
+  <body class="nav-on-header smart-nav">
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+
+      <div class="container">
+
+        <!-- Logo -->
+        <div class="pull-left">
+
+          <a class="navbar-toggle" href="#" data-toggle="offcanvas">
+            <i class="ti-menu"></i>
+          </a>
+
+          <div class="logo-wrapper">
+
+            <a class="logo" href="index.html">
+              <img src="assets/logo-jobPortal.png" alt="logo">
+            </a>
+            <a class="logo-alt" href="index.html">
+              <img src="assets/logo-jobPortal.png" alt="logo-alt">
+            </a>
+          
+          </div>
+        </div>
+        <!-- END Logo -->
+
+        <% if user_signed_in? %>
+        <!-- User account -->
+        <div class="pull-right">
+
+          <div class="dropdown user-account">
+
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+              <img src="assets/profile-ecommerce.jpg" alt="avatar">
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-right">              
+              <li class="list-divider">
+                <%= "UserName" %>
+              </li>
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>           
+            </ul>
+
+          </div>
+
+        </div>
+        <!-- END User account -->
+        <% else %>
+        <!-- User account -->
+        <div class="pull-right user-login">
+          <%= link_to "Sign In", new_user_session_path, :class=>"btn btn-sm btn-primary", :method => :get %>
+          or 
+          <%= link_to "Sign Up", new_user_registration_path, :method => :get %>
+
+        </div>
+        <!-- END User account -->
+        <% end %>
+
+        <!-- Navigation menu -->
+        <ul class="nav-menu">
+          <li>
+            <a class="active" href="index.html">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="employer.html">
+              Employer
+            </a>
+          </li>
+          <li>
+            <a href="seeker.html">
+              Job Seeker
+            </a>
+          </li>
+          <li>
+            <a href="page-about.html">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="resume-add.html">
+              Resume
+            </a>
+          </li>
+          <!-- <li>
+            <a href="candidate.html">Candidate</a>
+          </li> -->
+          <li>
+            <a href="page-blog.html">
+              Event Activities
+            </a>
+          </li>
+        </ul>
+        <!-- END Navigation menu -->
+
+      </div>
+    </nav>
+    <!-- END Navigation bar -->
+    <% if user_signed_in? %>
+<!-- Page header -->
+    <header class="page-header m-b-none">
+      
+      <div class="container page-name">
+
+        <h1 class="text-center">View Jobs Offer</h1>
+        <p class="lead text-center padder-bt-xxl">
+          Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.
+        </p>
+
+      </div>
+
+    </header>
+<!-- END Page header -->
+
+
+<!-- Main container -->
+    <main>
+
+      <section class="no-padding-top bg-alt">
+
+        <div class="container">
+
+        <div class="row">
+
+          <div class="col-xs-6 text-right">             
+            <%= paginate @jobs %>
+          </div>
+          <div class="col-xs-6 text-right">
+          <br>
+            <%= link_to "Add a job", new_job_path, :class=>"btn btn-primary btn-sm" %>
+          </div>
+
+          <% @jobs.each do |job| %>
+          <!-- Job detail -->
+          <div class="col-xs-12">
+
+            <div class="item-block">
+
+              <header>
+
+                <a href="company-detail.html">
+                  <img src="../assets/logo-job.png" alt="" width="160">
+                </a>
+
+                <div class="hgroup">
+
+                  <h4>
+                    <%= link_to job.job_title ,job %>
+                  </h4>
+                  <h5>
+                    <%= job.company_name %>
+                  </h5>
+
+                </div>
+
+                <div class="header-meta">
+
+                  <span class="location">
+                    <%= job.city.name %>
+                  </span>
+
+                  <time datetime="2016-03-10 20:00">
+                    <%= job.decorated_created_at %>
+                  </time>
+
+                </div>
+
+              </header>
+
+              <footer>
+
+                <p class="status">
+                  <strong>Status:</strong> 
+                  Pending approval
+                </p>
+
+                <div class="action-btn">
+
+                  <a class="btn btn-xs btn-gray" href="job-offer-edit.html">
+                    Edit
+                  </a>
+
+                  <a class="btn btn-xs btn-danger" href="#">
+                    Delete
+                  </a>
+               
+                </div>
+
+              </footer>
+            </div>
+          </div>
+        <!-- END Job detail -->
+        <% end %>   
+          <div class="col-xs-6 text-right">             
+            <%= paginate @jobs %>
+          </div>
+
+        </div>
+      </div>
+
+      </section>
+    </main>
+
+<!-- END Main container -->
+    <% else %>
+  <!-- Site header -->
+  <header class="site-header size-lg text-center" style="background-image: url(../assets/bg-banner2.jpg)">
+    
+    <div class="container">
+
+      <div class="col-xs-12">
+        <br><br>
+
+        <h2>We offer <mark>2222</mark> job vacancies right now!</h2>
+        <h5 class="font-alt">
+          Find your desire one in a minute
+        </h5>
+        <br><br><br>
+       
+        <form class="header-job-search">
+          <%= render(
+                partial: 'jobs/filter',
+                locals: { jobs: @jobs }
+              ) %>
+
+        </form>
+
+      </div>
+
+    </div>
+  </header>
+  <!-- END Site header -->
+
+
+  <!-- Main container -->
+  <main>
+    <!-- Recent jobs -->
+    <section>
+
+      <div class="container">
+
+          <div class="row item-blocks-connected">
+
+              <div class="col-md-8">
+
+                  <div class="col-xs-12">
+
+                      <header class="section-sub-header">
+
+                          <span>Latest</span>
+                          <h2>Recent jobs</h2>
+
+                      </header>
+                      <% @jobs.each do |job| %>
+                      <a class="item-block" href="job-detail.html">
+
+                        <header>                                               
+                            <img src="assets/logo-google.jpg" alt=""> 
+                          <div class="hgroup">
+
+                            <h4>
+                              <%= job.job_title  %>
+                            </h4>
+                            <h5>
+                              <%= job.company_name %>
+                            </h5>
+
+                          </div>
+                          
+                          <div class="header-meta">
+
+                            <span class="location">
+                              <%= job.city.name %>
+                            </span>
+                            <span class="label label-success">
+                              <%= job.status %>                            
+                            </span>
+
+                          </div>
+
+                        </header>
+
+                      </a>
+
+                    <% end %>
+
+                  </div>
+
+              </div>
+
+              <div class="col-md-4">
+
+                  <header class="section-sub-header">
+
+                      <h2>Search by Salary</h2>
+
+                  </header>
+
+                  <div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px 10px;">
+                    
+                    <div class="form-group">
+
+                      <select class="form-control ">
+                        <option>Select a salary type</option>
+                        <option>100,000 ~ 200,000</option>
+                        <option>200,000 ~ 300,000</option>
+                        <option>300,000 ~ 500,000</option>
+                        <option>500,000 ~ 700,000</option>
+                        <option>700,000 ~ 1,000,000</option>
+                      </select>
+
+                    </div>
+
+                    <p class="text-center">
+
+                      <a href="job-offer-list.html" class="btn btn-success">
+                        Search
+                      </a>
+
+                    </p>
+
+                  </div>
+
+              </div>
+
+          </div>    
+
+        <br><br>
+
+        <p class="text-center">
+
+          <a class="btn btn-info" href="job-list.html">
+            View all jobs
+          </a>
+
+        </p>
+
+      </div>
+
+    </section>
+    <!-- END Recent jobs -->
+
+
+    <!-- Facts -->
+    <section class="bg-img bg-repeat no-overlay section-sm" style="background-image: url(assets/Investment-Research.jpg);">
+      <div style="height: 200px;"></div>
+    </section>
+    <!-- END Facts -->
+
+
+    <!-- Categories -->
+    <section class="bg-alt">
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <span>Categories</span>
+          <h2>Popular categories</h2>
+          <p>Here's the most popular categories</p>
+
+        </header>
+
+        <div class="category-grid">
+
+          <a href="job-by-category.html">
+            <i class="fa fa-laptop"></i>
+            <h6>Technology</h6>
+            <p>Designer, Developer, IT Service, Front-end developer, Project management</p>
+          </a>
+
+          <a href="job-by-category.html">
+            <i class="fa fa-line-chart"></i>
+            <h6>Accounting</h6>
+            <p>Finance, Tax service, Payroll manager, Book keeper, Human resource</p>
+          </a>
+
+          <a href="job-by-category.html">
+            <i class="fa fa-medkit"></i>
+            <h6>Medical</h6>
+            <p>Doctor, Nurse, Hospotal, Dental service, Massagist</p>
+          </a>
+
+          <a href="job-by-category.htmll">
+            <i class="fa fa-cutlery"></i>
+            <h6>Food</h6>
+            <p>Restaurant, Food service, Coffe shop, Cashier, Waitress</p>
+          </a>
+
+          <a href="job-by-category.html">
+            <i class="fa fa-newspaper-o"></i>
+            <h6>Media</h6>
+            <p>Journalism, Newspaper, Reporter, Writer, Cameraman</p>
+          </a>
+
+          <a href="job-by-category.html">
+            <i class="fa fa-institution"></i>
+            <h6>Government</h6>
+            <p>Federal, Law, Human resource, Manager, Biologist</p>
+          </a> 
+        </div>
+
+      </div>
+    </section>
+    <!-- END Categories -->
+
+
+    <!-- Newsletter -->
+    <section class="bg-img text-center" style="background-image: url(assets/bg-facts.jpg)">
+      
+      <div class="container">
+
+        <h2>
+          <strong>Subscribe</strong>
+        </h2>
+
+        <h6 class="font-alt">
+          Get weekly top new jobs delivered to your inbox
+        </h6>
+        <br><br>
+        <form class="form-subscribe" action="#">
+
+          <div class="input-group">
+
+            <input type="text" class="form-control input-lg" placeholder="Your eamil address">
+
+            <span class="input-group-btn">
+
+              <button class="btn btn-success btn-lg" type="submit">
+                Subscribe
+              </button>
+
+            </span>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+    <!-- END Newsletter -->
+  </main>
+  <!-- END Main container -->
+    <% end %>
+
+    <!-- Site footer -->
+    <footer class="site-footer">
+
+      <!-- Top section -->
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-sm-12 col-md-6">
+
+            <h6>About</h6>
+
+            <p class="text-justify">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+
+            <h6>Page Role</h6>
+
+            <ul class="footer-links">
+
+              <li><a href="seeker.html">Job Seeker</a></li>
+              <li><a href="employer.html">Employer</a></li>
+              <li><a href="employer.html">Admin</a></li>
+            
+            </ul>
+
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+
+            <h6>Latest jobs</h6>
+
+            <ul class="footer-links">
+
+              <li><a href="job-offer-list.html">Front-end developer</a></li>
+              <li><a href="job-offer-list.html">Android developer</a></li>
+              <li><a href="job-offer-list.html">iOS developer</a></li>
+              <li><a href="job-offer-list.html">Web developer</a></li>
+              <li><a href="job-offer-list.html">Web Designer</a></li>
+            
+            </ul>
+
+          </div>
+
+        </div>
+        <hr>
+
+      </div>
+      <!-- END Top section -->
+
+      <!-- Bottom section -->
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyrights &copy; 2016 All Rights Reserved by <a href="http://themeforest.net/user/shamsoft">Tech Myanmar</a>.</p>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-xs-12">
+
+            <ul class="social-icons">
+
+              <li>
+                <a class="facebook" href="#">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+
+              <li>
+                <a class="twitter" href="#">
+                  <i class="ti-email"></i></i>
+                </a>
+              </li>
+            
+            </ul>
+
+          </div>
+
+        </div>
+      </div>
+      <!-- END Bottom section -->
+
+    </footer>
+    <!-- END Site footer -->
+
+
+    <!-- Back to top button -->
+    <a id="scroll-up" href="#">
+      <i class="ti-angle-up"></i>
+    </a>
+    <!-- END Back to top button -->
+
+    <!-- Scripts -->
+    <script src="assets/app.min.js"></script>
+    <script src="assets/custom.js"></script>
+
+  </body>
+</html>
+
+  <!-- Main container -->
+  <main>
+    <!-- Recent jobs -->
+    <section>
+
+      <div class="container">
+
+          <div class="row item-blocks-connected">
+
+              <div class="col-md-8">
+
+                  <div class="col-xs-12">
+
+                      <header class="section-sub-header">
+
+                          <span>Latest</span>
+                          <h2>Recent jobs</h2>
+
+                      </header>
+                    <% @jobs.each do |job| %>
+                      <a class="item-block" href="job-detail.html">
+                        
+                        <header>                        
+                            <img src="assets/logo-google.jpg" alt="">                          
+                          
+                          <div class="hgroup">
+
+                            <h4><%= job.job_title  %></h4>
+                            <h5><%= job.company_name %></h5>
+
+                          </div>
+                          
+                          <div class="header-meta">
+
+                            <span class="location">
+                              <%= job.city.name %>
+                            </span>
+                            <span class="label label-success">
+                              <%= job.status %>                            
+                            </span>
+
+                          </div>
+
+                        </header>
+
+                      </a>
+
+                    <% end %>
+
+                  </div>                  
+
+              </div>
+              <div class="col-md-4">
+
+                  <header class="section-sub-header">
+                      <h2>Search by Salary</h2>
+                  </header>
+
+                  <div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px 10px;">
+                    <div class="form-group">
+
+                      <select class="form-control ">
+                        <option>Select a salary type</option>
+                        <option>100,000 ~ 200,000</option>
+                        <option>200,000 ~ 300,000</option>
+                        <option>300,000 ~ 500,000</option>
+                        <option>500,000 ~ 700,000</option>
+                        <option>700,000 ~ 1,000,000</option>
+                      </select>
+
+                    </div>
+
+                    <p class="text-center">
+
+                      <a href="job-offer-list.html" class="btn btn-success">
+                        Search
+                      </a>
+
+                    </p>
+
+                  </div>
+
+              </div>
+
+          </div>
+
+        <br><br>
+        <p class="text-center">
+
+          <a class="btn btn-info" href="job-list.html">
+            View all jobs
+          </a>
+
+        </p>
+
+      </div>
+
+    </section>
+    <!-- END Recent jobs -->
+
+
+    <!-- Facts -->
+    <section class="bg-img bg-repeat no-overlay section-sm" style="background-image: url(assets/Investment-Research.jpg);">
+      
+      <div style="height: 200px;"></div>
+
+    </section>
+    <!-- END Facts -->
+
+
+    <!-- Categories -->
+    <section class="bg-alt">
+
+      <div class="container">
+
+        <header class="section-header">
+
+          <span>Categories</span>
+          <h2>Popular categories</h2>
+          <p>Here's the most popular categories</p>
+
+        </header>
+
+        <div class="category-grid">
+
+          <a href="job-by-category.html">
+            <i class="fa fa-laptop"></i>
+            <h6>Technology</h6>
+            <p>Designer, Developer, IT Service, Front-end developer, Project management</p>
+          </a>
+
+          <a href="job-by-category.html">
+            <i class="fa fa-line-chart"></i>
+            <h6>Accounting</h6>
+            <p>Finance, Tax service, Payroll manager, Book keeper, Human resource</p>
+          </a>
+
+          <a href="job-by-category.html">
+            <i class="fa fa-medkit"></i>
+            <h6>Medical</h6>
+            <p>Doctor, Nurse, Hospotal, Dental service, Massagist</p>
+          </a>
+
+          <a href="job-by-category.htmll">
+            <i class="fa fa-cutlery"></i>
+            <h6>Food</h6>
+            <p>Restaurant, Food service, Coffe shop, Cashier, Waitress</p>
+          </a>
+
+          <a href="job-by-category.html">
+            <i class="fa fa-newspaper-o"></i>
+            <h6>Media</h6>
+            <p>Journalism, Newspaper, Reporter, Writer, Cameraman</p>
+          </a>
+
+          <a href="job-by-category.html">
+            <i class="fa fa-institution"></i>
+            <h6>Government</h6>
+            <p>Federal, Law, Human resource, Manager, Biologist</p>
+          </a> 
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- END Categories -->
+
+
+    <!-- Newsletter -->
+    <section class="bg-img text-center" style="background-image: url(assets/bg-facts.jpg)">
+
+      <div class="container">
+
+        <h2><strong>Subscribe</strong></h2>
+        <h6 class="font-alt">Get weekly top new jobs delivered to your inbox</h6>
+        <br><br>
+
+        <form class="form-subscribe" action="#">
+
+          <div class="input-group">
+
+            <input type="text" class="form-control input-lg" placeholder="Your eamil address">
+            <span class="input-group-btn">
+              <button class="btn btn-success btn-lg" type="submit">Subscribe</button>
+            </span>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+    <!-- END Newsletter -->
+  </main>
+  <!-- END Main container -->
+

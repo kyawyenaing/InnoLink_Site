@@ -1,0 +1,31 @@
+<br>
+<br>
+<br>
+<!-- Main container -->
+<main>
+  <!-- Recent jobs -->
+  <section>
+    <div class="container">
+      <div class="row item-blocks-connected">
+        <div class="col-md-12">
+          <div class="col-xs-12">
+            <header class="section-sub-header">
+              <h2>Your jobs</h2>
+            </header>
+                    
+            <% @jobs.each do |job| %>
+              <%= render("jobs/job_preview", job: job) %>
+            <% end %>
+              <%= paginate @jobs %>                    
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+  <!-- END Recent jobs -->
+</main>
