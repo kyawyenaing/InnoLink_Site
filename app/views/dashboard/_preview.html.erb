@@ -1,35 +1,26 @@
 
 <!-- Main container -->
     <main>
-
       <section class="no-padding-top bg-alt">
-
         <div class="container">
-
         <div class="row">
-
-          <div class="col-xs-6 text-right">             
-            <%= paginate @jobs %>
+          <div class="col-xs-6 text-right">            
+            
           </div>
-
-          <div class="col-xs-6 text-right">
-            <br>
+          <div class="col-xs-6 text-right">           
+          <br>
     <%= link_to "Add a job", new_job_path, :class=>"btn btn-primary btn-sm" %>
           </div>
-
+          <%= paginate @jobs %>
           <% @jobs.each do |job| %>
           <!-- Job detail -->
           <div class="col-xs-12">
-
             <div class="item-block">
-
               <header>
-
                 <a href="/jobs/<%= job.id %>">
                   <img src="../assets/logo-job.png" alt="" width="160">
                 </a>
                 <div class="hgroup">
-
                   <h4>
                   <a href="/jobs/<%= job.id %>">
                   <%= job.title  %>
@@ -45,19 +36,14 @@
 
                 </div>
                 <div class="header-meta">
-
-                  <span class="location">                    
+                  <span class="location">              
                     <%= job.city.name %>
                   </span>
-
                   <time datetime="2016-03-10 20:00">
                     <%= job.decorated_created_at %>
                   </time>
-
                 </div>
-
               </header>
-
               <footer>
 
                 <p class="status">
@@ -65,33 +51,28 @@
                   Pending approval
                 </p>
 
-                <div class="action-btn">
-                <% if current_user %>
-                <a href="/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray">
+                <div class="action-btn">                
+                 <a href="/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray">
                   Edit
                   </a>
-                <%= link_to 'Delete', {:action =>'destroy', :id => job.id}, 
-                  :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
-                  %>
-                  <% end %>
-
+              <%= link_to 'Delete', 
+              {:action =>'destroy',
+               :id => job.id}, 
+              :confirm =>'Are you sure?', 
+              :method =>:delete,:class=>'btn btn-xs btn-danger' 
+              %>
                 </div>
 
               </footer>
-
             </div>
-
           </div>
         <!-- END Job detail -->
         <% end %>   
-          <div class="col-xs-6 text-right">             
+          <div class="col-xs-6 text-right">            
           <%= paginate @jobs %>
           </div>
-
         </div>
-
         </div>
-
       </section>
     </main>
 

@@ -1,5 +1,5 @@
 <!-- Page header -->
-<%= simple_form_for @job do |form| %>
+<%= simple_form_for Job.new do |form| %>
 <header class="page-header">
   <div class="container page-name">
 
@@ -34,7 +34,8 @@
       </div>
 
       <div class="form-group col-xs-12 col-sm-6">
-        <%= form.input :company_website, label: false,       input_html:{ class: 'form-control input-lg' },placeholder:"Company Website"
+        <%= form.input :company_website, label: false,       input_html:{ class: 'form-control input-lg' },
+        placeholder:"Company Website"
         %>
       </div>
 
@@ -69,6 +70,7 @@
           </span>
           <%=     
             form.select :city_id, @cities.collect{ |u| [u.name, u.id] },{include_blank: 'View By City'}, {:class=>'form-control selectpicker'} 
+            # select_tag :city_id, options_from_collection_for_select(City.all, :id, :name, params[:city_id]),{:class=>'form-control',include_blank: 'View By City'}
           %>
         </div>
       </div>

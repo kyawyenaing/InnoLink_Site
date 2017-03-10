@@ -20,11 +20,8 @@
             <header class="section-sub-header">
               <h2>Your jobs</h2>
             </header>
-                    
-            <% @jobs.each do |job| %>
-              <%= render("jobs/job_preview", job: job) %>
-            <% end %>
-              <%= paginate @jobs %>                    
+          
+              <%= render("dashboard/preview") %>              
             </div>
 
           </div>

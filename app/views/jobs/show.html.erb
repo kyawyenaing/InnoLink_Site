@@ -53,10 +53,6 @@
           <h4>How To Apply</h4>
           <p><%= @job.how_to %></p>
           <br>
-
-          <% if user_signed_in? and current_user.id = @job.user_id %>
-            <%= link_to "Edit", edit_job_path(@job), class: "btn btn-success btn-xl btn-round" %>
-          <% end %>
           <br>
         </div>
       </section><br>
@@ -69,3 +65,4 @@
     <!-- Back to top button -->
     <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
     <!-- END Back to top button -->
+ 

@@ -64,4 +64,7 @@ Rails.application.routes.draw do
 
   resources :jobs do
   end
+
+  resources :dashboard do
+  end
 end

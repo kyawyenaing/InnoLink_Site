@@ -1,44 +1,67 @@
-<a class="item-block" href="/jobs/<%= job.id %>">
-  <header>
-    <!-- <img src="assets/logo-google.jpg" alt=""> -->
-    <div class="hgroup">
-      <h4>
-        <%= job.title %> <span><small>(<%= job.salary_range.name %>)</small></span>
-      </h4> 
-      <h5>
-        <%= job.company_name %>
-      </h5>   
-    </div>
-          
-    <div class="header-meta">
-      <span class="location">
-        <%= job.city.name %>
-      </span>
-      <% if job.job_type == "FULLTIME" %>
-      <span class="label label-success">
-        <%= job.job_type %>                    
-      </span>
-      <% end %>
-      <% if job.job_type == "PARTTIME" %>
-        <span class="label label-warning">
-          <%= job.job_type %>                  
-        </span>
-      <% end %>
-      <% if job.job_type == "FREELANCE" %>
-        <span class="label label-info">
-          <%= job.status %>                  
-        </span>
-      <% end %>
-      <% if job.job_type == "INTERNSHIP" %>
-        <span class="label label-danger">
-          <%= job.job_type %>                 
-        </span>
-      <% end %>
-    </div>
-          
-  </header>       
-</a>
+<!-- Main container -->
+<main>
+<!-- Recent jobs -->
+<section>
+  <div class="container">
+      <div class="row item-blocks-connected">
+          <div class="col-md-8">
+              <div class="col-xs-12">
+                  <header class="section-sub-header">
+                      <span>Latest</span>
+                      <h2>Recent jobs</h2>
+                  </header>
+                  <%= 
+                    paginate @jobs 
+                  %>  
+                <% @jobs.each do |job| %>
+                <a class="item-block" href="/jobs/<%= job.id %>">
+                    <header>
+                      <img src="assets/logo-google.jpg" alt="">               
+                      <div class="hgroup">
+                        <h4><%= job.title %></h4>
+                        <h5><%= job.company_name %></h5>                      
+                      </div>                      
+                      <div class="header-meta">
+                        <span class="location">
+                          <%= job.city.name %>
+                        </span>
+                       <% if job.job_type == "FULLTIME" %>
+                       <span class="label label-success">
+                         <%= job.job_type %>                    
+                       </span>
+                       <% end %>
+                       <% if job.job_type == "PARTTIME" %>
+                         <span class="label label-warning">
+                           <%= job.job_type %>                  
+                         </span>
+                       <% end %>
+                       <% if job.job_type == "FREELANCE" %>
+                         <span class="label label-info">
+                           <%= job.job_type %>                  
+                         </span>
+                       <% end %>
+                       <% if job.job_type == "INTERNSHIP" %>
+                         <span class="label label-danger">
+                           <%= job.job_type %>                 
+                         </span>
+                       <% end %>                     
+                      </div>                      
+                    </header>                    
+                  </a>                  
+                <% end %>  
+                <%= 
+                  paginate @jobs 
+                %>              
+              </div>
+          </div>
+      </div>
+    <br><br>
+    <p class="text-center">
+      <a class="btn btn-info" href="job-list.html">View all jobs</a>
+    </p>
+  </div>
+</section>
+<!-- END Recent jobs -->
 
-<% if user_signed_in? and current_user.id = job.user_id %>
-  <%= link_to "Edit", edit_job_path(job), class: "btn btn-link" %>
-<% end %>
+</main>
+<!-- END Main container -->

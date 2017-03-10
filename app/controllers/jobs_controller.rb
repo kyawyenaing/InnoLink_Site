@@ -2,11 +2,10 @@ class JobsController < ApplicationController
 
 
   def index
-
     # @jobs = Job.order(created_at: :DESC).page(params[:page]).per(5)
     # @city = City.order('LOWER(name) ASC')
     @cities = City.get_list
-    @jobs = Job.get_list(params[:job_title], params[:city_id], params[:page])
+    @jobs = Job.get_list(params[:title], params[:city_id], params[:page])
 
   end
 
@@ -17,16 +16,14 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
-    @job.user_id = current_user
-
+    @job.user_id = current_user.id
     respond_to do |format|
       if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
+        format.html { redirect_to jobs_path, notice: 'Job was successfully created.' }
       else
         format.html { render :new }
       end
     end
-
   end
 
   def edit
@@ -35,11 +32,10 @@ class JobsController < ApplicationController
   end
 
   def update
-    @job = Job.find(params[:id])
-    
+    @job = Job.find(params[:id])    
     respond_to do |format|
       if @job.update(job_params)
-        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
+        format.html { redirect_to jobs_path, notice: 'Job was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -58,10 +54,10 @@ class JobsController < ApplicationController
   end
 
   private
-
   def job_params
     params.require(:job).permit(:title, :company_name, :company_website, :job_type, 
     :category_id, :salary_range_id, :city_id, :description, :requirement, 
-    :how_to)
+    :how_to,:user_id)
   end
+
 end
