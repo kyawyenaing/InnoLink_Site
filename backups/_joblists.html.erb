@@ -3,7 +3,7 @@
       <section class="no-padding-top bg-alt">
         <div class="container">
         <div class="row">
-          <div class="col-xs-6 text-right">             
+          <div class="col-xs-6 text-right">         
             <%= paginate @jobs %>
           </div>
           <div class="col-xs-6 text-right">
@@ -29,7 +29,7 @@
                     <%= job.company_name %>
                   </h5>
                   <% if job.user.id == current_user.id %>
-                  <span class="glyphicon glyphicon-user">                    
+                  <span class="glyphicon glyphicon-user">                   
                   </span>                              
                   <% end %>
 

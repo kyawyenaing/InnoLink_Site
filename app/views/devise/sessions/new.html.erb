@@ -1,60 +1,49 @@
-<br><br><br><br><br><br>
-
-<main>
-  <div class="login-block-sm">
-    <img src="<%= asset_path('logo-jobPortal.png') %>" alt="">
-    <h1>Log into your account</h1>
-  </div>
-
-  <div class="login-block">     
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="container">
+  <div class="row ">
+    <div class="col-md-6 col-md-offset-3 col-md-outset-3">
+      <main>
+        <div class="login-block-sm">
+          <h1>Login to your account</h1>
+        </div>
+        <div class="login-block">     
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
           <div class="form-group">
             <div class="input-group">
-              <span class="input-group-addon"><i class="ti-email"></i></span>
-    <%= f.email_field :email, autofocus: true, :class=>"form-control", :placeholder=>"Your Email"%>
+              <span class="input-group-addon">
+              <i class="ti-email"></i></span>
+          <%= f.email_field :email, autofocus: true, :class=>"form-control", :placeholder=>"Your Email"%>
             </div>
-          </div>
-          
+          </div>            
           <hr class="hr-xs">
-
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="ti-unlock"></i></span>
               <%= f.password_field :password, autocomplete: "off", :class=>"form-control", :placeholder=>"Your Password"%>
             </div>
-          </div>
-          
+          </div>                
           <% if devise_mapping.rememberable? -%>
           <div class="field">
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
           </div>
-        <% end -%>
-        <%= f.submit "Log in", :class=>"btn btn-primary btn-block" %>
+          <% end -%>
+          <%= f.submit "Log in", :class=>"btn btn-primary btn-block" %>
+            <div class="login-footer">
+              <h6>Or login with</h6>
+              <ul class="social-icons">
+                <li>
+                  <a class="facebook" href="#">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
 
-          <div class="login-footer">
-            <h6>Or login with</h6>
-            <ul class="social-icons">
-              <li>
-                <a class="facebook" href="#">
-                  <i class="fa fa-facebook"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
-      </div>
-
-      <div class="login-links">
-        <a class="pull-left" href="user-forget-pass.html">
-          Forget Password?
-        </a>
-        <a class="pull-right" href="user-register.html">
-          Register an account
-        </a>
-      </div>
-
-    </main>

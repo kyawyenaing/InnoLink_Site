@@ -1,6 +1,6 @@
-<br>
 <%= simple_form_for @job do |form| %>
   <div class="container">
+    <h1 class="text-center m-t-extra">Update your job information</h1><br>
     <div class="row">
       <div class="form-group col-xs-12 col-sm-6"> 
         <%= 
@@ -17,24 +17,20 @@
         %>
       </div>
     </div>
-
     <div class="row">
       <div class="form-group col-xs-12 col-sm-6">
         <%= form.input :company_name, label: false,       input_html:{ class: 'form-control input-lg' },placeholder:"Company Name"
         %>
       </div>
-
       <div class="form-group col-xs-12 col-sm-6">
         <%= form.input :company_website, label: false,       input_html:{ class: 'form-control input-lg' },
         placeholder:"Company Website"
         %>
       </div>
-
       <div class="form-group col-xs-12">
        <%= form.input :description, as: :text, label: false, :input_html => { class: 'form-control',placeholder:"Your Job Description", :cols => 20, :rows => 5 } 
        %>
-      </div>
-         
+      </div>         
       <div class="form-group col-xs-12 col-sm-6 col-md-4">  
         <div class="input-group input-group-sm">
          <span class="input-group-addon">
@@ -43,7 +39,6 @@
          <%= form.collection_radio_buttons :job_type, Job.job_types, :first, :first %>
         </div>
       </div>
-
       <div class="form-group col-xs-12 col-sm-6 col-md-4">    
         <div class="input-group input-group-sm">
           <span class="input-group-addon">
@@ -53,7 +48,6 @@
           %>
         </div>
       </div>
-
       <div class="form-group col-xs-12 col-sm-6 col-md-4">
         <div class="input-group input-group-sm">
           <span class="input-group-addon">
@@ -65,18 +59,15 @@
             {:class=> 'form-control selectpicker'} 
           %>
         </div>
-      </div>
-          
+      </div>          
       <div class="form-group col-xs-12">
         <%= form.input :requirement, as: :text, label: false, :input_html => { class: 'form-control',placeholder:"Position Requirements", :cols => 20, :rows => 5 } 
         %>
       </div>
-
       <div class="form-group col-xs-12">
         <%= form.input :how_to, as: :text, label: false, :input_html => { class: 'form-control',placeholder:"How to apply", :cols => 20, :rows => 5 } 
         %>
       </div>
-
       <div class="form-group col-xs-12">
         <p class="text-center">         
           <%= form.button :submit, class: "btn btn-success btn-md " %>

@@ -1,5 +1,15 @@
 <!-- Page header -->
-<br>
+<header class="page-header">
+  <div class="container page-name">
+    <h1 class="text-center">
+     Add a new job
+    </h1>
+    <p class="lead text-center">
+       Create a new vacancy for your company and put it online.
+     </p>
+    <a href="job-offer-list.html" class="text-center block text-dark text-u-l">
+     View your job offer list
+   </a>
 <%= simple_form_for Job.new do |form| %>
   <div class="container">
     <div class="row">
@@ -10,7 +20,6 @@
           placeholder:"Job Title" 
         %>            
       </div>
-
       <div class="form-group col-xs-12 col-sm-6">
         <%= form.collection_select :category_id,Category.all,
           :id,:name,{prompt: 'Select Job Category'},
@@ -18,24 +27,20 @@
         %>
       </div>
     </div>
-
     <div class="row">
       <div class="form-group col-xs-12 col-sm-6">
         <%= form.input :company_name, label: false,       input_html:{ class: 'form-control input-lg' },placeholder:"Company Name"
         %>
       </div>
-
       <div class="form-group col-xs-12 col-sm-6">
         <%= form.input :company_website, label: false,       input_html:{ class: 'form-control input-lg' },
         placeholder:"Company Website"
         %>
       </div>
-
       <div class="form-group col-xs-12">
        <%= form.input :description, as: :text, label: false, :input_html => { class: 'form-control',placeholder:"Your Job Description", :cols => 20, :rows => 5 } 
        %>
-      </div>
-         
+      </div>         
       <div class="form-group col-xs-12 col-sm-6 col-md-4"> 
         <div class="input-group input-group-sm">
          <span class="input-group-addon">
@@ -44,7 +49,6 @@
          <%= form.collection_radio_buttons :job_type, Job.job_types, :first, :first %>
         </div>
       </div>
-
       <div class="form-group col-xs-12 col-sm-6 col-md-4">
         <div class="input-group input-group-sm">
           <span class="input-group-addon">
@@ -54,7 +58,6 @@
           %>
         </div>
       </div>
-
       <div class="form-group col-xs-12 col-sm-6 col-md-4">
         <div class="input-group input-group-sm">
           <span class="input-group-addon">
@@ -64,18 +67,15 @@
             form.select :city_id, @cities.collect{ |u| [u.name, u.id] },{include_blank: 'View By City'}, {:class=>'form-control selectpicker'} 
           %>
         </div>
-      </div>
-          
+      </div>          
       <div class="form-group col-xs-12">
         <%= form.input :requirement, as: :text, label: false, :input_html => { class: 'form-control',placeholder:"Position Requirements", :cols => 20, :rows => 5 } 
         %>
       </div>
-
       <div class="form-group col-xs-12">
         <%= form.input :how_to, as: :text, label: false, :input_html => { class: 'form-control',placeholder:"How to apply", :cols => 20, :rows => 5 } 
         %>
       </div>
-
       <div class="form-group col-xs-12">
         <p class="text-center">
           <%= form.button :submit, class: "btn btn-success btn-md" %>
@@ -84,6 +84,8 @@
     </div>
   </div>
 <% end %>
+</header>
+     <!-- END Page header -->
  <!-- END Main container -->
 
  <!-- Back to top button -->

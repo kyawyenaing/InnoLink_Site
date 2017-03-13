@@ -1,10 +1,19 @@
+<!-- Page header -->
+    <header class="page-header m-b-none">      
+      <div class="container page-name">
+        <h1 class="text-center">View Jobs Offer</h1>
+        <p class="lead text-center padder-bt-xxl">
+          Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.
+        </p>
+      </div>
+    </header>
+<!-- END Page header -->
 <!-- Main container -->
     <main>
       <section class="no-padding-top bg-alt">
         <div class="container">
         <div class="row">
-          <div class="col-xs-6 text-right">            
-            <h3>Your Jobs </h3>
+          <div class="col-xs-6 text-left">
             <%= paginate @jobs %>
           </div>
           <div class="col-xs-6 text-right">
@@ -27,13 +36,16 @@
                   <h4>
                   <a href="/jobs/<%= job.id %>">
                   <%= job.title  %>
-                  </a>
-                               
+                  </a>                               
                   </h4>
+                  <% if job.user.id == current_user.id %>
+                  <span class="glyphicon glyphicon-user">                   
+                  </span>                            
+                  <% end %>  
                   <h5><%= job.company_name %></h5>
                 </div>
                 <div class="header-meta">
-                  <span class="location">              
+                  <span class="location">            
                     <%= job.city.name %>
                   </span>
                   <time datetime="2016-03-10 20:00">
@@ -62,7 +74,7 @@
           </div>
         <!-- END Job detail -->
         <% end %>   
-          <div class="col-xs-6 text-right">            
+          <div class="col-xs-6 text-left">           
           <%= paginate @jobs %>
           </div>
         </div>

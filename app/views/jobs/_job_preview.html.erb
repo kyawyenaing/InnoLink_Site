@@ -1,14 +1,38 @@
+  <!-- Site header -->
+    <header class="site-header size-lg text-center" style="background-image: url(<%= asset_path('bg-banner2.jpg') %>)">
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <form class="header-job-search">
+            <div class="input-keyword">             
+              <%= text_field_tag :title,params[:title],{:class=>"form-control",placeholder:"View By Job Title" }%>          
+            </div>
+
+            <div class="input-location">
+              <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name, params[:city_id]),{:class=>'form-control',include_blank: 'View By City'} %>
+            </div>
+
+            <div class="btn-search">
+              <button class="btn btn-primary" type="submit">
+                Find jobs
+              </button>
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
+    </header>
+  <!-- END Site header -->
 <!-- Main container -->
 <main>
 <!-- Recent jobs -->
 <section>
   <div class="container">
       <div class="row item-blocks-connected">
-          <div class="col-md-8">
+          <div class="col-md-12">
               <div class="col-xs-12">
                   <header class="section-sub-header">
-                      <span>Latest</span>
-                      <h2>Recent jobs</h2>
+                      <h2>Recent Jobs</h2>
                   </header>
                   <%= 
                     paginate @jobs 
@@ -16,42 +40,44 @@
                 <% @jobs.each do |job| %>
                 <a class="item-block" href="/jobs/<%= job.id %>">
                     <header>
-                      <img src="assets/logo-google.jpg" alt="">               
+                      <img src="assets/logo-google.jpg" alt="">
                       <div class="hgroup">
                         <h4><%= job.title %></h4>
-                        <h5><%= job.company_name %></h5>                      
+                        <% if job.job_type == "FULLTIME" %>
+                        <span class="label label-success">
+                          <%= job.job_type %>           
+                        </span>
+                        <% end %>
+                        <% if job.job_type == "PARTTIME" %>
+                          <span class="label label-warning">
+                           <%= job.job_type %>                  
+                          </span>
+                        <% end %>
+                        <% if job.job_type == "FREELANCE" %>
+                          <span class="label label-info">
+                            <%= job.job_type %>                  
+                          </span>
+                        <% end %>
+                        <% if job.job_type == "INTERNSHIP" %>
+                          <span class="label label-danger">
+                            <%= job.job_type %>                 
+                          </span>
+                        <% end %>   
+                        <h5><%= job.company_name %></h5>                                
                       </div>                      
                       <div class="header-meta">
                         <span class="location">
                           <%= job.city.name %>
                         </span>
-                       <% if job.job_type == "FULLTIME" %>
-                       <span class="label label-success">
-                         <%= job.job_type %>                    
-                       </span>
-                       <% end %>
-                       <% if job.job_type == "PARTTIME" %>
-                         <span class="label label-warning">
-                           <%= job.job_type %>                  
-                         </span>
-                       <% end %>
-                       <% if job.job_type == "FREELANCE" %>
-                         <span class="label label-info">
-                           <%= job.job_type %>                  
-                         </span>
-                       <% end %>
-                       <% if job.job_type == "INTERNSHIP" %>
-                         <span class="label label-danger">
-                           <%= job.job_type %>                 
-                         </span>
-                       <% end %>                     
+                        <time datetime="2016-03-10 20:00">
+                          <%= job.decorated_created_at %>
+                        </time>
+                        <br/>                                         
                       </div>                      
                     </header>                    
                   </a>                  
                 <% end %>  
-                <%= 
-                  paginate @jobs 
-                %>              
+                <%= paginate @jobs %>              
               </div>
           </div>
       </div>

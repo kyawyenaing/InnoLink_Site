@@ -7,5 +7,6 @@ class Api::JobsController < ApplicationController
   
   def show
     @job = Job.find(params[:id])
+    render json: @job
   end
 end
