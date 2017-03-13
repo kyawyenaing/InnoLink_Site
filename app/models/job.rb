@@ -10,18 +10,19 @@ class Job < ActiveRecord::Base
   validates_presence_of :title, :company_name, :job_type, 
     :category_id, :salary_range_id, :city_id, :description, :requirement, 
     :how_to
-
+# for user dashboard
   def self.my_jobs(user_id, page = 1)
     num_jobs = 5 
     Job.where(['user_id = ?', user_id])
       .order(created_at: :DESC)
       .page(page).per(num_jobs)
   end
-
+# end user dashboard
+# for api
   def self.get_api( title, city_id)
     Job.order(created_at: :DESC)        
   end
-
+# end api
   def self.get_list(title, city_id, page = 1)
     num_jobs = 5
 
@@ -46,18 +47,19 @@ class Job < ActiveRecord::Base
     end
 
   end
-
-
+# end job display
+# for date time
   def decorated_created_at
     created_at.to_date.to_s(:long)
   end
-
-  def get_job_type
-    if job_type == Job.job_types[:FULLTIME]
-      "Full-time"
-    else
-      "Part-time"
-    end
-  end
-
+# end datetime
+# for job_type enum
+  # def get_job_type
+  #   if job_type == Job.job_types[:FULLTIME]
+  #     "Full-time"
+  #   else
+  #     "Part-time"
+  #   end
+  # end
+# end job_type enum
 end

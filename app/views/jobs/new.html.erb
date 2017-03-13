@@ -1,14 +1,6 @@
 <!-- Page header -->
+<br>
 <%= simple_form_for Job.new do |form| %>
-<header class="page-header">
-  <div class="container page-name">
-
-    <h1 class="text-center">Add a new job</h1>
-    <p class="lead text-center">
-        Create a new vacancy for your company and put it online.
-    </p>
-  </div>
-
   <div class="container">
     <div class="row">
       <div class="form-group col-xs-12 col-sm-6"> 
@@ -70,7 +62,6 @@
           </span>
           <%=     
             form.select :city_id, @cities.collect{ |u| [u.name, u.id] },{include_blank: 'View By City'}, {:class=>'form-control selectpicker'} 
-            # select_tag :city_id, options_from_collection_for_select(City.all, :id, :name, params[:city_id]),{:class=>'form-control',include_blank: 'View By City'}
           %>
         </div>
       </div>
@@ -87,15 +78,11 @@
 
       <div class="form-group col-xs-12">
         <p class="text-center">
-         <!-- <a href="job-offer-list.html" class="btn btn-success btn-xl btn-round">Submit your job</a> -->
           <%= form.button :submit, class: "btn btn-success btn-xl btn-round" %>
         </p>  
       </div>
     </div>
   </div>
-
-</header>
-<!-- END Page header -->
 <% end %>
  <!-- END Main container -->
 

@@ -1,12 +1,18 @@
-<% if user_signed_in? %>
-	<!-- Page header -->
-	<header class="page-header m-b-none">
-	  <div class="container page-name">
-	    <h1 class="text-center">View Jobs Offer</h1>
-	    <p class="lead text-center padder-bt-xxl">Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.</p>
-	  </div>
-	</header>
-	<!-- END Page header -->
+    <% if user_signed_in? %>
+<!-- Page header -->
+    <header class="page-header m-b-none">
+      
+      <div class="container page-name">
+
+        <h1 class="text-center">View Jobs Offer</h1>
+        <p class="lead text-center padder-bt-xxl">
+          Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.
+        </p>
+
+      </div>
+
+    </header>
+<!-- END Page header -->
 <% else %>
 	<!-- Site header -->
 	  <header class="site-header size-lg text-center" style="background-image: url(<%= asset_path('bg-banner2.jpg') %>)">
