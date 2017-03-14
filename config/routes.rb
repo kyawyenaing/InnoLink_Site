@@ -70,6 +70,10 @@ Rails.application.routes.draw do
     resources :cities
   end
 
+  namespace :api, defaults: {format: :json} do
+    resources :salaries
+  end
+
   resources :jobs do
   end
 
