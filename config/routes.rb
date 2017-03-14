@@ -62,6 +62,14 @@ Rails.application.routes.draw do
     resources :jobs
   end
 
+  namespace :api, defaults: {format: :json} do
+    resources :categories
+  end
+
+  namespace :api, defaults: {format: :json} do
+    resources :cities
+  end
+
   resources :jobs do
   end
 

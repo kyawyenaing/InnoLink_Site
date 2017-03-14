@@ -1,16 +1,12 @@
     <% if user_signed_in? %>
 <!-- Page header -->
-    <header class="page-header m-b-none">
-      
+    <header class="page-header m-b-none">      
       <div class="container page-name">
-
         <h1 class="text-center">View Jobs Offer</h1>
         <p class="lead text-center padder-bt-xxl">
           Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.
         </p>
-
       </div>
-
     </header>
 <!-- END Page header -->
 <% else %>
@@ -23,11 +19,9 @@
 	          <div class="input-keyword">             
 	            <%= text_field_tag :title,params[:title],{:class=>"form-control",placeholder:"View By Job Title" }%>          
 	          </div>
-
 	          <div class="input-location">
-	            <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name, params[:city_id]),{:class=>'form-control',include_blank: 'View By City'} %>
+	            <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name, params[:city_id]),{:class=>'form-control',include_blank:'View By City'} %>
 	          </div>
-
 	          <div class="btn-search">
 	            <button class="btn btn-primary" type="submit">
 	              Find jobs

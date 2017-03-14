@@ -10,6 +10,7 @@ class Job < ActiveRecord::Base
   validates_presence_of :title, :company_name, :job_type, 
     :category_id, :salary_range_id, :city_id, :description, :requirement, 
     :how_to
+    
 # for user dashboard
   def self.my_jobs(user_id, page = 1)
     num_jobs = 5 
@@ -18,11 +19,14 @@ class Job < ActiveRecord::Base
       .page(page).per(num_jobs)
   end
 # end user dashboard
+
 # for api
   def self.get_api( title, city_id)
     Job.order(created_at: :DESC)        
   end
 # end api
+
+# for job display and filter
   def self.get_list(title, city_id, page = 1)
     num_jobs = 5
 
@@ -31,7 +35,7 @@ class Job < ActiveRecord::Base
         .page(page).per(num_jobs)
     else
       if title != "" && city_id != ""
-          Job.where(['title LIKE ? and city_id = ?', title, city_id])
+          Job.where(['title LIKE ? && city_id = ?', title, city_id])
             .order(created_at: :DESC)
             .page(page).per(num_jobs)
       end
@@ -47,12 +51,14 @@ class Job < ActiveRecord::Base
     end
 
   end
-# end job display
+# end job display and filter
+
 # for date time
   def decorated_created_at
     created_at.to_date.to_s(:long)
   end
 # end datetime
+
 # for job_type enum
   def get_job_type
     if job_type == Job.job_types[:FULLTIME]

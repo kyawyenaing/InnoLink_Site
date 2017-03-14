@@ -5,10 +5,16 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <link rel="apple-touch-icon" href="..assets/apple-touch-icon.png">
+  <link rel="icon" href="../assets/favicon.ico">
 </head>
 
 <body class="nav-on-header smart-nav">
   <%= render "layouts/nav" %>
   <%= yield %>
+  <!-- Scripts -->
+  <script src="assets/app.min.js"></script>
+  <script src="assets/custom.js"></script>
+  <!-- Scripts -->
 </body>
 </html>

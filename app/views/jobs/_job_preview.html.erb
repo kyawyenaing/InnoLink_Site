@@ -3,15 +3,14 @@
       <div class="container">
       <div class="row">
         <div class="col-xs-12">
+        <br><br>
           <form class="header-job-search">
             <div class="input-keyword">             
               <%= text_field_tag :title,params[:title],{:class=>"form-control",placeholder:"View By Job Title" }%>          
             </div>
-
             <div class="input-location">
               <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name, params[:city_id]),{:class=>'form-control',include_blank: 'View By City'} %>
             </div>
-
             <div class="btn-search">
               <button class="btn btn-primary" type="submit">
                 Find jobs
@@ -43,6 +42,7 @@
                       <img src="assets/logo-google.jpg" alt="">
                       <div class="hgroup">
                         <h4><%= job.title %></h4>
+                        <h5><%= job.company_name %></h5>  
                         <% if job.job_type == "FULLTIME" %>
                         <span class="label label-success">
                           <%= job.job_type %>           
@@ -50,7 +50,7 @@
                         <% end %>
                         <% if job.job_type == "PARTTIME" %>
                           <span class="label label-warning">
-                           <%= job.job_type %>                  
+                           <%= job.job_type %>                 
                           </span>
                         <% end %>
                         <% if job.job_type == "FREELANCE" %>
@@ -62,8 +62,7 @@
                           <span class="label label-danger">
                             <%= job.job_type %>                 
                           </span>
-                        <% end %>   
-                        <h5><%= job.company_name %></h5>                                
+                        <% end %>                                 
                       </div>                      
                       <div class="header-meta">
                         <span class="location">

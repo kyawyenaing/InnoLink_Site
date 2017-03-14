@@ -23,7 +23,6 @@
             :class=>"btn btn-primary btn-sm" 
             %>
           </div>
-
           <% @jobs.each do |job| %>
           <!-- Job detail -->
           <div class="col-xs-12">
@@ -39,7 +38,7 @@
                   </a>                               
                   </h4>
                   <% if job.user.id == current_user.id %>
-                  <span class="glyphicon glyphicon-user">                   
+                  <span class="glyphicon glyphicon-user">    
                   </span>                            
                   <% end %>  
                   <h5><%= job.company_name %></h5>

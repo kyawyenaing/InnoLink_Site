@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
     @job = Job.find params[:id]
     @job.destroy
 
-    redirect_to jobs_path
+    redirect_to dashboard_path
   end
 
 end
