@@ -11,6 +11,11 @@
 
 <body class="nav-on-header smart-nav">
   <%= render "layouts/nav" %>
+  <% flash.each do |key,value| %>
+    <div class="alert alert-<%= key %>">
+      <%= value %>
+    </div>
+  <% end %>
   <%= yield %>
   <!-- Scripts -->
   <script src="assets/app.min.js"></script>

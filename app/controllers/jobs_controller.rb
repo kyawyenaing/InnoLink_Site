@@ -35,6 +35,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])    
     respond_to do |format|
       if @job.update(job_params)
+        flash[:notic] = ""
         format.html { redirect_to dashboard_path, notice: 'Job was successfully updated.' }
       else
         format.html { render :edit }
@@ -49,7 +50,6 @@ class JobsController < ApplicationController
   def destroy
     @job = Job.find params[:id]
     @job.destroy
-
     redirect_to dashboard_path
   end
 

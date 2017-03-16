@@ -16,7 +16,13 @@ body {
 .apply-page, .login-page {
     background-color: #e5e7ed;
 }
-
+.site-header{
+    background: none;
+    background: url("../assets/bg-banner2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 /* Page header */
 .page-header.bg-img:before {
 	background: none !important;
@@ -62,7 +68,7 @@ body {
 .nav-on-header .navbar {
 	box-shadow: 0 0 6px 2px rgba(0,0,0,.1);
 	background-color: #FFF;
-	margin-top: 0
+	margin-top: 0;
 }
 .nav-on-header .navbar .nav-menu a, .nav-on-header .navbar .navbar-toggle {
 	color: #333;
@@ -91,6 +97,7 @@ body {
 	color: #000;
 }
 .login-block-sm {
+    margin: 20px 0 0 0;
 	padding: 20px;
 	text-align: center;
 }
