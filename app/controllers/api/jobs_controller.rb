@@ -9,6 +9,8 @@ class Api::JobsController < ApplicationController
   end
 
   def new
+    # @job = Job.new
+    # @cities = City.get_list
   end
 
   def create
@@ -18,10 +20,7 @@ class Api::JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.title = data["title"]
     @job.company_name = data["company_name"]
-    @job.company_name = data["company_name"]
     @job.company_website = data["company_website"]
-    @job.company_website = data["company_website"]
-    @job.job_type = data["job_type"]
     @job.job_type = data["job_type"]
     @job.category_id = data["category_id"]
     @job.salary_range_id = data["salary_range_id"]
