@@ -1,5 +1,5 @@
 class Api::JobsController < ApplicationController
-  
+  require 'httparty'
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
   end
