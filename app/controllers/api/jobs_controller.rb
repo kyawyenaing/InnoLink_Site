@@ -1,5 +1,5 @@
 class Api::JobsController < ApplicationController
-  require 'httparty'
+  # require 'HTTParty'
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
   end
@@ -14,9 +14,12 @@ class Api::JobsController < ApplicationController
   end
 
   def create
-    url = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    info = HTTParty.get('url')
-    data = JSON.parse('info')
+    # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
+    # info = HTTParty.get('http://localhost:3000/api/jobs/new')
+    # data = JSON.parse('info')
+    url = "http://momolay-job.herokuapp.com/api/jobs/new"
+    data = JSON.parse(url)
+    puts data['title']
     @job = Job.new(job_params)
     @job.title = data["title"]
     @job.company_name = data["company_name"]
