@@ -9,19 +9,34 @@ class Api::JobsController < ApplicationController
   end
 
   def new
-  	@job = Job.new
-  	@cities = City.get_list
-  	# redirect_to new_job_path
   end
 
   def create
-  	@job = Job.new(job_params)
-  	@job.user_id = current_user.id
-  	if @job.save
-    redirect_to jobs_path, notice: 'Job was successfully created.'
-  	else
-    redirect_to new_job_path 
-  	end
+    url = 'https://momolay-job.herokuapp.com/api/jobs/new'
+    info = HTTParty.get('url')
+    data = JSON.parse('info')
+    @job = Job.new(job_params)
+    @job.title = data["title"]
+    @job.company_name = data["company_name"]
+    @job.company_name = data["company_name"]
+    @job.company_website = data["company_website"]
+    @job.company_website = data["company_website"]
+    @job.job_type = data["job_type"]
+    @job.job_type = data["job_type"]
+    @job.category_id = data["category_id"]
+    @job.salary_range_id = data["salary_range_id"]
+    @job.city_id = data["city_id"]
+    @job.description = data["description"]
+    @job.requirement = data["requirement"]
+    @job.how_to = data["how_to"]
+    respond_to do |format|
+      if @job.save
+        format.json { redirect_to jobs_path, notice: 'Job was successfully created.' }
+      else
+        format.json { redirect_to new_job_path }
+      end 
+    end   
+
 	end
 
 	def edit
