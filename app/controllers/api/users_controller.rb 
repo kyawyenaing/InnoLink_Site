@@ -1,7 +1,5 @@
-class Api::JobsController < ApplicationController
-    
-  require 'net/http'
-  require 'json'
+class Api::UsersController < ApplicationController
+  
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
   end
@@ -16,7 +14,10 @@ class Api::JobsController < ApplicationController
     # info = HTTParty.get('https://momolay-job.herokuapp.com/api/jobs/new')
     # data = JSON.parse('info')
 
-    # json = JSON.parse(response.body)
+    url = 'https://momolay-job.herokuapp.com/api/jobs/new'
+    puts url
+    # response = HTTParty.get(url)
+    # response.parsed_response
     # @job = Job.new(job_params)
     # @job.title = data["title"]
     # @job.company_name = data["company_name"]
@@ -36,34 +37,21 @@ class Api::JobsController < ApplicationController
     #   end 
     # end 
 
-    # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    # uri = URI(url)
-    # response = Net::HTTP.get(uri)
-    source = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    resp = Net::HTTP.get_response(URI.parse(source))
-    result = resp.body
-    data = JSON.parse(result)
-    render json: {
-          status: 200,
-          # message: "Successfully created a job.",
-          message: data["title"],
-        }.to_json
-
   end
 
 
-	def edit
-	  @job = Job.find(params[:id])    
-	  @city = City.get_list
-	  redirect_to edit_job_path
-	end
+  def edit
+    @job = Job.find(params[:id])    
+    @city = City.get_list
+    redirect_to edit_job_path
+  end
 
-	private
-	def job_params
-	  params.require(:job).permit(:title, :company_name, :company_website, :job_type, 
-	  :category_id, :salary_range_id, :city_id, :description, :requirement, 
-	  :how_to,:user_id)
-	end
+  private
+  def job_params
+    params.require(:job).permit(:title, :company_name, :company_website, :job_type, 
+    :category_id, :salary_range_id, :city_id, :description, :requirement, 
+    :how_to,:user_id)
+  end
 
 
 end

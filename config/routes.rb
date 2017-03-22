@@ -80,4 +80,9 @@ Rails.application.routes.draw do
 
   resources :dashboard do
   end
+
+  namespace :api, defaults: {format: :json} do
+    devise_for :users
+    resources :recipes, :only=>[:index, :show]
+  end  
 end
