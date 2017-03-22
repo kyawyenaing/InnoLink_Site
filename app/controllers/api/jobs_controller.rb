@@ -11,7 +11,7 @@ class Api::JobsController < ApplicationController
   end
 
   def new
-    @job = Job.new()
+    # @job = Job.new()
     # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # info = HTTParty.get('https://momolay-job.herokuapp.com/api/jobs/new')
     # data = JSON.parse('info')
@@ -36,16 +36,33 @@ class Api::JobsController < ApplicationController
     #   end 
     # end 
 
-    # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    # uri = URI(url)
-    # response = Net::HTTP.get(uri)
-    # source = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    # resp = Net::HTTP.get_response(URI.parse(source))
-    # result = resp.body
-    # data = JSON.parse(result)
-    render json: 
-        @job
-        .to_json
+    url = 'https://momolay-job.herokuapp.com/api/jobs/new'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    source = 'https://momolay-job.herokuapp.com/api/jobs/new'
+    resp = Net::HTTP.get_response(URI.parse(source))
+    result = resp.body
+    data = JSON.parse(result)
+    # @job = Job.new()
+    # @job.title = data["title"]
+    # @job.company_name = data["company_name"]
+    # @job.company_website = data["company_website"]
+    # @job.job_type = data["job_type"]
+    # @job.category_id = data["category_id"]
+    # @job.salary_range_id = data["salary_range_id"]
+    # @job.city_id = data["city_id"]
+    # @job.description = data["description"]
+    # @job.requirement = data["requirement"]
+    # @job.how_to = data["how_to"]
+   
+    #   if @job.save
+    #     render json: {message: "Success!"}
+    #   else
+    #     render json: {message: "Failed!"}
+    #   end 
+    render json: data["title"]
+  
+
 
     # render json: {
     #       status: 200,
@@ -53,6 +70,13 @@ class Api::JobsController < ApplicationController
     #       # message: data["title"]
     #       object: '{"id":6,"title":"Senior PHP Developer","company_name":"Aries","company_website":"www.aries.com","job_type":"Part-time","category":"IT","salary_range":"100,000 ~ 200,000 ks","city":"Yangon","description":"Senior PHP Developer","requirement":"Senior PHP Developer","how_to":"Senior PHP Developer"}'
     #     }.to_json
+
+    #//it is for heroku test
+    # render json: 
+    #     @job
+    #     .to_json
+    #//it is for heroku test
+    
 
   end
 
