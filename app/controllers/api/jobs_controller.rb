@@ -1,7 +1,7 @@
 class Api::JobsController < ApplicationController
     
-  require 'net/http'
-  require 'json'
+  # require 'net/http'
+  # require 'json'
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
   end
@@ -11,7 +11,7 @@ class Api::JobsController < ApplicationController
   end
 
   def new
-    # @job = Job.new()
+    @job = Job.new()
     # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # info = HTTParty.get('https://momolay-job.herokuapp.com/api/jobs/new')
     # data = JSON.parse('info')
@@ -43,11 +43,16 @@ class Api::JobsController < ApplicationController
     # resp = Net::HTTP.get_response(URI.parse(source))
     # result = resp.body
     # data = JSON.parse(result)
-    render json: {
-          status: 200,
-          message: "Successfully created a job."
-          # message: data["title"]
-        }.to_json
+    render json: 
+        @job
+        .to_json
+
+    # render json: {
+    #       status: 200,
+    #       message: "Successfully created a job."
+    #       # message: data["title"]
+    #       object: '{"id":6,"title":"Senior PHP Developer","company_name":"Aries","company_website":"www.aries.com","job_type":"Part-time","category":"IT","salary_range":"100,000 ~ 200,000 ks","city":"Yangon","description":"Senior PHP Developer","requirement":"Senior PHP Developer","how_to":"Senior PHP Developer"}'
+    #     }.to_json
 
   end
 
