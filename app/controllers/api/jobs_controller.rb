@@ -46,7 +46,7 @@ class Api::JobsController < ApplicationController
     render json: {
           status: 200,
           # message: "Successfully created a job.",
-          message: data["title"],
+          message: "Successfully created a job."
         }.to_json
 
   end
