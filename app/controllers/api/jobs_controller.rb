@@ -39,14 +39,14 @@ class Api::JobsController < ApplicationController
     # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # uri = URI(url)
     # response = Net::HTTP.get(uri)
-    source = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    resp = Net::HTTP.get_response(URI.parse(source))
-    result = resp.body
-    data = JSON.parse(result)
+    # source = 'https://momolay-job.herokuapp.com/api/jobs/new'
+    # resp = Net::HTTP.get_response(URI.parse(source))
+    # result = resp.body
+    # data = JSON.parse(result)
     render json: {
           status: 200,
-          # message: "Successfully created a job.",
-          message: data["title"]
+          message: "Successfully created a job."
+          # message: data["title"]
         }.to_json
 
   end
