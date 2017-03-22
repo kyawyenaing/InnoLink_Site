@@ -60,7 +60,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :jobs
-    post 'jobs/recieve'
   end
 
   namespace :api, defaults: {format: :json} do
