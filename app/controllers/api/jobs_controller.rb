@@ -36,13 +36,14 @@ class Api::JobsController < ApplicationController
     #   end 
     # end 
 
-    url = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    source = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    resp = Net::HTTP.get_response(URI.parse(source))
-    result = resp.body
-    data = JSON.parse(result)
+    # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
+    # uri = URI(url)
+    # response = Net::HTTP.get(uri)
+    # source = 'https://momolay-job.herokuapp.com/api/jobs/new'
+    # resp = Net::HTTP.get_response(URI.parse(source))
+    # result = resp.body
+    # data = JSON.parse(result)
+
     # @job = Job.new()
     # @job.title = data["title"]
     # @job.company_name = data["company_name"]
@@ -53,14 +54,13 @@ class Api::JobsController < ApplicationController
     # @job.city_id = data["city_id"]
     # @job.description = data["description"]
     # @job.requirement = data["requirement"]
-    # @job.how_to = data["how_to"]
-   
+    # @job.how_to = data["how_to"]   
     #   if @job.save
     #     render json: {message: "Success!"}
     #   else
     #     render json: {message: "Failed!"}
     #   end 
-    render json: data["title"]
+    # render json: data["title"]
   
 
 
@@ -72,9 +72,22 @@ class Api::JobsController < ApplicationController
     #     }.to_json
 
     #//it is for heroku test
-    # render json: 
-    #     @job
-    #     .to_json
+    @jobs = Job.find(5)
+    render json: 
+       (@jobs) do |job|
+          job.title
+          job.company_name
+          job.company_website
+          job.job_type
+          job.category_id
+          job.salary_range_id
+          job.city_id
+          job.description
+          job.requirement
+          job.how_to
+          job.user_id
+        end
+        .to_json
     #//it is for heroku test
     
 
