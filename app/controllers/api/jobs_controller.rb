@@ -62,7 +62,7 @@ class Api::JobsController < ApplicationController
     #   else
     #     render json: {message: "Failed!"}
     #   end 
-    render json: data["title"]
+    # render json: data["title"]
 
     # render json: {
     #       status: 200,
