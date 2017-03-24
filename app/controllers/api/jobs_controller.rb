@@ -71,7 +71,7 @@ class Api::JobsController < ApplicationController
     #     }.to_json
 
     #//it is for heroku test
-    @jobs = Job.find(5)
+    @jobs = Job.find(1)
     render json: 
        (@jobs) do |job|
           job.title
