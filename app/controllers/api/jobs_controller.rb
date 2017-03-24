@@ -1,7 +1,7 @@
 class Api::JobsController < ApplicationController
     
   # require 'net/http'
-  require 'json'
+  # require 'json'
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
   end
@@ -11,18 +11,39 @@ class Api::JobsController < ApplicationController
   end
 
   def new
+    # @job = Job.new()
     # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # info = HTTParty.get('https://momolay-job.herokuapp.com/api/jobs/new')
     # data = JSON.parse('info')
 
+    # json = JSON.parse(response.body)
+    # @job = Job.new(job_params)
+    # @job.title = data["title"]
+    # @job.company_name = data["company_name"]
+    # @job.company_website = data["company_website"]
+    # @job.job_type = data["job_type"]
+    # @job.category_id = data["category_id"]
+    # @job.salary_range_id = data["salary_range_id"]
+    # @job.city_id = data["city_id"]
+    # @job.description = data["description"]
+    # @job.requirement = data["requirement"]
+    # @job.how_to = data["how_to"]
+    # respond_to do |format|
+    #   if @job.save
+    #     format.json { redirect_to jobs_path, notice: 'Job was successfully created.' }
+    #   else
+    #     format.json { redirect_to new_job_path }
+    #   end 
+    # end 
+
     # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # uri = URI(url)
     # response = Net::HTTP.get(uri)
-
     # source = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # resp = Net::HTTP.get_response(URI.parse(source))
     # result = resp.body
     # data = JSON.parse(result)
+
     # @job = Job.new()
     # @job.title = data["title"]
     # @job.company_name = data["company_name"]
@@ -50,7 +71,7 @@ class Api::JobsController < ApplicationController
     #     }.to_json
 
     #//it is for heroku test
-    @jobs = Job.find(1)
+    @jobs = Job.find(5)
     render json: 
        (@jobs) do |job|
           job.title
@@ -65,9 +86,10 @@ class Api::JobsController < ApplicationController
           job.how_to
           job.user_id
         end
-        .to_json
+        # .to_json
     #//it is for heroku test
     
+
   end
 
 
