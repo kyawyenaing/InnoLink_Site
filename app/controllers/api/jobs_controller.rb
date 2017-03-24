@@ -1,7 +1,7 @@
 class Api::JobsController < ApplicationController
     
   # require 'net/http'
-  # require 'json'
+  require 'json'
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
   end
@@ -11,7 +11,6 @@ class Api::JobsController < ApplicationController
   end
 
   def new
-    # @job = Job.new()
     # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # info = HTTParty.get('https://momolay-job.herokuapp.com/api/jobs/new')
     # data = JSON.parse('info')
@@ -51,7 +50,7 @@ class Api::JobsController < ApplicationController
     #     }.to_json
 
     #//it is for heroku test
-    @jobs = Job.find(5)
+    @jobs = Job.find(1)
     render json: 
        (@jobs) do |job|
           job.title
