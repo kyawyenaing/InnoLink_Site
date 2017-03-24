@@ -1,5 +1,4 @@
 class Job < ActiveRecord::Base
-# require HTTParty
 
   belongs_to :city 
   belongs_to :category
