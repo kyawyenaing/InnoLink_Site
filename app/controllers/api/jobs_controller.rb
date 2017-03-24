@@ -1,7 +1,7 @@
 class Api::JobsController < ApplicationController
     
-  require 'net/http'
-  require 'json'
+  # require 'net/http'
+  # require 'json'
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
   end
