@@ -15,7 +15,6 @@ class Api::JobsController < ApplicationController
     # info = HTTParty.get('https://momolay-job.herokuapp.com/api/jobs/new')
     # data = JSON.parse('info')
     # json = JSON.parse(response.body)
-    # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # uri = URI(url)
     # response = Net::HTTP.get(uri)
 
