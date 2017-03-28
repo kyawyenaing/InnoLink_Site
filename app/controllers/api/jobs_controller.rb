@@ -51,37 +51,38 @@ class Api::JobsController < ApplicationController
 
     #//it is for heroku test
 
-    # @jobs = Job.find(1)
-    # render json: 
-    #    (@jobs) do |job|
-    #       job.title
-    #       job.company_name
-    #       job.company_website
-    #       job.job_type
-    #       job.category_id
-    #       job.salary_range_id
-    #       job.city_id
-    #       job.description
-    #       job.requirement
-    #       job.how_to
-    #       job.user_id
-    #     end
+    @jobs = Job.find(1)
+    render json: 
+       (@jobs) do |job|
+          job.title
+          job.company_name
+          job.company_website
+          job.job_type
+          job.category_id
+          job.salary_range_id
+          job.city_id
+          job.description
+          job.requirement
+          job.how_to
+          job.user_id
+        end
 
         # .to_json
     #//it is for heroku test   
-    @job = Job.new(params[:job])
-     respond_to do |format|
-       if @job.save
-         format.html  { redirect_to(@job,
-                       :notice => 'job was successfully created.') }
-         format.json  { render :json => @job,
-                       :status => :created, :location => @job }
-       else
-         format.html  { render :action => "new" }
-         format.json  { render :json => @job.errors,
-                       :status => :unprocessable_entity }
-       end
-     end
+    # @job = Job.new.from_json(params[:job])
+
+    #  respond_to do |format|
+    #    if @job.save
+    #      format.html  { redirect_to(@job,
+    #                    :notice => 'job was successfully created.') }
+    #      format.json  { render :json => @job,
+    #                    :status => :created, :location => @job }
+    #    else
+    #      format.html  { render :action => "new" }
+    #      format.json  { render :json => @job.errors,
+    #                    :status => :unprocessable_entity }
+    #    end
+    #  end
 
   end
 
