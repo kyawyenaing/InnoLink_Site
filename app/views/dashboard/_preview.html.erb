@@ -78,7 +78,7 @@
           <% end %>  
           
           <!-- Job detail -->
-          <div class="col-xs-12">
+          <div class="col-md-12">
             <% @jobs.each do |job| %>
             <div class="col-md-6">
               <div class="item-block">
@@ -87,11 +87,11 @@
                     <img src="../assets/logo-job.png" alt="" width="160">
                   </a>
                   <div class="hgroup">
-                    <h4>
+                    <h5>
                     <a href="/jobs/<%= job.id %>">
                     <%= job.title  %>
                     </a>                               
-                    </h4>
+                    </h5>
                     <% if job.user.id == current_user.id %>
                     <span class="glyphicon glyphicon-user">    
                     </span>                            

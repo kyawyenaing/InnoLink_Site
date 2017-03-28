@@ -13,7 +13,7 @@ class Job < ActiveRecord::Base
     
 # for user dashboard
   def self.my_jobs(user_id, page = 1)
-    num_jobs = 8
+    num_jobs = 4
     Job.where(['user_id = ?', user_id])
       .order(created_at: :DESC)
       .page(page).per(num_jobs)
