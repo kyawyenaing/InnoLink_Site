@@ -60,6 +60,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :jobs
+    post "jobs_add" => "job#jobs_add"
+    get "jobs_add" => "jobs/jobs_add"
   end
 
   namespace :api, defaults: {format: :json} do
@@ -74,7 +76,14 @@ Rails.application.routes.draw do
     resources :salaries
   end
 
+  namespace :api, defaults: {format: :json} do
+    resources :companies
+  end
+
   resources :jobs do
+  end
+
+  resources :companies do
   end
 
   resources :dashboard do

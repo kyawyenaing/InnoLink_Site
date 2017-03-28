@@ -27,7 +27,7 @@ class Job < ActiveRecord::Base
 # end api
 
 # for job display and filter
-  def self.get_list(title, city_id, page = 1)
+  def self.get_list( title, city_id, page = 1 )
     num_jobs = 5
 
     if title == nil && city_id == nil
@@ -69,7 +69,9 @@ class Job < ActiveRecord::Base
         "Part-time"
       end
     end
-
   end
 # end job_type enum
+  def jobs_add
+    
+  end
 end

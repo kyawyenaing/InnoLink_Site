@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="header-detail m-t-extra">
+    <div class="hgroup">
+      <h1><%= @company.name %></h1>
+      <h3>
+        <a href="#"><%= @company.website %></a>
+      </h3>
+    </div>
+    <time datetime="2016-03-03 20:00">
+      <%= @company.decorated_created_at %>
+    </time>
+    <hr>
+    <ul class="details cols-3">
+      <li>
+        <i class="fa fa-map-marker"></i>
+        <span><%= @company.city.name %></span>
+      </li>
+      <li>
+        <i class="fa fa-briefcase"></i>
+        <span><%= @company.category.name %></span>
+      </li>
+      <li>
+        <i class="fa fa-money"></i>
+        <span></span>
+      </li>
+    </ul>
+    <p class="lead">
+      <%= 
+        # @company.address 
+      %>
+    </p>
+  </div>
+</div>
+<!-- </header> -->
+<!-- END Page header -->
+<hr>
+<!-- Main container -->
+<main>
+<!-- company detail -->
+<section class="no-padder">
+  <div class="container">
+    <h4>Address</h4>
+    <p><%= @company.address %></p><br>
+    <h4>About</h4>
+    <p><%= @company.about %></p>
+    <br>
+    <br>
+  </div>
+</section><br>
+<!-- END company detail -->
+</main>
+<!-- END Main container -->
+<!-- Back to top button -->
+<a id="scroll-up" href="#">
+<i class="ti-angle-up"></i></a>
+<!-- END Back to top button -->
