@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
   def index
      # @jobs = Job.my_jobs(current_user.id, params[:page])
      @jobs = Job.my_jobs(current_user.id, params[:page])
+     @companies = Company.my_company(current_user.id, params[:page])
   end
 
   def destroy

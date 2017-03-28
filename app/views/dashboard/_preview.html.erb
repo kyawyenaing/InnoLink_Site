@@ -15,40 +15,43 @@
         <div class="row">
           <div class="col-xs-6 text-left">
             <%= paginate @jobs %>
-          </div>
-          <div class="col-xs-6 text-right">
-            <br>
             <%= link_to "Add a job", 
             new_job_path, 
             :class=>"btn btn-primary btn-sm" 
             %>
           </div>
-          <% @jobs.each do |job| %>
-          <!-- Job detail -->
-          <div class="col-xs-12">
+          <div class="col-xs-6 text-right">
+            <br>
+            <%= link_to "Create New Company", 
+            new_company_path, 
+            :class=>"btn btn-primary btn-sm" 
+            %>
+          </div>
+          <% @companies.each do |company| %>
+          <div class="col-md-12">
             <div class="item-block">
               <header>
-                <a href="/jobs/<%= job.id %>">
-                  <img src="../assets/logo-job.png" alt="" width="160">
+                <a href="/companys/<%= company.id %>">
+                  <img src="../assets/logo-company.png" alt="" width="160">
                 </a>
                 <div class="hgroup">
                   <h4>
-                  <a href="/jobs/<%= job.id %>">
-                  <%= job.title  %>
+                  <a href="/companys/<%= company.id %>">
+                  <%= company.name  %>
                   </a>                               
                   </h4>
-                  <% if job.user.id == current_user.id %>
+                  <% if company.user_id == current_user.id %>
                   <span class="glyphicon glyphicon-user">    
                   </span>                            
                   <% end %>  
-                  <h5><%= job.company_name %></h5>
+                  <h5><%= company.website %></h5>
                 </div>
                 <div class="header-meta">
                   <span class="location">            
-                    <%= job.city.name %>
+                    <%= company.city.name %>
                   </span>
                   <time datetime="2016-03-10 20:00">
-                    <%= job.decorated_created_at %>
+                    <%= company.decorated_created_at %>
                   </time>
                 </div>
               </header>
@@ -59,21 +62,75 @@
                 </p>
 
                 <div class="action-btn">
-                  <% if job.user_id == current_user.id %>
-                  <a href="/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray">
+                  <% if company.user_id == current_user.id %>
+                  <a href="/companies/<%= company.id %>/edit" class="btn btn-xs btn-gray">
                     Edit
                     </a>
-                  <%= link_to 'Delete', {:action =>'destroy', :id => job.id}, 
+                  <%= link_to 'Delete', {:action =>'destroy', :id => company.id}, 
                     :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
                     %>
                     <% end %>
                 </div>
                 
               </footer>
-            </div>
+            </div>              
           </div>
-        <!-- END Job detail -->
-        <% end %>   
+          <% end %>  
+          
+          <!-- Job detail -->
+          <div class="col-xs-12">
+            <% @jobs.each do |job| %>
+            <div class="col-md-6">
+              <div class="item-block">
+                <header>
+                  <a href="/jobs/<%= job.id %>">
+                    <img src="../assets/logo-job.png" alt="" width="160">
+                  </a>
+                  <div class="hgroup">
+                    <h4>
+                    <a href="/jobs/<%= job.id %>">
+                    <%= job.title  %>
+                    </a>                               
+                    </h4>
+                    <% if job.user.id == current_user.id %>
+                    <span class="glyphicon glyphicon-user">    
+                    </span>                            
+                    <% end %>  
+                    <h5><%= job.company_name %></h5>
+                  </div>
+                  <div class="header-meta">
+                    <span class="location">            
+                      <%= job.city.name %>
+                    </span>
+                    <time datetime="2016-03-10 20:00">
+                      <%= job.decorated_created_at %>
+                    </time>
+                  </div>
+                </header>
+                <footer>
+                  <p class="status">
+                    <strong>Status:</strong> 
+                    Pending approval hahahaha
+                  </p>
+
+                  <div class="action-btn">
+                    <% if job.user_id == current_user.id %>
+                    <a href="/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray">
+                      Edit
+                      </a>
+                    <%= link_to 'Delete', {:action =>'destroy', :id => job.id}, 
+                      :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
+                      %>
+                      <% end %>
+                  </div>
+                  
+                </footer>
+              </div>              
+            </div>
+            <% end %>             
+          </div>
+        <!-- END company detail -->
+         
           <div class="col-xs-6 text-left">           
           <%= paginate @jobs %>
           </div>

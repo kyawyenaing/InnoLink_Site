@@ -28,16 +28,16 @@
 <section>
   <div class="container">
       <div class="row item-blocks-connected">
-          <div class="col-md-12">
+          <div class="col-md-6">
               <div class="col-xs-12">
                   <header class="section-sub-header">
-                      <h2>Recent Jobs</h2>
+                      <h2>Recent Jobs</h2>  
                   </header>
                   <%= 
                     paginate @jobs 
                   %>  
                 <% @jobs.each do |job| %>
-                <a class="item-block" href="/jobs/<%= job.id %>">
+                <a class="item-block" href="/jobs/<%= job.id %>" class="job">
                     <header>
                       <img src="assets/logo-google.jpg" alt="">
                       <div class="hgroup">
@@ -76,7 +76,38 @@
                     </header>                    
                   </a>                  
                 <% end %>  
-                <%= paginate @jobs %>              
+                <%= paginate @companies %>              
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="col-xs-12">
+                  <header class="section-sub-header">
+                      <h2>View By Company</h2>
+                  </header>
+                  <%= 
+                    paginate @jobs 
+                  %>  
+                <% @companies.each do |company| %>
+                <a class="item-block" href="/companies/<%= company.id %>" id="company" class="company">
+                    <header>
+                      <img src="assets/logo-google.jpg" alt="">
+                      <div class="hgroup">
+                        <h4><%= company.name %></h4>
+                        <h5><%= company.website %></h5>                                 
+                      </div>                      
+                      <div class="header-meta">
+                        <span class="location">
+                          <%= company.city.name %>
+                        </span>
+                        <time datetime="2016-03-10 20:00">
+                          <%= company.decorated_created_at %>
+                        </time>
+                        <br/>                                         
+                      </div>                      
+                    </header>                    
+                  </a>                  
+                <% end %>  
+                <%= paginate @companies %>              
               </div>
           </div>
       </div>

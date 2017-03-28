@@ -6,6 +6,7 @@ class JobsController < ApplicationController
     # @city = City.order('LOWER(name) ASC')
     @cities = City.get_list
     @jobs = Job.get_list(params[:title], params[:city_id], params[:page])
+    @companies = Company.get_list(params[:name], params[:city_id], params[:page])
 
   end
 
