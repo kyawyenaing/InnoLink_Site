@@ -8,11 +8,14 @@ class CompaniesController < ApplicationController
 	def new
 		@company = Company.new
 		@cities = City.get_list
+		if !user_signed_in?
+		  redirect_to new_user_session_path
+		end
 	end
 
 	def create
 		@company = Company.new(company_params)
-		@user_id = current_user.id
+		@company.user_id = current_user.id
 		respond_to do |format|
 		  if @company.save
 		    format.html { redirect_to companies_path, notice: 'company was successfully created.' }
@@ -44,6 +47,7 @@ class CompaniesController < ApplicationController
 
 	def show
 		@company = Company.find(params[:id])
+		@jobs = Job.comp_jobs(@company.id, params[:page])
 	end
 
 	private

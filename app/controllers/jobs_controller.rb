@@ -1,18 +1,21 @@
 class JobsController < ApplicationController
 
-
   def index
-    # @jobs = Job.order(created_at: :DESC).page(params[:page]).per(5)
-    # @city = City.order('LOWER(name) ASC')
     @cities = City.get_list
     @jobs = Job.get_list(params[:title], params[:city_id], params[:page])
     @companies = Company.get_list(params[:name], params[:city_id], params[:page])
-
   end
 
   def new
-    @job = Job.new
-    @cities = City.get_list
+    if !user_signed_in?   
+        flash[:notic] = ""
+        redirect_to new_user_session_path, notice: 'Please Login Firstly'
+    else
+      @job = Job.new
+      @cities = City.get_list  
+      @companies = Company.my_company(current_user.id, params[:page])  
+    end  
+    
   end
 
   def create
@@ -58,7 +61,7 @@ class JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:title, :company_name, :company_website, :job_type, 
     :category_id, :salary_range_id, :city_id, :description, :requirement, 
-    :how_to,:user_id)
+    :how_to,:user_id,:company_id)
   end
 
 end

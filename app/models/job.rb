@@ -4,10 +4,11 @@ class Job < ActiveRecord::Base
   belongs_to :category
   belongs_to :salary_range
   belongs_to :user
+  belongs_to :company
 
   enum job_type: { FULLTIME: 0, PARTTIME: 1 , FREELANCE: 2, INTERNSHIP: 3}
 
-  validates_presence_of :title, :company_name, :job_type, 
+  validates_presence_of :title, :company_id, :job_type, 
     :category_id, :salary_range_id, :city_id, :description, :requirement, 
     :how_to
     
@@ -15,6 +16,15 @@ class Job < ActiveRecord::Base
   def self.my_jobs(user_id, page = 1)
     num_jobs = 4
     Job.where(['user_id = ?', user_id])
+      .order(created_at: :DESC)
+      .page(page).per(num_jobs)
+  end
+# end user dashboard
+
+# for job by company
+  def self.comp_jobs(company_id, page = 1)
+    num_jobs = 5
+    Job.where(['company_id = ?', company_id])
       .order(created_at: :DESC)
       .page(page).per(num_jobs)
   end
@@ -28,7 +38,7 @@ class Job < ActiveRecord::Base
 
 # for job display and filter
   def self.get_list( title, city_id, page = 1 )
-    num_jobs = 5
+    num_jobs = 4
 
     if title == nil && city_id == nil
     Job.order(created_at: :DESC)

@@ -6,7 +6,7 @@ class Company < ActiveRecord::Base
 
 	# for user dashboard
 	  def self.my_company(user_id, page = 1)
-	    num_jobs = 1
+	    num_jobs = 4
 	    Company.where(['user_id = ?', user_id])
 	      .order(created_at: :DESC)
 	      .page(page).per(num_jobs)

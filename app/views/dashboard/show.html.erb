@@ -1,31 +1,33 @@
 <div class="container">
-  <div class="header-detail m-t-extra">
-    <div class="hgroup">
-      <h1><a href="#"><%= @company.name %></a></h1>
-      <h3>
-        <a href="#"><%= @company.website %></a>
-      </h3>
-      <i class="fa fa-map-marker"></i>
-      <span><%= @company.city.name %></span>
-    </div>
-    <time datetime="2016-03-03 20:00">
-      <%= @company.decorated_created_at %>
-    </time>
-    <hr>
-    <ul class="details cols-2">
-      <li>
+  <div class="row">
+    <div class="header-detail m-t-extra">
+      <div class="hgroup">
+        <h1><a href="#"><%= @company.name %></a></h1>
+        <h3>
+          <a href="#"><%= @company.website %></a>
+        </h3>
         <i class="fa fa-map-marker"></i>
-        Address:
-        <span><%= @company.address %></span>
-      </li>
-      <li>
-        <i class="fa fa-briefcase"></i>
-        Company Type:
-        <span><%= @company.category.name %></span>
-      </li>      
-    </ul>
-    </p>
-  </div>
+        <span><%= @company.city.name %></span>
+      </div>
+      <time datetime="2016-03-03 20:00">
+        <%= @company.decorated_created_at %>
+      </time>
+      <hr>
+      <ul class="details cols-2">
+        <li>
+          <i class="fa fa-map-marker"></i>
+          Address:
+          <span><%= @company.address %></span>
+        </li>
+        <li>
+          <i class="fa fa-briefcase"></i>
+          Company Type:
+          <span><%= @company.category.name %></span>
+        </li>      
+      </ul>
+      </p>
+    </div>
+  </div>  
 </div>
 <!-- </header> -->
 <!-- END Page header -->
@@ -41,12 +43,25 @@
 </section>
 <div class="container">
   <div class="row">
+    <div class="col-xs-12 text-center">            
+      <h4>Here is Jobs You Submitted!</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-right">            
+      <%= link_to "Add a job", 
+      new_job_path, 
+      :class=>"btn btn-primary btn-sm" 
+      %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-xs-12 text-center">  
     <%= paginate @jobs %>
     </div>
   </div>
-  <div class="row item-blocks-connected">
-    <div class="col-xs-12">
+    <div class="row item-blocks-connected">
+      <div class="col-xs-12">
         <% @jobs.each do |job| %>
         <a class="item-block" href="/jobs/<%= job.id %>" class="job">
         <header>
@@ -86,14 +101,14 @@
           </div>                      
         </header>                    
           </a>                  
-        <% end %>             
+        <% end %>            
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 text-center">  
-    <%= paginate @jobs %>
+    <div class="row">
+      <div class="col-xs-12 text-center">  
+      <%= paginate @jobs %>
+      </div>
     </div>
-  </div>
 </div>
 <!-- END company detail -->
 </main>
