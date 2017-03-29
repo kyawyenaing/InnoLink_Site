@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
 		@company.user_id = current_user.id
 		respond_to do |format|
 		  if @company.save
-		    format.html { redirect_to companies_path, notice: 'company was successfully created.' }
+		    format.html { redirect_to dashboard_path, notice: 'company was successfully created.' }
 		  else
 		    format.html { render :new }
 		  end

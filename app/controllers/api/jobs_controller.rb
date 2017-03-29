@@ -18,54 +18,47 @@ class Api::JobsController < ApplicationController
     # uri = URI(url)
     # response = Net::HTTP.get(uri)
 
-    #source = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    #resp = Net::HTTP.get_response(URI.parse(source))
-    #result = resp.body
-    #data = JSON.parse(result)
-    #render html: data["title"]
+    source = 'https://momolay-job.herokuapp.com/api/jobs/new'
+    resp = Net::HTTP.get_response(URI.parse(source))
+    result = resp.body
+    data = JSON.parse(result)
 
-    # @job = Job.new()
-    # @job.title = data["title"]
-    # @job.company_name = data["company_name"]
-    # @job.company_website = data["company_website"]
-    # @job.job_type = data["job_type"]
-    # @job.category_id = data["category_id"]
-    # @job.salary_range_id = data["salary_range_id"]
-    # @job.city_id = data["city_id"]
-    # @job.description = data["description"]
-    # @job.requirement = data["requirement"]
-    # @job.how_to = data["how_to"]   
-    # @job.user_id = data["user_id"]   
-    #   if @job.save
-    #     render json: {message: "Success!"}
-    #   else
-    #     render json: {message: "Failed!"}
-    #   end 
-
-    # render json: {
-    #       status: 200,
-    #       message: "Successfully created a job."
-    #       # message: data["title"]
-    #       object: '{"id":6,"title":"Senior PHP Developer","company_name":"Aries","company_website":"www.aries.com","job_type":"Part-time","category":"IT","salary_range":"100,000 ~ 200,000 ks","city":"Yangon","description":"Senior PHP Developer","requirement":"Senior PHP Developer","how_to":"Senior PHP Developer"}'
-    #     }.to_json
+    @job = Job.new()
+    @job.title = data["title"]
+    @job.company_name = data["company_name"]
+    @job.company_website = data["company_website"]
+    @job.job_type = data["job_type"]
+    @job.category_id = data["category_id"]
+    @job.salary_range_id = data["salary_range_id"]
+    @job.city_id = data["city_id"]
+    @job.description = data["description"]
+    @job.requirement = data["requirement"]
+    @job.how_to = data["how_to"]   
+    @job.user_id = data["user_id"]  
+    @job.company_id = data["company_id"] 
+      if @job.save
+        render json: {message: "Success!"}
+      else
+        render json: {message: "Failed!"}
+      end 
 
     #//it is for heroku test
 
-    @jobs = Job.find(1)
-    render json: 
-       (@jobs) do |job|
-          job.title
-          job.company_name
-          job.company_website
-          job.job_type
-          job.category_id
-          job.salary_range_id
-          job.city_id
-          job.description
-          job.requirement
-          job.how_to
-          job.user_id
-        end
+    # @jobs = Job.find(1)
+    # render json: 
+    #    (@jobs) do |job|
+    #       job.title
+    #       job.company_name
+    #       job.company_website
+    #       job.job_type
+    #       job.category_id
+    #       job.salary_range_id
+    #       job.city_id
+    #       job.description
+    #       job.requirement
+    #       job.how_to
+    #       job.user_id
+    #     end
 
         # .to_json
     #//it is for heroku test   

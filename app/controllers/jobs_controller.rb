@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   def index
     @cities = City.get_list
     @jobs = Job.get_list(params[:title], params[:city_id], params[:page])
-    @companies = Company.get_list(params[:name], params[:city_id], params[:page])
+    @companies = Company.get_list(params[:page])
   end
 
   def new

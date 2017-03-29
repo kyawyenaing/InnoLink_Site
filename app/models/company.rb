@@ -13,8 +13,8 @@ class Company < ActiveRecord::Base
 	  end
 	# end user dashboard
 
-	def self.get_list( category_id, city_id, page = 1 )
-		number = 1;
+	def self.get_list( page = 1)
+		number = 5
 		Company.order(created_at: :DESC).page(page).per(number)
 	end
 
@@ -30,8 +30,4 @@ class Company < ActiveRecord::Base
 	  end
 	# end api
 
-	  def self.get_list(name, city_id, page = 1)
-	  	number = 5
-	  	Company.order(created_at: :DESC).page(page).per(number)
-	  end
 end

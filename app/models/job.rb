@@ -22,7 +22,7 @@ class Job < ActiveRecord::Base
 # end user dashboard
 
 # for job by company
-  def self.comp_jobs(company_id, page = 1)
+  def self.comp_jobs( company_id, page = 1 )
     num_jobs = 4
     Job.where(['company_id = ?', company_id])
       .order(created_at: :DESC)
@@ -31,14 +31,14 @@ class Job < ActiveRecord::Base
 # end user dashboard
 
 # for api
-  def self.get_api( title, city_id)
+  def self.get_api( title, city_id )
     Job.order(created_at: :DESC)        
   end
 # end api
 
 # for job display and filter
   def self.get_list( title, city_id, page = 1 )
-    num_jobs = 4
+    num_jobs =  5
 
     if title == nil && city_id == nil
     Job.order(created_at: :DESC)

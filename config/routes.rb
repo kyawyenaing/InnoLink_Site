@@ -59,9 +59,10 @@ Rails.application.routes.draw do
   get "dashboard" => "dashboard#index"
 
   namespace :api, defaults: {format: :json} do
-    resources :jobs
+    resources :jobs    
     post "jobs_add" => "job#jobs_add"
-    get "jobs_add" => "jobs/jobs_add"
+    get "jobs_add" => "job#jobs_add"
+
   end
 
   namespace :api, defaults: {format: :json} do
@@ -91,7 +92,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     devise_for :users
-  resources :recipes, :only=>[:index, :show]
+  resources :recipes
+  # resources :recipes, :only=>[:index, :show]
   end  
 
 end

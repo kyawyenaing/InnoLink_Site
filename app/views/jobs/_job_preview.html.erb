@@ -76,7 +76,7 @@
                     </header>                    
                   </a>                  
                 <% end %>  
-                <%= paginate @companies %>              
+                <%= paginate @jobs %>              
               </div>
           </div>
           <div class="col-md-6">
@@ -85,7 +85,7 @@
                       <h2>View By Company</h2>
                   </header>
                   <%= 
-                    paginate @jobs 
+                    paginate @companies 
                   %>  
                 <% @companies.each do |company| %>
                 <a class="item-block" href="/companies/<%= company.id %>" id="company" class="company">
@@ -93,7 +93,7 @@
                       <img src="assets/logo-google.jpg" alt="">
                       <div class="hgroup">
                         <h4><%= company.name %></h4>
-                        <h5><%= company.website %></h5>                                 
+                        <h5><%= company.website %></h5>                              
                       </div>                      
                       <div class="header-meta">
                         <span class="location">
