@@ -60,55 +60,63 @@
     <%= paginate @jobs %>
     </div>
   </div>
-    <div class="row item-blocks-connected">
-      <div class="col-xs-12">
-        <% @jobs.each do |job| %>
-        <a class="item-block" href="/jobs/<%= job.id %>" class="job">
-        <header>
-          <img src="../assets/logo-google.jpg" alt="">
-          <div class="hgroup">
-            <h4><%= job.title %></h4>
-            <h5><%= job.company_name %></h5>  
-            <% if job.job_type == "FULLTIME" %>
-            <span class="label label-success">
-              <%= job.job_type %>           
-            </span>
-            <% end %>
-            <% if job.job_type == "PARTTIME" %>
-              <span class="label label-warning">
-               <%= job.job_type %>                 
+    <!-- Job detail -->
+    <div class="col-md-12">
+      <% @jobs.each do |job| %>
+      <div class="col-md-6">
+        <div class="item-block">
+          <header>
+            <a href="/jobs/<%= job.id %>">
+              <img src="../assets/logo-job.png" alt="" width="160">
+            </a>
+            <div class="hgroup">
+              <h5>
+              <a href="/jobs/<%= job.id %>">
+              <%= job.title  %>
+              </a>                               
+              </h5>
+              <% if job.user.id == current_user.id %>
+              <span class="glyphicon glyphicon-user">    
+              </span>                            
+              <% end %>  
+              <h5><%= job.company.name %></h5>
+            </div>
+            <div class="header-meta">
+              <span class="location">            
+                <%= job.city.name %>
               </span>
-            <% end %>
-            <% if job.job_type == "FREELANCE" %>
-              <span class="label label-info">
-                <%= job.job_type %>                  
-              </span>
-            <% end %>
-            <% if job.job_type == "INTERNSHIP" %>
-              <span class="label label-danger">
-                <%= job.job_type %>                 
-              </span>
-            <% end %>                                 
-          </div>                      
-          <div class="header-meta">
-            <span class="location">
-              <%= job.city.name %>
-            </span>
-            <time datetime="2016-03-10 20:00">
-              <%= job.decorated_created_at %>
-            </time>
-            <br/>                                         
-          </div>                      
-        </header>                    
-          </a>                  
-        <% end %>            
+              <time datetime="2016-03-10 20:00">
+                <%= job.decorated_created_at %>
+              </time>
+            </div>
+          </header>
+          <footer>
+            <p class="status">
+              <strong>Status:</strong> 
+              Pending approval hahahaha
+            </p>
+
+            <div class="action-btn">
+              <% if job.user_id == current_user.id %>
+              <a href="/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray">
+                Edit
+                </a>
+              <%= link_to 'Delete',{:action =>'destroy', :id => job.id}, 
+                :confirm =>'Are you sure?',:method =>:delete,:class=>'btn btn-xs btn-danger'
+                %>
+                <% end %>
+            </div>            
+          </footer>
+        </div>              
       </div>
+      <% end %>             
     </div>
-    <div class="row">
-      <div class="col-xs-12 text-center">  
+  <!-- END Job detail -->
+  <div class="row">
+    <div class="col-xs-12 text-center">  
       <%= paginate @jobs %>
-      </div>
     </div>
+  </div>
 </div>
 <!-- END company detail -->
 </main>

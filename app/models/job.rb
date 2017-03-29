@@ -23,7 +23,7 @@ class Job < ActiveRecord::Base
 
 # for job by company
   def self.comp_jobs(company_id, page = 1)
-    num_jobs = 5
+    num_jobs = 4
     Job.where(['company_id = ?', company_id])
       .order(created_at: :DESC)
       .page(page).per(num_jobs)

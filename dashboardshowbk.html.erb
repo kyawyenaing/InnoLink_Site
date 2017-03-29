@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="row">
+    <div class="header-detail m-t-extra">
+      <div class="hgroup">
+        <h1><a href="#"><%= @company.name %></a></h1>
+        <h3>
+          <a href="#"><%= @company.website %></a>
+        </h3>
+        <i class="fa fa-map-marker"></i>
+        <span><%= @company.city.name %></span>
+      </div>
+      <time datetime="2016-03-03 20:00">
+        <%= @company.decorated_created_at %>
+      </time>
+      <hr>
+      <ul class="details cols-2">
+        <li>
+          <i class="fa fa-map-marker"></i>
+          Address:
+          <span><%= @company.address %></span>
+        </li>
+        <li>
+          <i class="fa fa-briefcase"></i>
+          Company Type:
+          <span><%= @company.category.name %></span>
+        </li>      
+      </ul>
+      </p>
+    </div>
+  </div>  
+</div>
+<!-- </header> -->
+<!-- END Page header -->
+<hr>
+<!-- Main container -->
+<main>
+<!-- company detail -->
+<section class="no-padder">
+  <div class="container">
+    <h4>About</h4>
+    <p><%= @company.about %></p>
+  </div>
+</section>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center">            
+      <h4>Here is Jobs You Submitted!</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-right">            
+      <%= link_to "Add a job", 
+      new_job_path, 
+      :class=>"btn btn-primary btn-sm" 
+      %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">  
+    <%= paginate @jobs %>
+    </div>
+  </div>
+    <div class="row item-blocks-connected">
+      <div class="col-xs-12">
+        <% @jobs.each do |job| %>
+        <a class="item-block" href="/jobs/<%= job.id %>" class="job">
+        <header>
+          <img src="../assets/logo-google.jpg" alt="">
+          <div class="hgroup">
+            <h4><%= job.title %></h4>
+            <h5><%= job.company_name %></h5>  
+            <% if job.job_type == "FULLTIME" %>
+            <span class="label label-success">
+              <%= job.job_type %>           
+            </span>
+            <% end %>
+            <% if job.job_type == "PARTTIME" %>
+              <span class="label label-warning">
+               <%= job.job_type %>                 
+              </span>
+            <% end %>
+            <% if job.job_type == "FREELANCE" %>
+              <span class="label label-info">
+                <%= job.job_type %>                  
+              </span>
+            <% end %>
+            <% if job.job_type == "INTERNSHIP" %>
+              <span class="label label-danger">
+                <%= job.job_type %>                 
+              </span>
+            <% end %>                                 
+          </div>                      
+          <div class="header-meta">
+            <span class="location">
+              <%= job.city.name %>
+            </span>
+            <time datetime="2016-03-10 20:00">
+              <%= job.decorated_created_at %>
+            </time>
+            <br/>                                         
+          </div>                      
+        </header>                    
+          </a>                  
+        <% end %>            
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 text-center">  
+      <%= paginate @jobs %>
+      </div>
+    </div>
+</div>
+<!-- END company detail -->
+</main>
+<!-- END Main container -->
+<!-- Back to top button -->
+<a id="scroll-up" href="#">
+<i class="ti-angle-up"></i></a>
+<!-- END Back to top button -->

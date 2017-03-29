@@ -18,8 +18,9 @@
     </div>
     <div class="row">
       <div class="form-group col-xs-12 col-sm-6">
-        <%= form.input :company_name, label: false,       input_html:{class: 'form-control input-lg' },placeholder:"Company Name"
-        %>
+        <%=         
+        form.select :company_id, @companies.collect{ |u| [u.name, u.id] },{include_blank: '--Company--'},{:class=>'form-control selectpicker'} 
+        %> 
       </div>
       <div class="form-group col-xs-12 col-sm-6">
         <%= form.input :company_website, label: false,       input_html:{class: 'form-control input-lg' },
