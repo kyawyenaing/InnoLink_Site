@@ -1,8 +1,6 @@
 class Api::JobsController < ApplicationController
-    
-  # require 'net/http'
-  # require 'json'
-# API_URL = 'https://momolay-job.herokuapp.com/api/jobs/new'
+  before_action :authenticate_user!, only: [:index]
+
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
   end
@@ -11,13 +9,29 @@ class Api::JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
 
+  def jobs_add
+    @job = Job.new
+    @job.title = params["title"]
+    @job.company_name = params["company_name"]
+    @job.company_website = params["company_website"]
+    @job.job_type = params["job_type"].to_i
+    @job.category_id = params["category_id"].to_i
+    @job.salary_range_id = params["salary_range_id"].to_i
+    @job.city_id = params["city_id"].to_i
+    @job.description = params["description"]
+    @job.requirement = params["requirement"]
+    @job.how_to = params["how_to"]   
+    @job.user_id = params["user_id"].to_i
+    @job.company_id = params["company_id"].to_i
+
+    if @job.save
+        render json: {message: "Success!"}
+    else
+        render :json => @job.errors
+    end 
+  end
+
   def new
-    # url = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    # info = HTTParty.get('https://momolay-job.herokuapp.com/api/jobs/new')
-    # data = JSON.parse('info')
-    # json = JSON.parse(response.body)
-    # uri = URI(url)
-    # response = Net::HTTP.get(uri)
 
     # source = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # resp = Net::HTTP.get_response(URI.parse(source))
@@ -26,22 +40,8 @@ class Api::JobsController < ApplicationController
     # render json: data["title"]
 
     # response = HTTParty.get(API_URL)
-       # json = JSON.parse(API_URL)
-       # render json: json["title"]
-
-    # @job = Job.new()
-    # @job.title = data["title"]
-    # @job.company_name = data["company_name"]
-    # @job.company_website = data["company_website"]
-    # @job.job_type = data["job_type"]
-    # @job.category_id = data["category_id"]
-    # @job.salary_range_id = data["salary_range_id"]
-    # @job.city_id = data["city_id"]
-    # @job.description = data["description"]
-    # @job.requirement = data["requirement"]
-    # @job.how_to = data["how_to"]   
-    # @job.user_id = data["user_id"]  
-    # @job.company_id = data["company_id"] 
+    #    json = JSON.parse(response.body)
+    #    render json: json["title"]
     #   if @job.save
     #     render json: {message: "Success!"}
     #   else
@@ -50,21 +50,21 @@ class Api::JobsController < ApplicationController
 
     #//it is for heroku test
 
-    @jobs = Job.find(4)
-    render json: 
-       (@jobs) do |job|
-          job.title
-          job.company_name
-          job.company_website
-          job.job_type
-          job.category_id
-          job.salary_range_id
-          job.city_id
-          job.description
-          job.requirement
-          job.how_to
-          job.user_id
-        end
+    # @jobs = Job.find(4)
+    # render json: 
+    #    (@jobs) do |job|
+    #       job.title
+    #       job.company_name
+    #       job.company_website
+    #       job.job_type
+    #       job.category_id
+    #       job.salary_range_id
+    #       job.city_id
+    #       job.description
+    #       job.requirement
+    #       job.how_to
+    #       job.user_id
+    #     end
 
         # .to_json
     #//it is for heroku test   

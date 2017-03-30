@@ -61,24 +61,21 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :jobs    
     post "jobs_add" => "job#jobs_add"
-    get "jobs_add" => "job#jobs_add"
+    # get "jobs_add" => "jobs#jobs_add"
 
   end
 
   namespace :api, defaults: {format: :json} do
     resources :categories
-  end
-
-  namespace :api, defaults: {format: :json} do
     resources :cities
-  end
-
-  namespace :api, defaults: {format: :json} do
     resources :salaries
-  end
-
-  namespace :api, defaults: {format: :json} do
     resources :companies
+
+    devise_scope :user do
+      post 'registrations' => 'registrations#create', :as => 'register'
+      post 'sessions' => 'sessions#create', :as => 'login'
+      delete 'sessions' => 'sessions#destroy', :as => 'logout'
+    end
   end
 
   resources :jobs do
@@ -91,8 +88,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: {format: :json} do
-    devise_for :users
-  resources :recipes
+    resources :recipes
   # resources :recipes, :only=>[:index, :show]
   end  
 
