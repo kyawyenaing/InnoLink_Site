@@ -82,13 +82,13 @@ class Job < ActiveRecord::Base
   end
 # end job_type enum
 
-API_URL = 'https://momolay-job.herokuapp.com/api/jobs/new'
+# API_URL = 'https://momolay-job.herokuapp.com/api/jobs/new'
 
- def unique_url
-   response = HTTParty.get(API_URL)
-   # TODO more error checking (500 error, etc)
-   json = JSON.parse(response.body)
-   json['url']
- end
+#  def unique_url
+#    response = HTTParty.get(API_URL)
+#    # TODO more error checking (500 error, etc)
+#    json = JSON.parse(response.body)
+#    json['url']
+#  end
 
 end
