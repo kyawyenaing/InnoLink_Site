@@ -81,7 +81,5 @@ class Job < ActiveRecord::Base
     end
   end
 # end job_type enum
-  def jobs_add
-    
-  end
+
 end
