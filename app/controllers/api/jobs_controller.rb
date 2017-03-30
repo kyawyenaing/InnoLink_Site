@@ -2,7 +2,7 @@ class Api::JobsController < ApplicationController
     
   # require 'net/http'
   # require 'json'
-API_URL = 'https://momolay-job.herokuapp.com/api/jobs/new'
+# API_URL = 'https://momolay-job.herokuapp.com/api/jobs/new'
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
   end
@@ -25,10 +25,9 @@ API_URL = 'https://momolay-job.herokuapp.com/api/jobs/new'
     # data = JSON.parse(result)
     # render json: data["title"]
 
-    response = HTTParty.get(API_URL)
-    #    # TODO more error checking (500 error, etc)
-       json = JSON.parse(response.body)
-       render json: json["title"]
+    # response = HTTParty.get(API_URL)
+       # json = JSON.parse(API_URL)
+       # render json: json["title"]
 
     # @job = Job.new()
     # @job.title = data["title"]
@@ -51,21 +50,21 @@ API_URL = 'https://momolay-job.herokuapp.com/api/jobs/new'
 
     #//it is for heroku test
 
-    # @jobs = Job.find(4)
-    # render json: 
-    #    (@jobs) do |job|
-    #       job.title
-    #       job.company_name
-    #       job.company_website
-    #       job.job_type
-    #       job.category_id
-    #       job.salary_range_id
-    #       job.city_id
-    #       job.description
-    #       job.requirement
-    #       job.how_to
-    #       job.user_id
-    #     end
+    @jobs = Job.find(4)
+    render json: 
+       (@jobs) do |job|
+          job.title
+          job.company_name
+          job.company_website
+          job.job_type
+          job.category_id
+          job.salary_range_id
+          job.city_id
+          job.description
+          job.requirement
+          job.how_to
+          job.user_id
+        end
 
         # .to_json
     #//it is for heroku test   
