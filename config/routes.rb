@@ -59,17 +59,15 @@ Rails.application.routes.draw do
   get "dashboard" => "dashboard#index"
 
   namespace :api, defaults: {format: :json} do
-    resources :jobs    
-    post "jobs_add" => "job#jobs_add"
-    # get "jobs_add" => "jobs#jobs_add"
-
-  end
-
-  namespace :api, defaults: {format: :json} do
     resources :categories
     resources :cities
     resources :salaries
     resources :companies
+    resources :jobs    
+    post "jobs_add" => "job#jobs_add"
+    get "jobs_add" => "jobs#jobs_add"
+    # post "companies_add" => "companiess#companies_add"
+    get "companies_add" => "companies#companies_add"
 
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
@@ -87,9 +85,5 @@ Rails.application.routes.draw do
   resources :dashboard do
   end
 
-  namespace :api, defaults: {format: :json} do
-    resources :recipes
-  # resources :recipes, :only=>[:index, :show]
-  end  
 
 end

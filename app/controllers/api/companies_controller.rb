@@ -9,4 +9,20 @@ class Api::CompaniesController < ApplicationController
     render :json=>@company
   end
 
+  def companies_add
+  	@company = Company.new
+  	@company.title = params["name"]
+  	@company.website = params["website"]
+  	@company.category_id = params["category_id"].to_i
+  	@company.city_id = params["city_id"].to_i
+  	@company.address = params["address"]
+  	@company.about = params["about"].to_i
+  	@company.user_id = params["user_id"].to_i
+  	if @company.save
+  	    render json: {message: "Success!"}
+  	else
+  	    render :json => @company.errors
+  	end 
+  end
+
 end
