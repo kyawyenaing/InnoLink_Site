@@ -1,5 +1,6 @@
 class Api::RegistrationsController < Devise::RegistrationsController
   before_filter :update_sanitized_params, if: :devise_controller?
+  require 'json'
   respond_to :json
 
   def create
@@ -9,7 +10,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
       sign_in resource
       render :status => 200,
            :json => { :success => true,
-                      :info => "Registration Success!",
+                      :info => "Registered",
                       :data => { :user => resource,
                                  :auth_token => current_user.authentication_token } }
     else
