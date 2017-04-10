@@ -1,7 +1,7 @@
 # file: app/controller/api/v1/sessions_controller.rb
 class Api::SessionsController < Devise::SessionsController
-  require 'json'
-
+  
+  # require 'json'
   respond_to :json
 
   def create

@@ -70,7 +70,6 @@ Rails.application.routes.draw do
     # get "companies_add" => "companies#companies_add"
 
     devise_scope :user do
-      # get 'registrations' => 'registrations#create', :as => 'register'
       post 'registrations' => 'registrations#create', :as => 'register'
       post 'sessions' => 'sessions#create', :as => 'login'
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
