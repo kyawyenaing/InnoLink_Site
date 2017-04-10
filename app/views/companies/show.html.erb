@@ -41,9 +41,13 @@
 </section>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 text-center">  
+    <div class="col-xs-12 text-center">     
     <%= paginate @jobs %>
     </div>
+    <div class="col-xs-12 text-center">
+      Total Jobs = <%= @count%> 
+    </div>
+    
   </div>
   <div class="row item-blocks-connected">
     <div class="col-xs-12">

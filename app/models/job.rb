@@ -12,6 +12,7 @@ class Job < ActiveRecord::Base
     :category_id, :salary_range_id, :city_id, :description, :requirement, 
     :how_to
     
+
 # for user dashboard
   def self.my_jobs(user_id, page = 1)
     num_jobs = 4
@@ -27,6 +28,12 @@ class Job < ActiveRecord::Base
     Job.where(['company_id = ?', company_id])
       .order(created_at: :DESC)
       .page(page).per(num_jobs)
+  end
+
+  def self.comp_jobs_count( company_id )
+    Job.where(['company_id = ?', company_id])
+      .order(created_at: :DESC)
+      .count
   end
 # end user dashboard
 
@@ -59,7 +66,6 @@ class Job < ActiveRecord::Base
           .page(page).per(num_jobs)
       end
     end
-
   end
 # end job display and filter
 
@@ -80,15 +86,28 @@ class Job < ActiveRecord::Base
       end
     end
   end
-# end job_type enum
 
-# API_URL = 'https://momolay-job.herokuapp.com/api/jobs/new'
+  def self.get_count( title, city_id)
 
-#  def unique_url
-#    response = HTTParty.get(API_URL)
-#    # TODO more error checking (500 error, etc)
-#    json = JSON.parse(response.body)
-#    json['url']
-#  end
+    if title == nil && city_id == nil
+    Job.order(created_at: :DESC)
+        .count
+    else
+      if title != "" && city_id != ""
+          Job.where(['title LIKE ? && city_id = ?', title, city_id])
+            .order(created_at: :DESC)
+            .count
+      end
+      if title != ""
+        Job.where(['title LIKE ?', title])
+          .order(created_at: :DESC)
+          .count
+      else
+        Job.where(['city_id = ?', city_id])
+          .order(created_at: :DESC)
+          .count
+      end
+    end
+  end
 
 end
