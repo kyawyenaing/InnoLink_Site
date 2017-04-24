@@ -1,5 +1,6 @@
 class Api::JobsController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
+  # before_action :authenticate_user!, only: [:index]
+  # before_action :authenticate_user!
 
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
@@ -31,65 +32,12 @@ class Api::JobsController < ApplicationController
     end 
   end
 
-  def new
 
-    # source = 'https://momolay-job.herokuapp.com/api/jobs/new'
-    # resp = Net::HTTP.get_response(URI.parse(source))
-    # result = resp.body
-    # data = JSON.parse(result)
-    # render json: data["title"]
-
-    # response = HTTParty.get(API_URL)
-    #    json = JSON.parse(response.body)
-    #    render json: json["title"]
-    #   if @job.save
-    #     render json: {message: "Success!"}
-    #   else
-    #     render json: {message: "Failed!"}
-    #   end 
-
-    #//it is for heroku test
-
-    # @jobs = Job.find(4)
-    # render json: 
-    #    (@jobs) do |job|
-    #       job.title
-    #       job.company_name
-    #       job.company_website
-    #       job.job_type
-    #       job.category_id
-    #       job.salary_range_id
-    #       job.city_id
-    #       job.description
-    #       job.requirement
-    #       job.how_to
-    #       job.user_id
-    #     end
-
-        # .to_json
-    #//it is for heroku test   
-    # @job = Job.new.from_json(params[:job])
-
-    #  respond_to do |format|
-    #    if @job.save
-    #      format.html  { redirect_to(@job,
-    #                    :notice => 'job was successfully created.') }
-    #      format.json  { render :json => @job,
-    #                    :status => :created, :location => @job }
-    #    else
-    #      format.html  { render :action => "new" }
-    #      format.json  { render :json => @job.errors,
-    #                    :status => :unprocessable_entity }
-    #    end
-    #  end
-
-  end
-
-	def edit
-	  @job = Job.find(params[:id])    
-	  @city = City.get_list
-	  redirect_to edit_job_path
-	end
+    def edit
+      @job = Job.find(params[:id])    
+      @city = City.get_list
+      redirect_to edit_job_path
+    end
 
 	private
 	def job_params

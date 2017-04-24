@@ -9,6 +9,5 @@ json.city @job.city.name
 json.description @job.description
 json.requirement @job.requirement
 json.how_to @job.how_to
-json.category_id job.category.name
-json.created_at job.created_at
-json.updated_at job.updated_at
+json.created_at @job.created_at
+json.updated_at @job.updated_at

@@ -72,6 +72,7 @@ class Job < ActiveRecord::Base
 # for date time
   def decorated_created_at
     created_at.to_date.to_s(:long)
+    # created_at.strftime "%d/%m/%Y %H:%M"
   end
 # end datetime
 

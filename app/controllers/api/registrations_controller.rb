@@ -24,6 +24,5 @@ class Api::RegistrationsController < Devise::RegistrationsController
   private	
   def update_sanitized_params
   	params.require(:user).permit(:email, :password)
-  	#devise_parameter_sanitizer
   end
 end
