@@ -43,6 +43,13 @@ class Job < ActiveRecord::Base
   end
 # end api
 
+# for api
+  def self.get_company_job_api( company_id )
+    Job.where(['company_id = ?', company_id])
+        .order(created_at: :DESC)       
+  end
+# end api
+
 # for job display and filter
   def self.get_list( title, city_id, page = 1 )
     num_jobs =  5

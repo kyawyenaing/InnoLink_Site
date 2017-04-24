@@ -6,7 +6,10 @@ class Api::CompaniesController < ApplicationController
   
   def show
     @company = Company.find(params[:id])
-    render :json=>@company
+    @jobs = Job.where(['company_id = ?', @company.id])
+        .order(created_at: :DESC)   
+    # @jobs = Job.get_company_job_api(@company.id)
+    # render :json=>@company
   end
 
   def companies_add
