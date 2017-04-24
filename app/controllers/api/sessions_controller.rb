@@ -74,7 +74,3 @@ class Api::SessionsController < Devise::SessionsController
 
 end
 
-
-သင္ဘာ အဖတ္တင္လဲ
-ပိုင္ဆိုင္ခဲ႔ျပီပဲ
-လိုရာျပည္႔ေသာဘ၀မွာ မေပ ်ာ္နိုင္ရင္ မင္း ဘာလိုေနေသးလဲ
