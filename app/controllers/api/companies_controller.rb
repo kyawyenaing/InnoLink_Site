@@ -22,10 +22,14 @@ class Api::CompaniesController < ApplicationController
   	@company.about = params["about"].to_i
   	@company.user_id = params["user_id"].to_i
   	if @company.save
-  	    render json: {
-                          :info => "Success!",
-                          :data => { :id => @company.id
-                                    } 
+  	    # render json: {message: "Success!"}
+        render :status => 200,
+               :json => { 
+                        :success => true,
+                        :info => "Success!",
+                        :data => {  
+                                   :id => @company.id
+                                 }
                       }
   	else
   	    render :json => @company.errors
