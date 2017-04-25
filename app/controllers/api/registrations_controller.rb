@@ -12,7 +12,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
            :json => { :success => true,
                       :info => "Registered",
                       :data => { :user => resource,
-                                 :auth_token => current_user.authentication_token } }
+                                 :auth_token => current_user.authentication_token },{:id => current_user.id} }
     else
       render :status => 200,
              :json => { :success => false,
