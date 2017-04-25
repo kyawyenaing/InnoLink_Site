@@ -14,7 +14,7 @@ class Api::CompaniesController < ApplicationController
 
   def companies_add
   	@company = Company.new
-  	@company.title = params["name"]
+  	@company.name = params["name"]
   	@company.website = params["website"]
   	@company.category_id = params["category_id"].to_i
   	@company.city_id = params["city_id"].to_i
