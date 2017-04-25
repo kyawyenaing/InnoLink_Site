@@ -64,7 +64,7 @@ Rails.application.routes.draw do
     resources :salaries
     resources :companies
     resources :jobs    
-    post "jobs_add" => "job#jobs_add"
+    post "jobs_add" => "jobs#jobs_add"
     # get "jobs_add" => "jobs#jobs_add"
     post "companies_add" => "companies#companies_add"
     # get "companies_add" => "companies#companies_add"
