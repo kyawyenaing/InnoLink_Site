@@ -24,12 +24,9 @@ class Api::CompaniesController < ApplicationController
   	if @company.save
   	    # render json: {message: "Success!"}
         render :status => 200,
-               :json =>{ 
-                        :success => true,
+               :json =>{:success => true,
                         :info => "Success!",
-                        :data => {  
-                                   :id => @company.id
-                                 }
+                        :data => {:id => @company.id}
                         }
   	else
   	    render :json => @company.errors
