@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     resources :companies
     resources :jobs    
     resources :dashboard
+    resources :mycompanies
     post "jobs_add" => "jobs#jobs_add"
     # get "jobs_add" => "jobs#jobs_add"
     post "companies_add" => "companies#companies_add"
