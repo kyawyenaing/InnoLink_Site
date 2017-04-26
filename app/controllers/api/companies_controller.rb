@@ -1,15 +1,16 @@
 class Api::CompaniesController < ApplicationController
 
   def index
-    @companies = Company.get_api(params[:name])
+    # @companies = Company.get_api(params[:name],params[:page])
+    @companies = Company.get_list(params[:page])
   end
   
   def show
     @company = Company.find(params[:id])
-    @jobs = Job.where(['company_id = ?', @company.id])
-        .order(created_at: :DESC)   
-    # @jobs = Job.get_company_job_api(@company.id)
-    # render :json=>@company
+    @jobs = Job.comp_jobs(@company.id, params[:page])
+    # @jobs = Job.where(['company_id = ?', @company.id])
+    #     .order(created_at: :DESC)   
+    
   end
 
   def companies_add

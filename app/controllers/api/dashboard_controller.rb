@@ -9,10 +9,4 @@ before_action :authenticate_user!
     @jobs = Job.comp_jobs(@company.id, params[:page])
   end
 
-  def show_job
-  	@company = Company.find(params[:id])
-  	@jobs = Job.comp_jobs(@company.id, params[:page])
-  	
-  end
-
 end
