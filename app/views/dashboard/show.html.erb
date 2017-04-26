@@ -76,7 +76,8 @@
               <%= job.title  %>
               </a>                               
               </h5>
-              <% if job.user.id == current_user.id %>
+              
+              <% if job.company.id == @company.id %>
               <span class="glyphicon glyphicon-user">    
               </span>                            
               <% end %>  
