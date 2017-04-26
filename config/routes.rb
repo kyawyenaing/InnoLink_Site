@@ -65,12 +65,11 @@ Rails.application.routes.draw do
     resources :companies
     resources :jobs    
     resources :dashboard
-    resources :mycompanies
     post "jobs_add" => "jobs#jobs_add"
     # get "jobs_add" => "jobs#jobs_add"
     post "companies_add" => "companies#companies_add"
     # get "companies_add" => "companies#companies_add"
-    # get "dashboard" => "dashboard#index"
+    get "dashboard/jobs/:id" => "dashboard#show"
 
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
