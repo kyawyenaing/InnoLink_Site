@@ -1,6 +1,6 @@
 class Api::JobsController < ApplicationController
-  # before_action :authenticate_user!, only: [:index]
-  # before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!
 
   def index
     @jobs = Job.get_api(params[:title], params[:city_id])
@@ -24,7 +24,6 @@ class Api::JobsController < ApplicationController
     @job.how_to = params["how_to"]   
     @job.user_id = params["user_id"].to_i
     @job.company_id = params["company_id"].to_i
-
     if @job.save
         render json: {message: "Success!"}
     else
