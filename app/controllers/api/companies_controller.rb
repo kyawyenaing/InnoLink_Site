@@ -6,11 +6,10 @@ class Api::CompaniesController < ApplicationController
   end
   
   def show
-    @company = Company.find(params[:id])
-    @jobs = Job.comp_jobs(@company.id, params[:page])
     # @jobs = Job.where(['company_id = ?', @company.id])
     #     .order(created_at: :DESC)   
-    
+    @company = Company.find(params[:id])
+    @jobs = Job.comp_jobs(@company.id, params[:page])    
   end
 
   def companies_add
