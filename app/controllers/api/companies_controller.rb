@@ -1,15 +1,15 @@
 class Api::CompaniesController < ApplicationController
 
   def index
-    # @companies = Company.get_api(params[:name],params[:page])
-    @companies = Company.get_list(params[:page])
+    # @companies = Company.get_list(params[:page])
+    @companies = Company.get_api(params[:name],params[:page])
   end
   
-  def show
-    # @jobs = Job.where(['company_id = ?', @company.id])
-    #     .order(created_at: :DESC)   
+  def show  
+    # @company = Company.find(params[:id])
+    # @jobs = Job.comp_jobs(@company.id, params[:page])    
     @company = Company.find(params[:id])
-    @jobs = Job.comp_jobs(@company.id, params[:page])    
+    @jobs = Job.get_company_job_api(@company.id)    
   end
 
   def companies_add

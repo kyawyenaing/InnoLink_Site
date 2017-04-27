@@ -38,18 +38,16 @@ class Job < ActiveRecord::Base
 # end user dashboard
 
 # for api
-  # def self.get_api( title, city_id ,page = 1)
-  #   num_jobs = 5
-  #   Job.order(created_at: :DESC)       
-  #      .page(page).per(num_jobs) 
-  # end
+  def self.get_api()
+    Job.order(created_at: :DESC)       
+  end
 # end api
 
 # for api
-  # def self.get_company_job_api( company_id )
-  #   Job.where(['company_id = ?', company_id])
-  #       .order(created_at: :DESC)       
-  # end
+  def self.get_company_job_api( company_id )
+    Job.where(['company_id = ?', company_id])
+        .order(created_at: :DESC)       
+  end
 # end api
 
 # for job display and filter

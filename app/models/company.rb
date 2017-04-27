@@ -25,11 +25,9 @@ class Company < ActiveRecord::Base
 	# end datetime
 
 	# for api
-	  # def self.get_api(name, page = 1)
-	  # 	num_jobs = 5
-	  #   Company.order(created_at: :DESC)
-	  #   		.page(page).per(num_jobs) 
-	  # end
+	  def self.get_api(name, page = 1)
+	    Company.order(created_at: :DESC)
+	  end
 	# end api
 
 end
