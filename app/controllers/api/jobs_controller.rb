@@ -3,8 +3,8 @@ class Api::JobsController < ApplicationController
   # before_action :authenticate_user!
 
   def index
-    #@jobs = Job.get_api(params[:title], params[:city_id], params[:page])
-    @jobs = Job.get_list(params[:title], params[:city_id], params[:page])
+    # @jobs = Job.get_list(params[:title], params[:city_id], params[:page])
+    @jobs = Job.get_api(params[:title], params[:city_id], params[:page])
   end
   
   def show
