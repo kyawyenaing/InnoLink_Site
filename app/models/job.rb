@@ -38,7 +38,7 @@ class Job < ActiveRecord::Base
 # end user dashboard
 
 # for api
-  def self.get_api()
+  def self.get_api(title, city_id, page = 1 )
     Job.order(created_at: :DESC)       
   end
 # end api

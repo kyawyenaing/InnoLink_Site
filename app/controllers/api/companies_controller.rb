@@ -2,7 +2,7 @@ class Api::CompaniesController < ApplicationController
 
   def index
     # @companies = Company.get_list(params[:page])
-    @companies = Company.get_api(params[:paginate],params[:page])
+    @companies = Company.get_api(params[:name],params[:page])
   end
   
   def show  
