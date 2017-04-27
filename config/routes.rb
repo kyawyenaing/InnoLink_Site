@@ -74,8 +74,6 @@ Rails.application.routes.draw do
     post "jobs_add" => "jobs#jobs_add"
     post "companies_add" => "companies#companies_add"
 
-    
-
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
       post 'sessions' => 'sessions#create', :as => 'login'
