@@ -11,6 +11,11 @@ class Company < ActiveRecord::Base
 	      .order(created_at: :DESC)
 	      .page(page).per(num_jobs)
 	  end
+
+	  def self.my_company_api(user_id)
+	    Company.where(['user_id = ?', user_id])
+	      .order(created_at: :DESC)
+	  end
 	# end user dashboard
 
 	def self.get_list( page = 1)

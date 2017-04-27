@@ -44,7 +44,7 @@ class Job < ActiveRecord::Base
 # end api
 
 # for api
-  def self.get_company_job_api( company_id )
+  def self.get_comp_job_api( company_id )
     Job.where(['company_id = ?', company_id])
         .order(created_at: :DESC)       
   end
