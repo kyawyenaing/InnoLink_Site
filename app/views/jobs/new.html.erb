@@ -1,18 +1,18 @@
 <!-- Page header -->
 <header class="page-header">
   <div class="container page-name">
-    <h1 class="text-center">
-     Add a new job
-    </h1>
+    <h1 class="text-center">Add a new job</h1>
     <p class="lead text-center">
        Create a new vacancy for your company and put it online.
      </p>
     <a href="#" class="text-center block text-dark text-u-l">
      View your job offer list
    </a>
-<%= simple_form_for Job.new do |form| %>
+  <%= simple_form_for Job.new do |form| %>
   <div class="container">
+
     <div class="row">
+
       <div class="form-group col-xs-12 col-sm-6"> 
         <%= 
           form.input :title, label: false,
@@ -26,8 +26,10 @@
           {:class=> 'form-control selectpicker'}
         %>
       </div>
+
     </div>
     <div class="row">
+
       <div class="form-group col-xs-12 col-sm-6">
         <%=         
         form.select :company_id, @companies.collect{ |u| [u.name, u.id] },{include_blank: '--Company--'},{:class=>'form-control selectpicker'} 
@@ -82,6 +84,7 @@
           <%= form.button :submit,class: "btn btn-success btn-md" %>
         </p>  
       </div>
+      
     </div>
   </div>
 <% end %>

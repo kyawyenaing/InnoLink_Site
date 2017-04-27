@@ -10,8 +10,9 @@
     <a href="#" class="text-center block text-dark text-u-l">
      View your job offer list
    </a>
-<%= simple_form_for Company.new do |form| %>
+  <%= simple_form_for Company.new do |form| %>
   <div class="container">
+
     <div class="row">
 
       <div class="form-group col-xs-12 col-sm-6"> 
@@ -24,8 +25,8 @@
       <div class="form-group col-xs-12 col-sm-6">
         <%= form.input :website, label: false, input_html:{class: 'form-control input-lg' },placeholder:"Company Website"
         %>
-      </div>
-      
+      </div>  
+
     </div>
     <div class="row">
 
@@ -45,18 +46,15 @@
             form.select :city_id, @cities.collect{ |u| [u.name, u.id] },{include_blank: 'Select City'},{:class=>'form-control selectpicker'} 
           %>
         </div>        
-      </div>        
-                
+      </div>         
       <div class="form-group col-xs-12">
         <%= form.input :address, as: :text, label: false, :input_html =>{class: 'form-control',placeholder:"Your Company's Address",:cols => 20, :rows => 5 } 
         %>
       </div>
-
       <div class="form-group col-xs-12">
         <%= form.input :about, as: :text,label:false, :input_html =>{class: 'form-control',placeholder:"About Your Company",:cols => 20,:rows => 5 } 
         %>
       </div>
-
       <div class="form-group col-xs-12">
         <p class="text-center">
           <%= form.button :submit,class: "btn btn-success btn-md" %>

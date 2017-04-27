@@ -29,26 +29,13 @@ class Job < ActiveRecord::Base
       .order(created_at: :DESC)
       .page(page).per(num_jobs)
   end
-
+# comp_jobs_count
   def self.comp_jobs_count( company_id )
     Job.where(['company_id = ?', company_id])
       .order(created_at: :DESC)
       .count
   end
-# end user dashboard
-
-# for api
-  def self.get_api( )
-    Job.order(created_at: :DESC)       
-  end
-# end api
-
-# for api
-  def self.get_comp_job_api( company_id )
-    Job.where(['company_id = ?', company_id])
-        .order(created_at: :DESC)       
-  end
-# end api
+# end comp_jobs_count
 
 # for job display and filter
   def self.get_list( title, city_id, page = 1 )
@@ -117,5 +104,19 @@ class Job < ActiveRecord::Base
       end
     end
   end
+
+  
+  # for api
+    def self.get_api( )
+      Job.order(created_at: :DESC)       
+    end
+  # end api
+
+  # for api
+    def self.get_comp_job_api( company_id )
+      Job.where(['company_id = ?', company_id])
+          .order(created_at: :DESC)       
+    end
+  # end api
 
 end

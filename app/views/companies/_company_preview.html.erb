@@ -37,10 +37,7 @@
                   <%= company.name  %>
                   </a>                               
                   </h4>
-
-                  <span class="glyphicon glyphicon-user">    
-                  </span>                            
- 
+                  <span class="glyphicon glyphicon-user"></span>              
                   <h5><%= company.website %></h5>
                 </div>
                 <div class="header-meta">
@@ -59,14 +56,10 @@
                 </p>
 
                 <div class="action-btn">
-
-                  <a href="/companies/<%= company.id %>/edit" class="btn btn-xs btn-gray">
-                    Edit
-                    </a>
+                  <a href="/companies/<%= company.id %>/edit" class="btn btn-xs btn-gray">Edit</a>
                   <%= link_to 'Delete', {:action =>'destroy', :id => company.id}, 
                     :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
                     %>
-
                 </div>
                 
               </footer>

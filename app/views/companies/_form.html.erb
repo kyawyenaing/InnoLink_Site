@@ -2,8 +2,8 @@
   <div class="container">
 
     <h1 class="text-center m-t-extra">Update Your Company Information</h1><br>
-
     <div class="row">
+
       <div class="form-group col-xs-12 col-sm-6"> 
         <%= 
           form.input :name, label: false,
@@ -15,10 +15,12 @@
         <%= form.input :website, label: false, input_html:{class: 'form-control input-lg' },
         placeholder:"Company Website"
         %>
-      </div>      
+      </div> 
+
     </div>
 
     <div class="row">
+
       <div class="form-group col-xs-12 col-sm-6">
         <%= form.collection_select :category_id,Category.all,
           :id,:name,{prompt: 'Select Job Category'},
@@ -51,6 +53,7 @@
           <%= form.button :submit,class: "btn btn-success btn-md " %>
         </p>  
       </div>
+      
     </div>
     
   </div>

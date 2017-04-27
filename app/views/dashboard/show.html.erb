@@ -43,23 +43,30 @@
   </div>
 </section>
 <div class="container">
+
   <div class="row">
+
     <div class="col-xs-12 text-center">            
       <h4>Here is Jobs You Submitted!</h4>
     </div>
+
   </div>
   <div class="row">
+
     <div class="col-xs-12 text-right">            
       <%= link_to "Add a job", 
       new_job_path, 
       :class=>"btn btn-primary btn-sm" 
       %>
     </div>
+
   </div>
   <div class="row">
+
     <div class="col-xs-12 text-center">  
     <%= paginate @jobs %>
     </div>
+
   </div>
     <!-- Job detail -->
     <div class="col-md-12">
@@ -71,11 +78,9 @@
               <img src="../assets/logo-job.png" alt="" width="160">
             </a>
             <div class="hgroup">
-              <h5>
-              <a href="/jobs/<%= job.id %>">
+              <h5><a href="/jobs/<%= job.id %>">
               <%= job.title  %>
-              </a>                               
-              </h5>
+              </a></h5>
               
               <% if job.company.id == @company.id %>
               <span class="glyphicon glyphicon-user">    
@@ -100,9 +105,7 @@
 
             <div class="action-btn">
               <% if job.user_id == current_user.id %>
-              <a href="/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray">
-                Edit
-                </a>
+              <a href="/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray">  Edit</a>
               <%= link_to 'Delete',{:action =>'destroy', :id => job.id}, 
                 :confirm =>'Are you sure?',:method =>:delete,:class=>'btn btn-xs btn-danger'
                 %>

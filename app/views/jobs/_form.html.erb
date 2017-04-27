@@ -2,6 +2,7 @@
   <div class="container">
     <h1 class="text-center m-t-extra">Update Your Job Information</h1><br>
     <div class="row">
+
       <div class="form-group col-xs-12 col-sm-6"> 
         <%= 
           form.input :title, label: false,
@@ -15,8 +16,10 @@
           {:class=> 'form-control selectpicker'}
         %>
       </div>
+      
     </div>
     <div class="row">
+
       <div class="form-group col-xs-12 col-sm-6">
         <%=         
         form.select :company_id, @companies.collect{ |u| [u.name, u.id] },{include_blank: '--Company--'},{:class=>'form-control selectpicker'} 
@@ -74,5 +77,6 @@
         </p>  
       </div>
     </div>
+
   </div>
 <% end %>

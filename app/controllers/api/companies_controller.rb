@@ -9,7 +9,7 @@ class Api::CompaniesController < ApplicationController
     # @company = Company.find(params[:id])
     # @jobs = Job.comp_jobs(@company.id, params[:page])    
     @company = Company.find(params[:id])
-    @jobs = Job.get_company_job_api(@company.id)    
+    @jobs = Job.get_comp_job_api(@company.id)    
   end
 
   def companies_add
