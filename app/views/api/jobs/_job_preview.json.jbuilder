@@ -10,8 +10,8 @@
 # json.updated_at job.updated_at
 
 json.job_id job.id
-json.job_title job.title
-json.job_company job.company.name
-json.job_city job.city.name
+# json.job_title job.title
+# json.job_company job.company.name
+# json.job_city job.city.name
 # json.job_type job.get_job_type
-json.job_created_at job.created_at
+# json.job_created_at job.created_at
