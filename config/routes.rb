@@ -63,12 +63,16 @@ Rails.application.routes.draw do
     resources :cities
     resources :salaries
     resources :companies
-    resources :jobs    
+    # get "companies/:num && :page" => "companies#index"
+    # get "companies/:id/:num && :page" => "companies#show"
+    resources :jobs 
+       
     # resources :dashboard
     # get "dashboard/:user_id" => "dashboard#index"
     # get "dashboard/companies/:id" => "dashboard#show"
     # get "jobs_add" => "jobs#jobs_add"
     # get "companies_add" => "companies#companies_add"
+    
     get "dashboard/:user_id" => "dashboard#index"
     get "dashboard/companies/:id" => "dashboard#show"
     post "jobs_add" => "jobs#jobs_add"

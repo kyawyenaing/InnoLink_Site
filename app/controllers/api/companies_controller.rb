@@ -1,13 +1,22 @@
 class Api::CompaniesController < ApplicationController
 
+  # def index
+  #   # @companies = Company.get_list(params[:page])
+  #   @companies = Company.get_api(params[:name],params[:page])
+  # end
   def index
-    # @companies = Company.get_list(params[:page])
-    @companies = Company.get_api(params[:name],params[:page])
+    @companies = Company.get_api()
   end
-  
+
+# test for pagination
+  # def show  
+  #   # @company = Company.find(params[:id])
+  #   # @jobs = Job.comp_jobs(@company.id, params[:page])    
+  #   @company = Company.find(params[:id])
+  #   @jobs = Job.get_comp_job_api(@company.id,params[:num],params[:page])    
+  # end
+# end test
   def show  
-    # @company = Company.find(params[:id])
-    # @jobs = Job.comp_jobs(@company.id, params[:page])    
     @company = Company.find(params[:id])
     @jobs = Job.get_comp_job_api(@company.id)    
   end
@@ -22,7 +31,6 @@ class Api::CompaniesController < ApplicationController
   	@company.about = params["about"].to_i
   	@company.user_id = params["user_id"].to_i
   	if @company.save
-  	    # render json: {message: "Success!"}
         render :status => 200,
                :json =>{:success => true,
                         :info => "Success!",

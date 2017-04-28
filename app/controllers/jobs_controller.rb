@@ -16,7 +16,6 @@ class JobsController < ApplicationController
       @cities = City.get_list  
       @companies = Company.my_company(current_user.id, params[:page])  
     end  
-    
   end
 
   def create

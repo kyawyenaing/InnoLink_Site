@@ -1,8 +1,11 @@
 class CompaniesController < ApplicationController
 
 	def index
+		if !user_signed_in?
+		  redirect_to new_user_session_path
+		end
 		@cities = City.get_list
-		@companies = Company.get_list(params[:category_id],params[:city_id],params[:page])
+		@companies = Company.get_list(params[:page])
 	end
 
 	def new
@@ -40,9 +43,6 @@ class CompaniesController < ApplicationController
 	      format.html { render :edit }
 	    end
 	  end
-	end
-
-	def destory
 	end
 
 	def show
