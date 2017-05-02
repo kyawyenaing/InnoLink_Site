@@ -45,7 +45,7 @@
                       <img src="assets/logo-google.jpg" alt="">
                       <div class="hgroup">
                         <h4><%= job.title %></h4>
-                        <h5><%= job.company_name %></h5>  
+                        <h5><%= job.company.name %></h5>  
                         <% if job.job_type == "FULLTIME" %>
                         <span class="label label-success">
                           <%= job.job_type %>           

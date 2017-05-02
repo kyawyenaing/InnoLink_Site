@@ -28,7 +28,7 @@ class Api::CompaniesController < ApplicationController
   	@company.category_id = params["category_id"].to_i
   	@company.city_id = params["city_id"].to_i
   	@company.address = params["address"]
-  	@company.about = params["about"].to_i
+  	@company.about = params["about"]
   	@company.user_id = params["user_id"].to_i
   	if @company.save
         render :status => 200,
@@ -39,6 +39,15 @@ class Api::CompaniesController < ApplicationController
   	else
   	    render :json => @company.errors
   	end 
+  end
+
+  def update
+    @company = Company.find(params[:id])    
+      if @company.update(company_params)
+        render json: {message: "Success!"}
+      else
+        render :json => @company.errors
+      end
   end
 
   private

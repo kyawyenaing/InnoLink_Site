@@ -76,7 +76,9 @@ Rails.application.routes.draw do
     get "dashboard/:user_id" => "dashboard#index"
     get "dashboard/companies/:id" => "dashboard#show"
     post "jobs_add" => "jobs#jobs_add"
+    post "jobs/edit/:id" => "jobs#update"
     post "companies_add" => "companies#companies_add"
+    post "companies/edit/:id" => "companies#update"
 
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'

@@ -40,11 +40,20 @@ class Api::JobsController < ApplicationController
       redirect_to edit_job_path
     end
 
+    def update
+      @job = Job.find(params[:id])    
+        if @job.update(job_params)
+          render json: {message: "Success!"}
+        else
+          render :json => @job.errors
+        end
+    end
+
 	private
 	def job_params
 	  params.require(:job).permit(:title, :company_name, :company_website, :job_type, 
 	  :category_id, :salary_range_id, :city_id, :description, :requirement, 
-	  :how_to,:user_id)
+	  :how_to,:user_id,:company_id)
 	end
 
 
