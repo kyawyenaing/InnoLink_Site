@@ -1,7 +1,8 @@
 # file: app/controller/api/v1/sessions_controller.rb
 class Api::SessionsController < Devise::SessionsController
+  skip_before_filter :verify_authenticity_token,
+                     :if => Proc.new { |c| c.request.format == 'application/json' }
 
-  skip_before_filter :verify_authenticity_token  
   respond_to :json
 
   def create
