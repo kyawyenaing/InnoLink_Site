@@ -17,7 +17,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
                     }
     else
       render :status => 200,
-             :json => { :success => false,
+             :json => { :notice => false,
                         :info => resource.errors,
                         :data => {} }
     end
