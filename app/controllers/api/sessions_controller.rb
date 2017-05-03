@@ -26,7 +26,7 @@ class Api::SessionsController < Devise::SessionsController
   def failure
     render :status => 200,
            :json => { :success => false,
-                      :info => "Login Failed",
+                      :info => "Login Failed ",
                       :data => {} }
   end
 
