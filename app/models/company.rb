@@ -29,16 +29,17 @@ class Company < ActiveRecord::Base
 	  end
 	# end datetime
 
-	# for api test for paginate
-	  # def self.get_api(num, page )
-	  #   Company.order(created_at: :DESC).page(page).per(num)
+	# for api
+	  # def self.get_api()
+	  #   Company.order(created_at: :DESC)
 	  # end
 	# end api
 
-	# for api
-	  def self.get_api()
-	    Company.order(created_at: :DESC)
-	  end
+	# for api test for paginate
+	  # def self.get_api( page = 1 )
+	  # 	num = 5
+	  #   Company.order(created_at: :DESC).page(page).per(num)
+	  # end
 	# end api
 
 end

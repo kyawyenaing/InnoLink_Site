@@ -70,19 +70,6 @@ class Job < ActiveRecord::Base
   end
 # end datetime
 
-# for job_type enum
-  # def get_job_type
-  #   if job_type == Job.job_types[:FULLTIME]
-  #     "Full-time"
-  #     else if job_type == Job.job_types[:FREELANCE]
-  #       "Freelance"
-  #     else
-  #       "Part-time"
-  #     end
-  #   end
-  # end
-# end Job_type enum
-
   def self.get_count( title, city_id)
 
     if title == nil && city_id == nil
@@ -107,20 +94,21 @@ class Job < ActiveRecord::Base
   end
 
   # for api
-    def self.get_api( )
-      Job.order(created_at: :DESC)       
-    end
+    # def self.get_api( )
+    #   Job.order(created_at: :DESC)       
+    # end
   # end api
 
   # for api
-    def self.get_comp_job_api( company_id )
-      Job.where(['company_id = ?', company_id])
-          .order(created_at: :DESC)       
-    end
+    # def self.get_comp_job_api( company_id )
+    #   Job.where(['company_id = ?', company_id])
+    #       .order(created_at: :DESC)       
+    # end
   # end api
 
-  # for api
-    # def self.get_comp_job_api( company_id , num , page )
+  # for api with pagination
+    # def self.get_comp_job_api( company_id , page )
+    #   num = 5
     #   Job.where(['company_id = ?', company_id])
     #       .order(created_at: :DESC)   
     #       .page(page).per(num)    

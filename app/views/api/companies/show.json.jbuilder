@@ -26,6 +26,6 @@ json.array!(@jobs) do |job|
 	json.job_title job.title
 	json.job_company job.company.name
 	json.job_city job.city.name
-	json.job_type job.get_job_type
+	json.job_type job.job_type
 	json.job_created_at job.created_at
 end
