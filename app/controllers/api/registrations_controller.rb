@@ -5,14 +5,6 @@ class Api::RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource(update_sanitized_params)
-    @email = update_sanitized_params[:email]
-    if emailexists($email)
-      render :status => 200,
-             :json => { :success => false,
-                        :info => "This email is already exist",
-                        :data => {} }
-    end
-
     if resource.save
       sign_in resource
       render :status => 200,
