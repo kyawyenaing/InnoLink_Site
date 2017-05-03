@@ -71,16 +71,16 @@ class Job < ActiveRecord::Base
 # end datetime
 
 # for job_type enum
-  def get_job_type
-    if job_type == Job.job_types[:FULLTIME]
-      "Full-time"
-      else if job_type == Job.job_types[:FREELANCE]
-        "Freelance"
-      else
-        "Part-time"
-      end
-    end
-  end
+  # def get_job_type
+  #   if job_type == Job.job_types[:FULLTIME]
+  #     "Full-time"
+  #     else if job_type == Job.job_types[:FREELANCE]
+  #       "Freelance"
+  #     else
+  #       "Part-time"
+  #     end
+  #   end
+  # end
 # end Job_type enum
 
   def self.get_count( title, city_id)
