@@ -21,6 +21,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
                         :info => resource.errors,
                         :data => {} }
     end
+    
   end
 
   private	
