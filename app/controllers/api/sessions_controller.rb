@@ -4,7 +4,7 @@ class Api::SessionsController < Devise::SessionsController
   respond_to :json
 
   def create
-    warden.authenticate(:scope => resource_name, :recall => "#{controller_path}#failure")
+    warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     render :status => 200,
            :json => { :success => true,
                       :info => "Login Success!",
@@ -26,7 +26,7 @@ class Api::SessionsController < Devise::SessionsController
   def failure
     render :status => 200,
            :json => { :success => false,
-                      :info => "Login Failed ",
+                      :info => "Login Failed",
                       :data => {} }
   end
 
