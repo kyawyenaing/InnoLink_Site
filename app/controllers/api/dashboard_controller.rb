@@ -7,8 +7,8 @@ class Api::DashboardController < ApplicationController
   
   def show
     @company = Company.find(params[:id])
-    # @jobs = Job.comp_jobs(@company.id, params[:page])
-    @jobs = Job.get_comp_job_api(@company.id)
+    # @jobs = Job.get_comp_job_api(@company.id)
+    @jobs = Job.comp_jobs(@company.id, params[:page])
   end
 
 end
