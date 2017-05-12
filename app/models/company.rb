@@ -18,7 +18,7 @@ class Company < ActiveRecord::Base
 	  end
 	# end user dashboard
 
-	def self.get_list( page = 1)
+	def self.get_list(page)
 		number = 5
 		Company.order(created_at: :DESC).page(page).per(number)
 	end
