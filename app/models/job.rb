@@ -77,7 +77,7 @@ class Job < ActiveRecord::Base
         .count
     else
       if title != "" && city_id != ""
-          Job.where(['title LIKE ? && city_id = ?', title, city_id])
+          Job.where(['title LIKE ? and city_id = ?', title, city_id])
             .order(created_at: :DESC)
             .count
       end
