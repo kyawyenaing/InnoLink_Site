@@ -38,7 +38,7 @@ class Job < ActiveRecord::Base
 # end comp_jobs_count
 
 # for job display and filter
-  def self.get_list( title, city_id, page = 1 )
+  def self.get_list( title, city_id, page = 1)
     num_jobs =  5
 
     if title == nil && city_id == nil

@@ -56,10 +56,12 @@
                 </p>
 
                 <div class="action-btn">
+                <% if company.user_id == current_user.id %>
                   <a href="/companies/<%= company.id %>/edit" class="btn btn-xs btn-gray">Edit</a>
                   <%= link_to 'Delete', {:action =>'destroy', :id => company.id}, 
                     :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
                     %>
+                <% end %>
                 </div>
                 
               </footer>
