@@ -2,9 +2,6 @@ class CompaniesController < ApplicationController
 	before_action :authenticate_user!
 	load_and_authorize_resource
 	def index
-		# if !user_signed_in?
-		#   redirect_to new_user_session_path
-		# end
 		@cities = City.get_list
 		@companies = Company.get_list(params[:page])
 	end

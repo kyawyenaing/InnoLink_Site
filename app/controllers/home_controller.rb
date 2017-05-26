@@ -14,4 +14,8 @@ class HomeController < ApplicationController
 	def show
 	  @job = Job.find(params[:id])
 	end
+
+	def show_cmp
+		@company = Company.find(params[:id])
+	end
 end

@@ -49,6 +49,12 @@ class Api::JobsController < ApplicationController
         end
     end
 
+    def destroy
+      @job = Job.find params[:id]
+      @job.destroy
+      redirect_to dashboard_path
+    end
+
 	private
 	def job_params
 	  # params.require(:job).permit(:title, :company_name, :company_website, :job_type, 

@@ -90,7 +90,7 @@
                   <%= paginate @companies %>  
                   Total Companies = <%= Company.count %>
                 <% @companies.each do |company| %>
-                <a class="item-block" href="/companies/<%= company.id %>" id="company" class="company">
+                <a class="item-block" href="/home_companies/<%= company.id %>" id="company" class="company">
                     <header>
                       <img src="assets/logo-google.jpg" alt="">
                       <div class="hgroup">

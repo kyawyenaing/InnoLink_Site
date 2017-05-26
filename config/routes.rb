@@ -38,6 +38,9 @@ Rails.application.routes.draw do
   resources :companies do
   end
 
+  resources :home_companies do 
+  end
+
   resources :dashboard do
   end
 

@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
 	belongs_to :city 
 	belongs_to :category
-
+	belongs_to :user
 	validates_presence_of :name,:website,:category_id,:city_id,:address,:about
 
 	# for user dashboard

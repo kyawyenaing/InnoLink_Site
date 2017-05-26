@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-before_action :authenticate_user!
+  before_action :authenticate_user!
   load_and_authorize_resource
   def index
     @cities = City.get_list

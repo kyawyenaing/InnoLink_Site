@@ -107,7 +107,7 @@
 
             <div class="action-btn">
 
-              <% if job.company.id == @company.id %>
+              <% if job.user_id == current_user.id %>
               <a href="/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray">  Edit</a>
               <%= link_to 'Delete',{:action =>'destroy', :id => job.id}, 
                 :confirm =>'Are you sure?',:method =>:delete,:class=>'btn btn-xs btn-danger'
