@@ -1,0 +1,60 @@
+<%= simple_form_for [:admin,@company] do |form| %>
+  <div class="container">
+
+    <h1 class="text-center m-t-extra">Update Your Company Information</h1><br>
+    <div class="row">
+
+      <div class="form-group col-xs-12 col-sm-6"> 
+        <%= 
+          form.input :name, label: false,
+          input_html: {class: 'form-control input-lg' },
+          placeholder:"Company Name" 
+        %>            
+      </div>
+      <div class="form-group col-xs-12 col-sm-6">
+        <%= form.input :website, label: false, input_html:{class: 'form-control input-lg' },
+        placeholder:"Company Website"
+        %>
+      </div> 
+
+    </div>
+
+    <div class="row">
+
+      <div class="form-group col-xs-12 col-sm-6">
+        <%= form.collection_select :category_id,Category.all,
+          :id,:name,{prompt: 'Select Job Category'},
+          {:class=> 'form-control selectpicker'}
+        %>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4">
+        <div class="input-group input-group-sm">
+          <span class="input-group-addon">
+            <i class="fa fa-map-marker"></i>
+          </span>
+          <%=   
+            form.collection_select :city_id, City.all, 
+            :id, :name,{prompt:'Select a State/Province'},
+            {:class=> 'form-control selectpicker'} 
+          %>
+        </div>
+      </div> 
+      <div class="form-group col-xs-12">
+       <%= form.input :address, as: :text, label: false, :input_html =>{class: 'form-control',placeholder:"Your Company Address", :cols => 20, :rows => 5 } 
+       %>
+      </div>         
+               
+      <div class="form-group col-xs-12">
+        <%= form.input :about, as: :text, label: false, :input_html =>{class: 'form-control',placeholder:"Position Requirements", :cols => 20, :rows => 5 } 
+        %>
+      </div>
+      <div class="form-group col-xs-12">
+        <p class="text-center">         
+          <%= form.button :submit,class: "btn btn-success btn-md " %>
+        </p>  
+      </div>
+      
+    </div>
+    
+  </div>
+<% end %>

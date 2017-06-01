@@ -1,25 +1,30 @@
-class JobsController < ApplicationController
+class Admin::JobsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   def index
+    if current_user.role_id != 1
+      redirect_to new_user_session_path
+    end
     @cities = City.get_list
-    @jobs = Job.get_list(params[:title], params[:city_id], params[:page])
+    @jobs = Job.pending_jobs(params[:page])
     @companies = Company.get_list(params[:page])
     @count = Job.get_count(params[:title],params[:city_id])
+    @edited_jobs = Job.edited_jobs(params[:page])
   end
 
   def new
-    if !user_signed_in?   
-        flash[:notic] = ""
-        redirect_to new_user_session_path, notice: 'Please Login Firstly'
-    else
+    if current_user.role_id != 1
+      redirect_to new_user_session_path
+    end
       @job = Job.new
       @cities = City.get_list  
-      @companies = Company.my_company(current_user.id, params[:page])  
-    end  
+      @companies = Company.my_company(current_user.id, params[:page])   
   end
 
   def create
+    if current_user.role_id != 1
+      redirect_to new_user_session_path
+    end
     @job = Job.new(job_params)
     @job.user_id = current_user.id
     respond_to do |format|
@@ -32,13 +37,20 @@ class JobsController < ApplicationController
   end
 
   def edit
+    if current_user.role_id != 1
+      redirect_to new_user_session_path
+    end
     @job = Job.find(params[:id])    
     @city = City.get_list
     @companies = Company.my_company(current_user.id, params[:page])
   end
 
   def update
+    if current_user.role_id != 1
+      redirect_to new_user_session_path
+    end
     @job = Job.find(params[:id])    
+    @job.status = 1
     respond_to do |format|
       if @job.update(job_params)
         flash[:notic] = ""
@@ -50,10 +62,16 @@ class JobsController < ApplicationController
   end
 
   def show
+    if current_user.role_id != 1
+      redirect_to new_user_session_path
+    end
     @job = Job.find(params[:id])
   end
 
   def destroy
+    if current_user.role_id != 1
+      redirect_to new_user_session_path
+    end
     @job = Job.find params[:id]
     @job.destroy
     redirect_to dashboard_path

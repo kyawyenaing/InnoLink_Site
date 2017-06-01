@@ -4,18 +4,7 @@ class Api::CompaniesController < ApplicationController
     @companies = Company.get_list(params[:page])
     # @companies = Company.get_api(params[:page])
   end
-  # def index
-  #   @companies = Company.get_api()
-  # end
-
-# test for pagination
-  # def show  
-  #   # @company = Company.find(params[:id])
-  #   # @jobs = Job.comp_jobs(@company.id, params[:page])    
-  #   @company = Company.find(params[:id])
-  #   @jobs = Job.get_comp_job_api(@company.id,params[:num],params[:page])    
-  # end
-# end test
+  
   def show  
     @company = Company.find(params[:id])
     @jobs = Job.comp_jobs(@company.id ,params[:page])    

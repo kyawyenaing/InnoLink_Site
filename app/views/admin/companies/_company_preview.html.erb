@@ -1,0 +1,164 @@
+<!-- Page header -->
+    <header class="page-header m-b-none">      
+      <div class="container page-name">
+        <h1 class="text-center">Admin Panel To Manage All Activities</h1>
+        <p class="lead text-center padder-bt-xxl">
+          You are now logined by admin role. Now, you can manage all activities.
+        </p>
+      </div>
+    </header>
+<!-- END Page header -->
+<!-- Main container -->
+    <main>
+      <section class="no-padding-top bg-alt">
+        <div class="container">
+
+          <div class="row">
+              <div class="col-xs-4 text-center">
+              <br>
+                <a href="/admin/companies" class="btn btn-sm btn-primary">New Companies</a>
+              </div>
+              <div class="col-xs-4 text-center">
+              <br>
+                <a href="/admin/companies" class="btn btn-sm btn-primary">New Jobs</a>
+              </div>
+              
+              <div class="col-xs-4 text-center">
+                <br>
+                <%= 
+                link_to "Add a company", 
+                new_company_path, 
+                :class=>"btn btn-primary btn-sm" 
+                %>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+            <h5>User Added Companies</h5>
+              <%= paginate @companies %>                           
+            </div>
+          </div>
+          <div class="row">
+            <!-- company detail -->
+              <% @companies.each do |company| %>            
+              <div class="col-xs-12">
+                <div class="item-block">
+                  <header>
+                    <a href="/admin/companies/<%= company.id %>">
+                      <img src="../assets/logo-company.png" alt="" width="160">
+                    </a>
+                    <div class="hgroup">
+                      <h4>
+                      <a href="/admin/companies/<%= company.id %>">
+                      <%= company.name  %>
+                      </a>                               
+                      </h4>
+                      <span class="glyphicon glyphicon-user"></span>              
+                      <h5><%= company.website %></h5>
+                    </div>
+                    <div class="header-meta">
+                      <span class="location">            
+                        <%= company.city.name %>
+                      </span>
+                      <time datetime="2016-03-10 20:00">
+                      Added at:
+                        <%= company.decorated_created_at %>
+                      </time>
+                    </div>
+                  </header>
+                  <footer>
+                    <p class="status">
+                      <strong>Status:</strong> 
+                      <%= 
+                      #company.status 
+                      %>
+                    </p>
+
+                    <div class="action-btn">
+                      <a href="/admin/companies/<%= company.id %>/edit" class="btn btn-xs btn-gray btn-primary">Confirm</a>
+                      <%= 
+                      # link_to 'Delete', {:action =>'destroy', :id => company.id}, 
+                      #   :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
+                        %>
+                    </div>
+                    
+                  </footer>
+                </div>
+              </div>              
+              <% end %> 
+              <!-- END company detail --> 
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center">           
+              <%= paginate @companies %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 text-center">
+            <h5>User Edited companies</h5>
+              <%= paginate @companies %>                           
+            </div>
+          </div>
+          <div class="row">
+            <!-- company detail -->
+              <% @edited_companies.each do |edited_company| %>            
+              <div class="col-xs-12">
+                <div class="item-block">
+                  <header>
+                    <a href="/admin/companies/<%= edited_company.id %>">
+                      <img src="../assets/logo-company.png" alt="" width="160">
+                    </a>
+                    <div class="hgroup">
+                      <h4>
+                      <a href="/admin/companies/<%= edited_company.id %>">
+                      <%= edited_company.name  %>
+                      </a>                               
+                      </h4>
+                      <span class="glyphicon glyphicon-user"></span>              
+                      <h5><%= edited_company.website %></h5>
+                    </div>
+                    <div class="header-meta">
+                      <span class="location">            
+                        <%= edited_company.city.name %>
+                      </span>
+                      <time datetime="2016-03-10 20:00">
+                      Edited at:
+                        <%= edited_company.decorated_updated_at %>
+                      </time>
+                    </div>
+                  </header>
+                  <footer>
+                    <p class="status">
+                      <strong>Status:</strong> 
+                      <% 
+                      # edited_company.status 
+                      %>
+                    </p>
+
+                    <div class="action-btn">
+                      <a href="/admin/companies/<%= edited_company.id %>/edit" class="btn btn-xs btn-gray">Edit</a>
+                      <%= link_to 'Delete', {:action =>'destroy', :id => edited_company.id}, 
+                        :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
+                        %>
+                    </div>
+                    
+                  </footer>
+                </div>
+              </div>              
+              <% end %> 
+              <!-- END company detail --> 
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center">           
+              <%= paginate @edited_companies %>
+            </div>
+          </div>
+          
+
+        </div>
+      </section>
+    </main>
+
+<!-- END Main container -->
+

@@ -1,4 +1,4 @@
-class CompaniesController < ApplicationController
+class Admin::ModifyController < ApplicationController
 	before_action :authenticate_user!
 	load_and_authorize_resource
 	def index
@@ -36,8 +36,7 @@ class CompaniesController < ApplicationController
 	  respond_to do |format|
 	    if @company.update(company_params)
 	      flash[:notic] = ""
-	      # format.html { redirect_to companies_path, notice: 'company was successfully updated.' }
-	      polymorphic_path([:admin, @company.owner])
+	      format.html { redirect_to companies_path, notice: 'company was successfully updated.' }
 	    else
 	      format.html { render :edit }
 	    end

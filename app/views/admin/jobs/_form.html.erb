@@ -1,0 +1,85 @@
+<%= simple_form_for [:admin,@job] do |form| %>
+  <div class="container">
+    <h1 class="text-center m-t-extra">Update Your Job Information</h1><br>
+    <div class="row">
+
+      <div class="form-group col-xs-12 col-sm-6"> 
+        <%= 
+          form.input :title, label: false,
+          input_html: {class: 'form-control input-lg' },
+          placeholder:"Job Title" 
+        %>            
+      </div>
+      <div class="form-group col-xs-12 col-sm-6">
+        <%= form.collection_select :category_id,Category.all,
+          :id,:name,{prompt: 'Select Job Category'},
+          {:class=> 'form-control selectpicker'}
+        %>
+      </div>
+      
+    </div>
+    <div class="row">
+
+      <div class="form-group col-xs-12 col-sm-6">
+        <%=         
+        # form.select :company_id, @companies.collect{ |u| [u.name, u.id] },{include_blank: '--Company--'},{:class=>'form-control selectpicker'} 
+        %> 
+      </div>
+      <div class="form-group col-xs-12 col-sm-6">
+        <%= 
+        # form.input :company_website, label: false,       input_html:{class: 'form-control input-lg' },
+        # placeholder:"Company Website"
+        %>
+      </div>
+      <div class="form-group col-xs-12">
+       <%= form.input :description, as: :text, label: false, :input_html =>{class: 'form-control',placeholder:"Your Job Description", :cols => 20, :rows => 5 } 
+       %>
+      </div>         
+      <div class="form-group col-xs-12 col-sm-6 col-md-4">  
+        <div class="input-group input-group-sm">
+         <span class="input-group-addon">
+          <i class="fa fa-briefcase"></i>
+         </span>
+         <%= form.collection_radio_buttons :job_type, Job.job_types,:first,:first %>
+        </div>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4">    
+        <div class="input-group input-group-sm">
+          <span class="input-group-addon">
+            <i class="fa fa-money"></i>
+          </span>
+          <%= form.collection_select :salary_range_id, SalaryRange.all,:id,:name, {prompt: 'Select a Salary Range'},{:class=> 'form-control selectpicker'}
+          %>
+        </div>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4">
+        <div class="input-group input-group-sm">
+          <span class="input-group-addon">
+            <i class="fa fa-map-marker"></i>
+          </span>
+          <%=   
+            form.collection_select :city_id, City.all, 
+            :id, :name,{prompt:'Select a State/Province'},
+            {:class=> 'form-control selectpicker'} 
+          %>
+        </div>
+      </div>          
+      <div class="form-group col-xs-12">
+        <%= form.input :requirement, as: :text, label: false, :input_html =>{class: 'form-control',placeholder:"Position Requirements", :cols => 20, :rows => 5 } 
+        %>
+      </div>
+      <div class="form-group col-xs-12">
+        <%= form.input :how_to, as: :text, label: false, :input_html =>{class: 'form-control',placeholder:"How to apply", :cols => 20, :rows => 5 } 
+        %>
+      </div>
+      <div class="form-group col-xs-12">
+        <p class="text-center">         
+          <%= form.button :submit,class: "btn btn-success btn-md " %>
+          <%= link_to 'Delete', {:action =>'destroy', :id => @job.id}, 
+                                  :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-danger'
+                                  %>
+        </p>  
+      </div>
+    </div>
+  </div>
+<% end %>

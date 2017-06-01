@@ -47,5 +47,16 @@ Rails.application.routes.draw do
   resources :home do 
   end
 
+  namespace :admin do 
+
+    resources :companies do 
+    end
+    resources :jobs do 
+    end
+    resources :panel do 
+    end
+  
+  end
+
 
 end
