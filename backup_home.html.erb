@@ -1,5 +1,6 @@
+
   <!-- Site header -->
-    <header class="site-header size-lg text-center">
+    <header class="site-header size-sm text-center">
     <div class="container">
 
       <div class="row">
@@ -33,19 +34,15 @@
       <div class="row item-blocks-connected">
 
           <div class="col-md-6">
-              <div class="col-xs-12">
-                  <header class="section-sub-header">
-                      <h2>Recent Jobs</h2>  
-                  </header>                  
+              <div class="col-xs-12">                
                   <%= paginate @jobs %>  
                   Total Jobs = <%= @count %>
                 <% @jobs.each do |job| %>
                 <a class="item-block" href="/home/<%= job.id %>" class="job">
-                    <header>
-                      <img src="assets/logo-google.jpg" alt="">
+                    <header>                      
                       <div class="hgroup">
-                        <h4><%= job.title %></h4>
-                        <h5><%= job.company.name %></h5>  
+                        <h5><%= job.title %></h5>
+                        <h6><%= job.company.name %></h6>  
                         <% if job.job_type == "FULLTIME" %>
                         <span class="label label-success">
                           <%= job.job_type %>           
@@ -84,15 +81,11 @@
           </div>
           <div class="col-md-6">
               <div class="col-xs-12">
-                  <header class="section-sub-header">
-                      <h2>View By Company</h2>
-                  </header>
                   <%= paginate @companies %>  
                   Total Companies = <%= Company.count %>
                 <% @companies.each do |company| %>
                 <a class="item-block" href="/home_companies/<%= company.id %>" id="company" class="company">
                     <header>
-                      <img src="assets/logo-google.jpg" alt="">
                       <div class="hgroup">
                         <h4><%= company.name %></h4>
                         <h5><%= company.website %></h5>                              
@@ -120,3 +113,11 @@
 
 </main>
 <!-- END Main container -->
+<!-- Back to top button -->
+<a id="scroll-up" href="#">
+  <i class="ti-angle-up"></i>
+</a>
+<!-- END Back to top button -->
+
+
+

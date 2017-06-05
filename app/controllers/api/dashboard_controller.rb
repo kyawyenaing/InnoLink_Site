@@ -1,8 +1,8 @@
 class Api::DashboardController < ApplicationController
 # before_action :authenticate_user!
   def index
-    # @companies = Company.my_company(params[:user_id], params[:page])
-    @companies = Company.my_company_api(params[:user_id])
+    @companies = Company.my_company(params[:user_id], params[:page])
+    # @companies = Company.my_company_api(params[:user_id])
   end
   
   def show

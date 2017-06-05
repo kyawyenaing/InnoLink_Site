@@ -8,14 +8,15 @@ class HomeController < ApplicationController
 	end
 
 	def edit
-		redirect_to new_user_session_path
+		redirect_to root_path
 	end
 
 	def show
 	  @job = Job.find(params[:id])
 	end
 
-	def show_cmp
-		@company = Company.find(params[:id])
+	def destroy
+		redirect_to root_path
 	end
+
 end

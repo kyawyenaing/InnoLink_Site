@@ -52,6 +52,32 @@ class Job < ActiveRecord::Base
 # end comp_jobs_count
 
 # for job display and filter
+  # def self.get_list( title, city_id, page = 1)
+  #   num_jobs =  5
+
+  #   if title == nil && city_id == nil
+  #   Job.where("status = ?",1).order(updated_at: :DESC)
+  #       .page(page).per(num_jobs)
+  #   else
+  #     if title != "" && city_id != ""
+  #         Job.where("status = ?",1).where(['title LIKE ? && city_id = ?', title, city_id])
+  #           .order(updated_at: :DESC)
+  #           .page(page).per(num_jobs)
+  #     end
+  #     if title != ""
+  #       Job.where("status = ?",1).where(['title LIKE ?', title])
+  #         .order(updated_at: :DESC)
+  #         .page(page).per(num_jobs)
+  #     else
+  #       Job.where("status = ?",1).where(['city_id = ?', city_id])
+  #         .order(updated_at: :DESC)
+  #         .page(page).per(num_jobs)
+  #     end
+  #   end
+  # end
+# end job display and filter
+
+# for job display and filter
   def self.get_list( title, city_id, page = 1)
     num_jobs =  5
 
@@ -59,15 +85,21 @@ class Job < ActiveRecord::Base
     Job.where("status = ?",1).order(updated_at: :DESC)
         .page(page).per(num_jobs)
     else
-      if title != "" && city_id != ""
-          Job.where("status = ?",1).where(['title LIKE ? && city_id = ?', title, city_id])
-            .order(updated_at: :DESC)
-            .page(page).per(num_jobs)
-      end
+      # if title != "" && city_id != ""
+      #     Job.where("status = ?",1).where(['title LIKE ? && city_id = ?', title, city_id])
+      #       .order(updated_at: :DESC)
+      #       .page(page).per(num_jobs)
+      # end
       if title != ""
+        if city_id != ""
+          Job.where("status = ?",1).where(['title LIKE ? and city_id = ?', title, city_id])
+                      .order(updated_at: :DESC)
+                      .page(page).per(num_jobs)
+        else
         Job.where("status = ?",1).where(['title LIKE ?', title])
           .order(updated_at: :DESC)
           .page(page).per(num_jobs)
+        end
       else
         Job.where("status = ?",1).where(['city_id = ?', city_id])
           .order(updated_at: :DESC)
@@ -112,27 +144,5 @@ class Job < ActiveRecord::Base
       end
     end
   end
-
-  # for api
-    # def self.get_api( )
-    #   Job.order(created_at: :DESC)       
-    # end
-  # end api
-
-  # for api
-    # def self.get_comp_job_api( company_id )
-    #   Job.where(['company_id = ?', company_id])
-    #       .order(created_at: :DESC)       
-    # end
-  # end api
-
-  # for api with pagination
-    # def self.get_comp_job_api( company_id , page )
-    #   num = 5
-    #   Job.where(['company_id = ?', company_id])
-    #       .order(created_at: :DESC)   
-    #       .page(page).per(num)    
-    # end
-  # end api
 
 end

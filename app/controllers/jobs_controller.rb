@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
+
   def index
     @cities = City.get_list
     @jobs = Job.get_list(params[:title], params[:city_id], params[:page])
@@ -9,14 +10,9 @@ class JobsController < ApplicationController
   end
 
   def new
-    if !user_signed_in?   
-        flash[:notic] = ""
-        redirect_to new_user_session_path, notice: 'Please Login Firstly'
-    else
       @job = Job.new
       @cities = City.get_list  
       @companies = Company.my_company(current_user.id, params[:page])  
-    end  
   end
 
   def create
