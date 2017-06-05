@@ -1,11 +1,10 @@
 class Api::JobsController < ApplicationController
-  # before_action :authenticate_user!, only: [:index]
-  # before_action :authenticate_user!
-
   def index
+    if !user_sign_in?
+      render json: {message: "Your are not allowed"}
+    else
     @jobs = Job.get_list(params[:title], params[:city_id])
-    # @jobs = Job.get_api(params[:title], params[:city_id], params[:page])
-    # @jobs = Job.get_api()
+    end
   end
   
   def show
@@ -51,8 +50,11 @@ class Api::JobsController < ApplicationController
 
     def destroy
       @job = Job.find params[:id]
-      @job.destroy
-      redirect_to dashboard_path
+      if @job.destroy
+        render json: {message: "Success!"}
+      else
+        render json: {message: "Failed to Delete"}
+      end
     end
 
 	private
@@ -61,9 +63,9 @@ class Api::JobsController < ApplicationController
 	  # :category_id, :salary_range_id, :city_id, :description, :requirement, 
 	  # :how_to,:user_id,:company_id)
 
-    params.require(:job).permit(:title, :company_name, :company_website, :job_type, 
-    :category_id, :salary_range_id, :city_id, :description, :requirement, 
-    :how_to,:company_id)
+    params.require(:job).permit(:title, :job_type,:category_id, 
+                   :salary_range_id, :city_id, :description, :requirement, 
+                   :how_to,:company_id,:status)
 	end
 
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "dashboard" => "dashboard#index"
 
   namespace :api, defaults: {format: :json} do
+    
     resources :categories
     resources :cities
     resources :salaries
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
     post "jobs_add" => "jobs#jobs_add"
         #will update the selected job
     post "jobs/edit/:id" => "jobs#update"
+        #will delete the selected job
+    delete "jobs/:id" => "jobs#destroy"
         #will perform the adding a new company function
     post "companies_add" => "companies#companies_add"
         #will update the selected company
@@ -34,26 +37,21 @@ Rails.application.routes.draw do
 
   resources :jobs do
   end
-
   resources :companies do
   end
-
   resources :home_companies do 
   end
-
   resources :dashboard do
   end
-
   resources :home do 
   end
 
   namespace :admin do 
 
+    root :to => "panel#index"
     resources :companies do 
     end
     resources :jobs do 
-    end
-    resources :panel do 
     end
   
   end
