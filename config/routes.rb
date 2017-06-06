@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         #will update the selected job
     post "jobs/edit/:id" => "jobs#update"
         #will delete the selected job
-    delete "jobs/:id" => "jobs#destroy"
+    delete "jobs/:id/delete" => "jobs#destroy"
         #will perform the adding a new company function
     post "companies_add" => "companies#companies_add"
         #will update the selected company

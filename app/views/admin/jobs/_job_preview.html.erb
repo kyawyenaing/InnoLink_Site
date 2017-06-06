@@ -26,8 +26,7 @@
               <div class="col-xs-4 text-center">
                 <br>
                 <%= 
-                link_to "Add a company", 
-                new_company_path, 
+                link_to "Add New Job",new_job_path, 
                 :class=>"btn btn-primary btn-sm" 
                 %>
               </div>
@@ -53,7 +52,7 @@
                       <%= job.title  %>
                       </a>                               
                       </h4>
-                      <span class="glyphicon glyphicon-user"></span>              
+                      <span class="glyphicon glyphicon-user"></span>           
                       <h5><%= job.company.name %></h5>
                     </div>
                     <div class="header-meta">
@@ -71,15 +70,13 @@
                       <strong>Status:</strong> 
                       <%= job.status %>
                     </p>
-
                     <div class="action-btn">
                       <a href="/admin/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray btn-primary">Confirm</a>
                       <%= 
                       # link_to 'Delete', {:action =>'destroy', :id => job.id}, 
                       #   :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
                         %>
-                    </div>
-                    
+                    </div>                    
                   </footer>
                 </div>
               </div>              
@@ -150,8 +147,7 @@
               <%= paginate @edited_jobs %>
             </div>
           </div>
-          
-
+        
         </div>
       </section>
     </main>
