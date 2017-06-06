@@ -1,10 +1,6 @@
 class Api::JobsController < ApplicationController
   def index
-    if !user_sign_in?
-      render json: {message: "Your are not allowed"}
-    else
     @jobs = Job.get_list(params[:title], params[:city_id])
-    end
   end
   
   def show
@@ -26,7 +22,7 @@ class Api::JobsController < ApplicationController
     @job.user_id = params["user_id"].to_i
     @job.company_id = params["company_id"].to_i
     if @job.save
-        render json: {message: "Success!"}
+        render json: {message: "Successfully Added !"}
     else
         render :json => @job.errors
     end 
@@ -42,7 +38,7 @@ class Api::JobsController < ApplicationController
     def update
       @job = Job.find(params[:id])    
         if @job.update(job_params)
-          render json: {message: "Success!"}
+          render json: {message: "Successfully Edited!"}
         else
           render :json => @job.errors
         end
@@ -51,7 +47,7 @@ class Api::JobsController < ApplicationController
     def destroy
       @job = Job.find params[:id]
       if @job.destroy
-        render json: {message: "Success!"}
+        render json: {message: "Successfully Deleted!"}
       else
         render json: {message: "Failed to Delete"}
       end
