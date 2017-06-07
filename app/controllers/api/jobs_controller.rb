@@ -55,10 +55,6 @@ class Api::JobsController < ApplicationController
 
 	private
 	def job_params
-	  # params.require(:job).permit(:title, :company_name, :company_website, :job_type, 
-	  # :category_id, :salary_range_id, :city_id, :description, :requirement, 
-	  # :how_to,:user_id,:company_id)
-
     params.require(:job).permit(:title, :job_type,:category_id, 
                    :salary_range_id, :city_id, :description, :requirement, 
                    :how_to,:company_id,:status)

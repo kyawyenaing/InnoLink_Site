@@ -150,7 +150,7 @@ class Job < ActiveRecord::Base
 ##################################################### Old Job Count#####################
 
   def self.get_count( title, city_id )
-    if title == nil && city_id == nil
+    if title == "" && city_id == ""
     Job.where("status = ?",1).order(updated_at: :DESC)
         .count
     else

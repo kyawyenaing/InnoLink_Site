@@ -36,8 +36,8 @@
           <div class="col-md-6">
               <div class="col-xs-12">                
                   <%= paginate @jobs %>  
-                  Total Jobs = <%= @count %>
-                <% @jobs.each do |job| %>
+                  We found <%= @count %> total jobs                                  
+                <% @jobs.each do |job| %>               
                 <a class="item-block" href="/home/<%= job.id %>" class="job">
                     <header>                      
                       <div class="hgroup">
