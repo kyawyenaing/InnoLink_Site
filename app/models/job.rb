@@ -39,13 +39,13 @@ class Job < ActiveRecord::Base
 # for job by company
   def self.comp_jobs( company_id, page = 1 )
     num_jobs = 5
-    Job.where(['company_id = ?', company_id])
+    Job.where("status = ?",1).where(['company_id = ?', company_id])
       .order(created_at: :DESC)
       .page(page).per(num_jobs)
   end
 # comp_jobs_count
   def self.comp_jobs_count( company_id )
-    Job.where(['company_id = ?', company_id])
+    Job.where("status = ?",1).where(['company_id = ?', company_id])
       .order(created_at: :DESC)
       .count
   end
@@ -170,6 +170,7 @@ class Job < ActiveRecord::Base
           .count
       end
     end
+
   end
 
 end

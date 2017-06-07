@@ -1,6 +1,6 @@
 class Api::JobsController < ApplicationController
   def index
-    @jobs = Job.get_list(params[:title], params[:city_id])
+    @jobs = Job.get_list(params[:title], params[:city_id] ,params[:page])
   end
   
   def show
