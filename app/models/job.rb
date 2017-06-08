@@ -136,7 +136,7 @@ class Job < ActiveRecord::Base
 
 ##########################################################################
 
-  def self.get_count( title, category_id, city_id )
+  def self.get_count( title, category_id, city_id, page =1 )
     num_jobs =  5
 
     if title == nil && category_id == nil && city_id == nil
