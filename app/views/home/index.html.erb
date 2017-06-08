@@ -46,7 +46,6 @@
 
           <div class="col-md-6">
               <div class="col-xs-12">                
-                  <%= paginate @jobs %>  
                   We found <%= @count %> total jobs                                  
                 <% @jobs.each do |job| %>               
                 <a class="item-block" href="/home/<%= job.id %>" class="job">
@@ -92,7 +91,6 @@
           </div>
           <div class="col-md-6">
               <div class="col-xs-12">
-                  <%= paginate @companies %>  
                   Total Companies = <%= Company.count %>
                 <% @companies.each do |company| %>
                 <a class="item-block" href="/home_companies/<%= company.id %>" id="company" class="company">

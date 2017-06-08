@@ -9,7 +9,7 @@ class Admin::JobsController < ApplicationController
     @cities = City.get_list
     @jobs = Job.pending_jobs(params[:page])
     @companies = Company.get_list(params[:page])
-    @count = Job.get_count(params[:title],params[:city_id])
+    @count = Job.get_count(params[:title], params[:category_id],params[:city_id])
     @edited_jobs = Job.edited_jobs(params[:page])
   end
 

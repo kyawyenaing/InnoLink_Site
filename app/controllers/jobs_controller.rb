@@ -4,9 +4,9 @@ class JobsController < ApplicationController
 
   def index
     @cities = City.get_list
-    @jobs = Job.get_list(params[:title], params[:city_id], params[:page])
+    @jobs = Job.get_list(params[:title], params[:category_id], params[:city_id], params[:page])
     @companies = Company.get_list(params[:page])
-    @count = Job.get_count(params[:title],params[:city_id])
+    @count = Job.get_count(params[:title], params[:category_id], params[:city_id])
   end
 
   def new
