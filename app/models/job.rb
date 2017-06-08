@@ -59,7 +59,8 @@ class Job < ActiveRecord::Base
     num_jobs =  5
 
     if title == nil && category_id == nil && city_id == nil
-    Job.where("status = ?",1).order(updated_at: :DESC)
+    Job.where("status = ?",1)
+       .order(updated_at: :DESC)
         .page(page).per(num_jobs)
     else
       if title != ""
@@ -93,8 +94,7 @@ class Job < ActiveRecord::Base
           end
 
         end
-        #end with category
-        
+        #end with category        
       else
           if category_id != ""
             if city_id != ""
@@ -109,10 +109,17 @@ class Job < ActiveRecord::Base
                   .page(page).per(num_jobs)
             end
           else
-            Job.where("status = ?",1)
-               .where(['city_id = ?', city_id])
-                .order(updated_at: :DESC)
-                .page(page).per(num_jobs)
+            if city_id != ""
+              Job.where("status = ?",1)
+                 .where(['city_id = ?', city_id])
+                  .order(updated_at: :DESC)
+                  .page(page).per(num_jobs)
+            else
+              Job.where("status = ?",1)
+                  .order(updated_at: :DESC)
+                  .page(page).per(num_jobs)
+            end
+            
           end
       end
     end
@@ -146,7 +153,6 @@ class Job < ActiveRecord::Base
       if title != ""
         #with category
         if category_id != ""
-
           if city_id != ""
             Job.where("status = ?",1)
                .where(['title LIKE ? and category_id = ? and city_id = ?', title, category_id, city_id])
@@ -158,9 +164,7 @@ class Job < ActiveRecord::Base
             .order(updated_at: :DESC)
             .count
           end
-
         else
-
           if city_id != ""
             Job.where("status = ?",1)
                 .where(['title LIKE ? and city_id = ?', title, city_id])
@@ -172,12 +176,11 @@ class Job < ActiveRecord::Base
             .order(updated_at: :DESC)
             .count
           end
-
         end
         #end with category
-        
       else
           if category_id != ""
+
             if city_id != ""
               Job.where("status = ?",1)
                  .where(['category_id = ? and city_id = ?', category_id, city_id])
@@ -188,12 +191,18 @@ class Job < ActiveRecord::Base
                  .where(['category_id = ?', category_id])
                   .order(updated_at: :DESC)
                   .count
+            end            
+          else            
+            if city_id != ""
+              Job.where("status = ?",1)
+                 .where(['city_id = ?', city_id])
+                  .order(updated_at: :DESC)
+                  .count
+            else
+              Job.where("status = ?",1)
+                  .order(updated_at: :DESC)
+                  .count
             end
-          else
-            Job.where("status = ?",1)
-               .where(['city_id = ?', city_id])
-                .order(updated_at: :DESC)
-                .count
           end
       end
     end
