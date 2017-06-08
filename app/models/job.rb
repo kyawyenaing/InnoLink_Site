@@ -19,6 +19,7 @@ class Job < ActiveRecord::Base
       .page( page ).per( num_jobs )
   end
 # end admin approved jobs
+##########################################################################
 # for admin approved jobs
   def self.edited_jobs( page = 1) 
     num_jobs = 5
@@ -26,7 +27,7 @@ class Job < ActiveRecord::Base
       .page( page ).per( num_jobs )
   end
 # end admin approved jobs
-
+##########################################################################
 # for user dashboard
   def self.my_jobs(user_id, page = 1)
     num_jobs = 5
@@ -35,7 +36,7 @@ class Job < ActiveRecord::Base
       .page(page).per(num_jobs)
   end
 # end user dashboard
-
+##########################################################################
 # for job by company
   def self.comp_jobs( company_id, page = 1 )
     num_jobs = 5
@@ -51,70 +52,81 @@ class Job < ActiveRecord::Base
   end
 # end comp_jobs_count
 
-###################################### Old Job List ###################################
+#########################################################################
 
 # for job display and filter
-  # def self.get_list( title, city_id, page = 1)
-  #   num_jobs =  5
-
-  #   if title == nil && city_id == nil
-  #   Job.where("status = ?",1).order(updated_at: :DESC)
-  #       .page(page).per(num_jobs)
-  #   else
-  #     if title != "" && city_id != ""
-  #         Job.where("status = ?",1).where(['title LIKE ? && city_id = ?', title, city_id])
-  #           .order(updated_at: :DESC)
-  #           .page(page).per(num_jobs)
-  #     end
-  #     if title != ""
-  #       Job.where("status = ?",1).where(['title LIKE ?', title])
-  #         .order(updated_at: :DESC)
-  #         .page(page).per(num_jobs)
-  #     else
-  #       Job.where("status = ?",1).where(['city_id = ?', city_id])
-  #         .order(updated_at: :DESC)
-  #         .page(page).per(num_jobs)
-  #     end
-  #   end
-  # end
-# end job display and filter
-
-###################################### Old Job List ###################################
-
-# for job display and filter
-  def self.get_list( title, city_id, page = 1)
+  def self.get_list( title, category_id, city_id, page = 1)
     num_jobs =  5
 
-    if title == nil && city_id == nil
+    if title == nil && category_id == nil && city_id == nil
     Job.where("status = ?",1).order(updated_at: :DESC)
         .page(page).per(num_jobs)
     else
       if title != ""
-        if city_id != ""
-          Job.where("status = ?",1).where(['title LIKE ? and city_id = ?', title, city_id])
-                      .order(updated_at: :DESC)
-                      .page(page).per(num_jobs)
+        #with category
+        if category_id != ""
+
+          if city_id != ""
+            Job.where("status = ?",1)
+               .where(['title LIKE ? and category_id = ? and city_id = ?', title, category_id, city_id])
+                .order(updated_at: :DESC)
+                .page(page).per(num_jobs)
+          else
+          Job.where("status = ?",1)
+            .where(['title LIKE ? and category_id =? ', title, category_id])
+            .order(updated_at: :DESC)
+            .page(page).per(num_jobs)
+          end
+
         else
-        Job.where("status = ?",1).where(['title LIKE ?', title])
-          .order(updated_at: :DESC)
-          .page(page).per(num_jobs)
+
+          if city_id != ""
+            Job.where("status = ?",1)
+                .where(['title LIKE ? and city_id = ?', title, city_id])
+                .order(updated_at: :DESC)
+                .page(page).per(num_jobs)
+          else
+          Job.where("status = ?",1)
+            .where(['title LIKE ?', title])
+            .order(updated_at: :DESC)
+            .page(page).per(num_jobs)
+          end
+
         end
+        #end with category
+        
       else
-        Job.where("status = ?",1).where(['city_id = ?', city_id])
-          .order(updated_at: :DESC)
-          .page(page).per(num_jobs)
+          if category_id != ""
+            if city_id != ""
+              Job.where("status = ?",1)
+                 .where(['category_id = ? and city_id = ?', category_id, city_id])
+                  .order(updated_at: :DESC)
+                  .page(page).per(num_jobs)
+            else
+              Job.where("status = ?",1)
+                 .where(['category_id = ?', category_id])
+                  .order(updated_at: :DESC)
+                  .page(page).per(num_jobs)
+            end
+          else
+            Job.where("status = ?",1)
+               .where(['city_id = ?', city_id])
+                .order(updated_at: :DESC)
+                .page(page).per(num_jobs)
+          end
       end
     end
 
   end
 # end job display and filter
-
+##########################################################################
 # for date time
   def decorated_created_at
     created_at.to_date.to_s(:long)
     # created_at.strftime "%d/%m/%Y %H:%M"
   end
 # end datetime
+##########################################################################
 # for date time
   def decorated_updated_at
     updated_at.to_date.to_s(:long)
@@ -122,55 +134,70 @@ class Job < ActiveRecord::Base
   end
 # end datetime
 
-##################################################### Old Job Count#####################
-  # def self.get_count( title, city_id)
+##########################################################################
 
-  #   if title == nil && city_id == nil
-  #   Job.where("status = ?",1).order(created_at: :DESC)
-  #       .count
-  #   else
-  #     if title != "" && city_id != ""
-  #         Job.where("status = ?",1).where(['title LIKE ? and city_id = ?', title, city_id])
-  #           .order(created_at: :DESC)
-  #           .count
-  #     end
-  #     if title != ""
-  #       Job.where("status = ?",1).where(['title LIKE ?', title])
-  #         .order(created_at: :DESC)
-  #         .count
-  #     else
-  #       Job.where("status = ?",1).where('city_id = ?', city_id)
-  #         .order(created_at: :DESC)
-  #         .count
-  #     end
-  #   end
+  def self.get_count( title, category_id, city_id )
+    num_jobs =  5
 
-  # end
-
-##################################################### Old Job Count#####################
-
-  def self.get_count( title, city_id )
-    if title == nil && city_id == nil
+    if title == nil && category_id == nil && city_id == nil
     Job.where("status = ?",1).order(updated_at: :DESC)
         .count
     else
       if title != ""
-        if city_id != ""
-          Job.where("status = ?",1).where(['title LIKE ? and city_id = ?', title, city_id])
-                      .order(updated_at: :DESC)
-                      .count
+        #with category
+        if category_id != ""
+
+          if city_id != ""
+            Job.where("status = ?",1)
+               .where(['title LIKE ? and category_id = ? and city_id = ?', title, category_id, city_id])
+                .order(updated_at: :DESC)
+                .count
+          else
+          Job.where("status = ?",1)
+            .where(['title LIKE ? and category_id =? ', title, category_id])
+            .order(updated_at: :DESC)
+            .count
+          end
+
         else
-        Job.where("status = ?",1).where(['title LIKE ?', title])
-          .order(updated_at: :DESC)
-          .count
+
+          if city_id != ""
+            Job.where("status = ?",1)
+                .where(['title LIKE ? and city_id = ?', title, city_id])
+                .order(updated_at: :DESC)
+                .count
+          else
+          Job.where("status = ?",1)
+            .where(['title LIKE ?', title])
+            .order(updated_at: :DESC)
+            .count
+          end
+
         end
+        #end with category
+        
       else
-        Job.where("status = ?",1).where(['city_id = ?', city_id])
-          .order(updated_at: :DESC)
-          .count
+          if category_id != ""
+            if city_id != ""
+              Job.where("status = ?",1)
+                 .where(['category_id = ? and city_id = ?', category_id, city_id])
+                  .order(updated_at: :DESC)
+                  .count
+            else
+              Job.where("status = ?",1)
+                 .where(['category_id = ?', category_id])
+                  .order(updated_at: :DESC)
+                  .count
+            end
+          else
+            Job.where("status = ?",1)
+               .where(['city_id = ?', city_id])
+                .order(updated_at: :DESC)
+                .count
+          end
       end
     end
-
   end
+##########################################################################
 
 end

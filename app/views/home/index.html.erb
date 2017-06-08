@@ -7,17 +7,28 @@
 
         <div class="col-xs-12">
           <form class="header-job-search">
-            <div class="input-keyword">             
+          <div class="col-sm-3">
+            <!-- <div class="input-keyword">              -->
               <%= text_field_tag :title,params[:title],{:class=>"form-control",placeholder:"View By Job Title" }%>         
-            </div>
-            <div class="input-location">
+            <!-- </div> -->
+          </div>   
+          <div class="col-sm-3">
+            <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),{:class=>'form-control',include_blank: 'View By Category'} %>
+          </div>   
+          <div class="col-sm-3">
+            <!-- <div class="input-location"> -->
               <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name, params[:city_id]),{:class=>'form-control',include_blank: 'View By City'} %>
-            </div>
-            <div class="btn-search">
+            <!-- </div> -->
+          </div>             
+          <div class="col-sm-3">
+            <!-- <div class="btn-search"> -->
               <button class="btn btn-primary" type="submit">
                 Find jobs
               </button>
-            </div>
+            <!-- </div> -->
+          </div>            
+            
+            
           </form>
         </div>
         </div>
