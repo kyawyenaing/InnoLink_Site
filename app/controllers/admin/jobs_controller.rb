@@ -55,7 +55,7 @@ class Admin::JobsController < ApplicationController
     respond_to do |format|
       if @job.update(job_params)
         flash[:notic] = ""
-        format.html { redirect_to dashboard_path, notice: 'Job was successfully updated.' }
+        format.html { redirect_to admin_jobs_path, notice: 'Job was successfully updated.' }
       else
         format.html { render :edit }
       end

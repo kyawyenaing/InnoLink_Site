@@ -53,7 +53,7 @@ class Admin::CompaniesController < ApplicationController
 	  respond_to do |format|
 	    if @company.update(company_params)
 	      flash[:notic] = ""
-	      format.html { redirect_to companies_path, notice: 'company was successfully updated.' }
+	      format.html { redirect_to admin_companies_path, notice: 'company was successfully updated.' }
 	    else
 	      format.html { render :edit }
 	    end
