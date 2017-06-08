@@ -20,7 +20,7 @@ class JobsController < ApplicationController
     @job.user_id = current_user.id
     respond_to do |format|
       if @job.save
-        format.html { redirect_to jobs_path, notice: 'Job was successfully created.' }
+        format.html { redirect_to dashboard_path, notice: 'Job was successfully created.' }
       else
         format.html { render :new }
       end

@@ -11,31 +11,31 @@ class Admin::CompaniesController < ApplicationController
 		@edited_companies = Company.edited_companies(params[:page])
 	end
 
-	def new
-		if current_user.role_id != 1
-			redirect_to new_user_session_path
-		end
-		@company = Company.new
-		@cities = City.get_list
-		if !user_signed_in?
-		  redirect_to new_user_session_path
-		end
-	end
+	# def new
+	# 	if current_user.role_id != 1
+	# 		redirect_to new_user_session_path
+	# 	end
+	# 	@company = Company.new
+	# 	@cities = City.get_list
+	# 	if !user_signed_in?
+	# 	  redirect_to new_user_session_path
+	# 	end
+	# end
 
-	def create
-		if current_user.role_id != 1
-			redirect_to new_user_session_path
-		end
-		@company = Company.new(company_params)
-		@company.user_id = current_user.id
-		respond_to do |format|
-		  if @company.save
-		    format.html { redirect_to dashboard_path, notice: 'company was successfully created.' }
-		  else
-		    format.html { render :new }
-		  end
-		end
-	end
+	# def create
+	# 	if current_user.role_id != 1
+	# 		redirect_to new_user_session_path
+	# 	end
+	# 	@company = Company.new(company_params)
+	# 	@company.user_id = current_user.id
+	# 	respond_to do |format|
+	# 	  if @company.save
+	# 	    format.html { redirect_to admin_companies_path, notice: 'company was successfully created.' }
+	# 	  else
+	# 	    format.html { render :new }
+	# 	  end
+	# 	end
+	# end
 
 	def edit
 		if current_user.role_id != 1

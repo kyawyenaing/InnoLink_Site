@@ -1,9 +1,9 @@
 class CompaniesController < ApplicationController
 	before_action :authenticate_user!
 	load_and_authorize_resource
+
 	def index
-		@cities = City.get_list
-		@companies = Company.get_list(params[:page])
+		redirect_to dashboard_path
 	end
 
 	def new
@@ -36,7 +36,7 @@ class CompaniesController < ApplicationController
 	  respond_to do |format|
 	    if @company.update(company_params)
 	      flash[:notic] = ""
-	      format.html { redirect_to companies_path, notice: 'company was successfully updated.' }
+	      format.html { redirect_to dashboard_path, notice: 'company was successfully updated.' }
 	    else
 	      format.html { render :edit }
 	    end
