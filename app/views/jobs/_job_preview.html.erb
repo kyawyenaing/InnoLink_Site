@@ -33,19 +33,16 @@
       <div class="row item-blocks-connected">
 
           <div class="col-md-6">
-              <div class="col-xs-12">
-                  <header class="section-sub-header">
-                      <h2>Recent Jobs</h2>  
-                  </header>                  
-                  <%= paginate @jobs %>  
-                  Total Jobs = <%= @count %>
+              <div class="col-xs-12">              
+                   <%= paginate @jobs %>  
+                  We found <%= @count %> total jobs
                 <% @jobs.each do |job| %>
                 <a class="item-block" href="/jobs/<%= job.id %>" class="job">
                     <header>
                       <img src="assets/logo-google.jpg" alt="">
                       <div class="hgroup">
                         <h4><%= job.title %></h4>
-                        <h5><%= job.company.name %></h5>  
+                        <h6><%= job.company.name %></h6>  
                         <% if job.job_type == "FULLTIME" %>
                         <span class="label label-success">
                           <%= job.job_type %>           
@@ -84,9 +81,6 @@
           </div>
           <div class="col-md-6">
               <div class="col-xs-12">
-                  <header class="section-sub-header">
-                      <h2>View By Company</h2>
-                  </header>
                   <%= paginate @companies %>  
                   Total Companies = <%= Company.count %>
                 <% @companies.each do |company| %>
