@@ -10,6 +10,7 @@ class DashboardController < ApplicationController
     @company = Company.find(params[:id])
     @jobs = Job.comp_jobs(@company.id, params[:page])
     @count = Job.comp_jobs_count(@company.id)
+    @pending = Job.comp_pending_count(@company.id)
   end
 
 end

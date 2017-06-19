@@ -44,9 +44,20 @@ class Job < ActiveRecord::Base
       .order(created_at: :DESC)
       .page(page).per(num_jobs)
   end
+##########################################################################
 # comp_jobs_count
   def self.comp_jobs_count( company_id )
     Job.where("status = ?",1).where(['company_id = ?', company_id])
+      .order(created_at: :DESC)
+      .count
+  end
+# end comp_jobs_count
+
+#########################################################################
+##########################################################################
+# comp_jobs_count
+  def self.comp_pending_count( company_id )
+    Job.where("status = ?",0).where(['company_id = ?', company_id])
       .order(created_at: :DESC)
       .count
   end

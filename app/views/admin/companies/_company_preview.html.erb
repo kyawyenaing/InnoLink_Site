@@ -74,10 +74,10 @@
                     </p>
 
                     <div class="action-btn">
-                      <a href="/admin/companies/<%= company.id %>/edit" class="btn btn-xs btn-gray btn-primary">Confirm</a>
+                      <a href="/admin/companies/<%= company.id %>/edit" class="btn btn-xs btn-gray btn-primary">Edit</a>
                       <%= 
-                      # link_to 'Delete', {:action =>'destroy', :id => company.id}, 
-                      #   :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
+                      link_to 'Delete', {:action =>'destroy', :id => company.id}, 
+                        :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
                         %>
                     </div>
                     

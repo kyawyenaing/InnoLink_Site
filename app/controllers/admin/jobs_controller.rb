@@ -13,30 +13,6 @@ class Admin::JobsController < ApplicationController
     @edited_jobs = Job.edited_jobs(params[:page])
   end
 
-  # def new
-  #   if current_user.role_id != 1
-  #     redirect_to new_user_session_path
-  #   end
-  #     @job = Job.new
-  #     @cities = City.get_list  
-  #     @companies = Company.my_company(current_user.id, params[:page])   
-  # end
-
-  # def create
-  #   if current_user.role_id != 1
-  #     redirect_to new_user_session_path
-  #   end
-  #   @job = Job.new(job_params)
-  #   @job.user_id = current_user.id
-  #   respond_to do |format|
-  #     if @job.save
-  #       format.html { redirect_to admin_jobs_path, notice: 'Job was successfully created.' }
-  #     else
-  #       format.html { render :new }
-  #     end
-  #   end
-  # end
-
   def edit
     if current_user.role_id != 1
       redirect_to new_user_session_path
