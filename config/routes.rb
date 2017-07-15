@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     post "companies_add" => "companies#companies_add"
         #will update the selected company
     post "companies/edit/:id" => "companies#update"
+    #
+    post "boost_job" => "boostcampaings#boost_job"
 #End don't touch them
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
