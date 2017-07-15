@@ -27,7 +27,7 @@ class Api::BoostcampainsController < ApplicationController
 	         		@i += 1
 	       		end
 		       	if @boost.save
-		       	    render json: {message: "Successfully Added !"}
+		       	    render json: {message: "Your bost request have been sent !"}
 		       	else
 		       	    render :json => @boost.errors
 		       	end
