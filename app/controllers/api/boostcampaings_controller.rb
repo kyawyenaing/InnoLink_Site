@@ -4,7 +4,7 @@ class Api::BoostcampainsController < ApplicationController
 		@campaing = Boostcampaing.new
 	end
 
-	def create
+	def boost_job
 	    @end = params[:boostcampaing]["end_date(3i)"].to_i
 	    @start = params[:boostcampaing]["start_date(3i)"].to_i
 	    @daily_amount = params[:boostcampaing][:total_budget].to_i
