@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  job_id: 1
+  start_date: 2017-07-14
+  end_date: 2017-07-14
+  total_budget: 1
+
+two:
+  job_id: 1
+  start_date: 2017-07-14
+  end_date: 2017-07-14
+  total_budget: 1

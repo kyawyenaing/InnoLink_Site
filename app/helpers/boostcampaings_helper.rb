@@ -1,0 +1,2 @@
+module BoostcampaingsHelper
+end

@@ -109,6 +109,8 @@
                   # link_to 'Delete', 
                   #   {:action =>'destroy', :id => job.id,:confirm =>'Are you sure?'},:method =>:delete,:class=>'btn btn-xs btn-danger'
                   %>
+                  <%= link_to 'Boost', new_job_boostcampaing_path(job), :class=>'btn btn-xs btn-danger'
+                %>
                   <%= link_to "delete", {:controller => :jobs,
                         :action => 'destroy', :id => job.id }, :method => :delete,:class=>'btn btn-xs btn-danger',
                         data: { confirm: 'Are you sure you want to delete this alert?' } 

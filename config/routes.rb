@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   end
 
   resources :jobs do
+    resources :boostcampaings do
+      end
   end
   resources :companies do
   end
@@ -51,7 +53,9 @@ Rails.application.routes.draw do
     root :to => "panel#index"
     resources :companies do 
     end
-    resources :jobs do 
+    resources :jobs do       
+    end
+    resources :boostcampaings do
     end
   
   end
