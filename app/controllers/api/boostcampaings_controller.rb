@@ -35,7 +35,7 @@ class Api::BoostcampainsController < ApplicationController
 	    # else
 	    #   render json: {message: "Not Enough Budget !"}
 	    # end
-	    render :json => params[:boostcampaing]
+	    render json: {message: "Mingalarbar  !"}
 	end
 
 
