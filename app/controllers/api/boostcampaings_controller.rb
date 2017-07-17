@@ -39,7 +39,8 @@ class Api::BoostcampaingsController < ApplicationController
 	    # else
 	    #   render json: {message: "Not Enough Budget !"}
 	    # end
-	    render :json => current_user.budget
+	    render :json => current_user.budget.to_json
+	    # render :json => @error_object.to_json, :status => :unprocessable_entity
 	end
 
 
