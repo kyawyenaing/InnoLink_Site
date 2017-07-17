@@ -1,4 +1,8 @@
-class Api::BoostcampainsController < ApplicationController
+class Api::BoostcampaingsController < ApplicationController
+
+	def index
+		# render json: {message: "Mingalarbar  !"}
+	end
 	def new
     	@job = Job.find(params[:job_id])
 		@campaing = Boostcampaing.new
@@ -35,7 +39,7 @@ class Api::BoostcampainsController < ApplicationController
 	    # else
 	    #   render json: {message: "Not Enough Budget !"}
 	    # end
-	    render json: {message: "Mingalarbar  !"}
+	    render json: {message: "Mingalarbar Al Ma Yay !"}
 	end
 
 

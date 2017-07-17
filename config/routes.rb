@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     resources :cities
     resources :salaries
     resources :companies
-    resources :jobs     
+    resources :jobs   
+    resources :boostcampaings  
 # Don't touch them
         #will show the companies of current_user
     get "dashboard/:user_id" => "dashboard#index"
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
         #will update the selected company
     post "companies/edit/:id" => "companies#update"
     #
-    post "boost_job" => "boostcampaings#boost_job"
+    get "boost_job" => "boostcampaings#boost_job"
 #End don't touch them
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
