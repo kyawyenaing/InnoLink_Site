@@ -1,6 +1,7 @@
 class Api::JobsController < ApplicationController
   def index
     @jobs = Job.get_list(params[:title], params[:category_id],params[:city_id] ,params[:page])
+    # @boost_jobs = Job.get_boost_list( params[:title], params[:category_id], params[:city_id], params[:page])
   end
   
   def show

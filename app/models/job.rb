@@ -7,7 +7,7 @@ class Job < ActiveRecord::Base
   belongs_to :company
 
   enum job_type: { FULLTIME: 0, PARTTIME: 1 , FREELANCE: 2, INTERNSHIP: 3 }
-  enum status: { PENDING: 0, APPROVED: 1}
+  enum status: { PENDING: 0, APPROVED: 1 , BOOSTED: 2}
   validates_presence_of :title, :company_id, :job_type, 
     :category_id, :salary_range_id, :city_id, :description, :requirement, 
     :how_to,:status
@@ -70,7 +70,8 @@ class Job < ActiveRecord::Base
     num_jobs =  5
 
     if title == nil && category_id == nil && city_id == nil
-    Job.where("status = ?",1)
+    Job.where("status != ?",0)
+       .order(boost_budget: :DESC)
        .order(updated_at: :DESC)
         .page(page).per(num_jobs)
     else
@@ -79,12 +80,12 @@ class Job < ActiveRecord::Base
         if category_id != ""
 
           if city_id != ""
-            Job.where("status = ?",1)
+            Job.where("status != ?",0)
                .where(['title LIKE ? and category_id = ? and city_id = ?', title, category_id, city_id])
                 .order(updated_at: :DESC)
                 .page(page).per(num_jobs)
           else
-          Job.where("status = ?",1)
+          Job.where("status != ?",0)
             .where(['title LIKE ? and category_id =? ', title, category_id])
             .order(updated_at: :DESC)
             .page(page).per(num_jobs)
@@ -93,12 +94,12 @@ class Job < ActiveRecord::Base
         else
 
           if city_id != ""
-            Job.where("status = ?",1)
+            Job.where("status != ?",0)
                 .where(['title LIKE ? and city_id = ?', title, city_id])
                 .order(updated_at: :DESC)
                 .page(page).per(num_jobs)
           else
-          Job.where("status = ?",1)
+          Job.where("status != ?",0)
             .where(['title LIKE ?', title])
             .order(updated_at: :DESC)
             .page(page).per(num_jobs)
@@ -109,24 +110,24 @@ class Job < ActiveRecord::Base
       else
           if category_id != ""
             if city_id != ""
-              Job.where("status = ?",1)
+              Job.where("status != ?",0)
                  .where(['category_id = ? and city_id = ?', category_id, city_id])
                   .order(updated_at: :DESC)
                   .page(page).per(num_jobs)
             else
-              Job.where("status = ?",1)
+              Job.where("status != ?",0)
                  .where(['category_id = ?', category_id])
                   .order(updated_at: :DESC)
                   .page(page).per(num_jobs)
             end
           else
             if city_id != ""
-              Job.where("status = ?",1)
+              Job.where("status != ?",0)
                  .where(['city_id = ?', city_id])
                   .order(updated_at: :DESC)
                   .page(page).per(num_jobs)
             else
-              Job.where("status = ?",1)
+              Job.where("status != ?",0)
                   .order(updated_at: :DESC)
                   .page(page).per(num_jobs)
             end
@@ -136,6 +137,79 @@ class Job < ActiveRecord::Base
     end
 
   end
+# end job display and filter
+##########################################################################
+# for job display and filter
+  # def self.get_boost_list( title, category_id, city_id, page = 1)
+  #   num_jobs =  5
+
+  #   if title == nil && category_id == nil && city_id == nil
+  #   Job.where("status = ?",2)
+  #      .order(boost_budget: :DESC)
+  #       .page(page).per(num_jobs)
+  #   else
+  #     if title != ""
+  #       #with category
+  #       if category_id != ""
+
+  #         if city_id != ""
+  #           Job.where("status = ?",2)
+  #              .where(['title LIKE ? and category_id = ? and city_id = ?', title, category_id, city_id])
+  #               .order(boost_budget: :DESC)
+  #               .page(page).per(num_jobs)
+  #         else
+  #         Job.where("status = ?",2)
+  #           .where(['title LIKE ? and category_id =? ', title, category_id])
+  #           .order(boost_budget: :DESC)
+  #           .page(page).per(num_jobs)
+  #         end
+
+  #       else
+
+  #         if city_id != ""
+  #           Job.where("status = ?",2)
+  #               .where(['title LIKE ? and city_id = ?', title, city_id])
+  #               .order(boost_budget: :DESC)
+  #               .page(page).per(num_jobs)
+  #         else
+  #         Job.where("status = ?",2)
+  #           .where(['title LIKE ?', title])
+  #           .order(boost_budget: :DESC)
+  #           .page(page).per(num_jobs)
+  #         end
+
+  #       end
+  #       #end with category        
+  #     else
+  #         if category_id != ""
+  #           if city_id != ""
+  #             Job.where("status = ?",2)
+  #                .where(['category_id = ? and city_id = ?', category_id, city_id])
+  #                 .order(boost_budget: :DESC)
+  #                 .page(page).per(num_jobs)
+  #           else
+  #             Job.where("status = ?",2)
+  #                .where(['category_id = ?', category_id])
+  #                 .order(boost_budget: :DESC)
+  #                 .page(page).per(num_jobs)
+  #           end
+  #         else
+  #           if city_id != ""
+  #             Job.where("status = ?",2)
+  #                .where(['city_id = ?', city_id])
+  #                 .order(boost_budget: :DESC)
+  #                 .page(page).per(num_jobs)
+  #           else
+  #             Job.where("status = ?",2)
+  #                 .order(boost_budget: :DESC)
+  #                 .page(page).per(num_jobs)
+  #           end
+            
+  #         end
+  #     end
+  #   end
+
+  # end
 # end job display and filter
 ##########################################################################
 # for date time
