@@ -1,5 +1,5 @@
 class RemoveBudgetFromUsers < ActiveRecord::Migration
-  def change
+  def down
     remove_column :users, :budget, :integer
   end
 end
