@@ -17,7 +17,7 @@ class BoostcampaingsController < ApplicationController
 	      current_user.save
 	      	if @campaing.save
 		        @latest = Boostcampaing.last
-		        if @latest.status == "CONFIRM"
+		        # if @latest.status == "CONFIRM"
 		        	@i = @latest.start_date
 		        	while @i <= @latest.end_date do
 		        	  @boost = Boost.new
@@ -33,11 +33,7 @@ class BoostcampaingsController < ApplicationController
         		  			format.html { redirect_to root_path, notice: 'You have sent boost request.' }
         		  		end
         	      	end
-		        end	
-	            respond_to do |format|
-	            flash[:notic] = ""
-	        		format.html { redirect_to root_path, notice: 'You have sent boost request.' }
-	        	end      
+		        # end	     
 	      	end
 	    else
 	      render :text => "Not enough Budget".inspect

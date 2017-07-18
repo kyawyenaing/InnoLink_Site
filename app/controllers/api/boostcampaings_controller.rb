@@ -37,7 +37,6 @@ class Api::BoostcampainsController < ApplicationController
 	    end
 	end
 
-
 	private
 	def campaing_params
 		params.require(:boostcampaing).permit(:job_id,:start_date,:end_date,:total_budget)
