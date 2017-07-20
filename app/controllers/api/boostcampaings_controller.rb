@@ -18,6 +18,7 @@ class Api::BoostcampaingsController < ApplicationController
 	    if @user.budget >= @total_budget
 	    	@campaing = Boostcampaing.new(campaing_params)
 	      	@campaing.total_budget = @total_budget
+	      	@campaing.user_id = params[:boostcampaing][:user_id].to_i
 	      	@user.budget -= @total_budget
 	      	@user.save
 	      	if @campaing.save
@@ -46,6 +47,6 @@ class Api::BoostcampaingsController < ApplicationController
 
 	private
 	def campaing_params
-		params.require(:boostcampaing).permit(:job_id,:start_date,:end_date,:total_budget)
+		params.require(:boostcampaing).permit(:job_id,:start_date,:end_date,:total_budget,:status, :user_id)
 	end
 end

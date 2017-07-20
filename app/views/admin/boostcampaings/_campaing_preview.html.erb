@@ -76,10 +76,10 @@
                     </p>
 
                     <div class="action-btn">
-                      <a href="/admin/boostcampaings/<%= campaing.id %>/edit" class="btn btn-xs btn-gray btn-primary">Edit</a>
+                      <a href="/admin/boostcampaings/<%= campaing.id %>/edit" class="btn btn-xs btn-gray btn-primary">Confirm</a>
                       <%= 
-                      link_to 'Delete', {:action =>'destroy', :id => campaing.id}, 
-                        :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
+                      # link_to 'Delete', {:action =>'destroy', :id => campaing.id}, 
+                      #   :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
                         %>
                     </div>
                     

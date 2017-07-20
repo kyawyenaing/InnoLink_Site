@@ -13,6 +13,7 @@ class BoostcampaingsController < ApplicationController
 	    if current_user.budget >= @total_budget
 	      @campaing = Boostcampaing.new(campaing_params)
 	      @campaing.total_budget = @total_budget
+	      @campaing.user_id = current_user.id
 	      current_user.budget -= @total_budget
 	      current_user.save
 	      	if @campaing.save
@@ -43,6 +44,6 @@ class BoostcampaingsController < ApplicationController
 
 	private
 	def campaing_params
-		params.require(:boostcampaing).permit(:job_id,:start_date,:end_date,:total_budget,:status)
+		params.require(:boostcampaing).permit(:job_id,:start_date,:end_date,:total_budget,:status, :user_id)
 	end
 end
