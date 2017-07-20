@@ -14,7 +14,7 @@ class Api::BoostcampaingsController < ApplicationController
 	    @daily_amount = params[:boostcampaing][:total_budget].to_i
 	    @count = (@end - @start) + 1	    
 	    @total_budget = @daily_amount * @count
-	    @user = User.find(params[:user_id])
+	    @user = User.find(params[:boostcampaing][:user_id])
 	    if @user.budget >= @total_budget
 	    	@campaing = Boostcampaing.new(campaing_params)
 	      	@campaing.total_budget = @total_budget
