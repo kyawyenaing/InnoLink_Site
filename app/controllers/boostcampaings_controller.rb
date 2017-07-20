@@ -1,4 +1,7 @@
 class BoostcampaingsController < ApplicationController
+	def index
+		@campaings = Boostcampaing.boost_campaing_list( current_user.id , params[:page])
+	end
 	def new
     	@job = Job.find(params[:job_id])
 		@campaing = Boostcampaing.new
@@ -39,6 +42,28 @@ class BoostcampaingsController < ApplicationController
 	    else
 	      render :text => "Not enough Budget".inspect
 	    end
+	end
+
+	def edit
+		if current_user.role_id != 1
+			redirect_to new_user_session_path
+		end
+	  	@campaing = Boostcampaing.find(params[:id])    
+	end
+
+	def update
+		if current_user.role_id != 1
+			redirect_to new_user_session_path
+		end
+	  @campaing = Boostcampaing.find(params[:id])    
+	  respond_to do |format|
+	    if @campaing.update(campaing_params)
+	      flash[:notic] = ""
+	      format.html { redirect_to admin_boostcampaings_path, notice: 'campaing was successfully updated.' }
+	    else
+	      format.html { render :edit }
+	    end
+	  end
 	end
 
 

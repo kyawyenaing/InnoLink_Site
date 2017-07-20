@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
   resources :jobs do
     resources :boostcampaings do
-      end
+    end
   end
   resources :companies do
   end
@@ -50,6 +50,9 @@ Rails.application.routes.draw do
   resources :dashboard do
   end
   resources :home do 
+  end
+
+  resources :boostcampaings do
   end
 
   namespace :admin do 
