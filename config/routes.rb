@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get "dashboard" => "dashboard#index"
 
   namespace :api, defaults: {format: :json} do
-    
     resources :categories
     resources :cities
     resources :salaries
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
     resources :jobs   
     resources :boos
     resources :boostcampaings  
+    resources :boosts  
 # Don't touch them
         #will show the companies of current_user
     get "dashboard/:user_id" => "dashboard#index"
@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     post "companies/edit/:id" => "companies#update"
     #
     post "boost_job" => "boostcampaings#boost_job"
+    #
+    post "boosted_job/edit/:id" => "boosts#update"
 #End don't touch them
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
@@ -42,6 +44,8 @@ Rails.application.routes.draw do
   resources :jobs do
     resources :boostcampaings do
     end
+    resources :boosts do
+    end
   end
   resources :companies do
   end
@@ -51,8 +55,9 @@ Rails.application.routes.draw do
   end
   resources :home do 
   end
-
   resources :boostcampaings do
+  end
+  resources :boosts do
   end
 
   namespace :admin do 
@@ -63,6 +68,8 @@ Rails.application.routes.draw do
     resources :jobs do       
     end
     resources :boostcampaings do
+    end
+    resources :boosts do
     end
   
   end

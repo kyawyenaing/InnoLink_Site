@@ -71,63 +71,6 @@
   <div class="row">
       <!-- Job detail -->
       <div class="col-md-12">
-        <% @campaings.each do |campaing| %>
-        <div class="col-md-6">
-          <div class="item-block">
-            <header>
-              <a href="/boostcampaings/<%= campaing.id %>">
-                <img src="../assets/logo-campaing.png" alt="" width="160">
-              </a>
-              <div class="hgroup">
-                <h5><a href="/boostcampaings/<%= campaing.id %>">
-                <%= campaing.title  %>
-                </a></h5>
-                
-                <% if campaing.company.id == @company.id %>
-                <span class="glyphicon glyphicon-user">    
-                </span>                            
-                <% end %>  
-                <h5><%= campaing.company.name %></h5>
-              </div>
-              <div class="header-meta">
-                <span class="location">            
-                  <%= campaing.city.name %>
-                </span>
-                <time datetime="2016-03-10 20:00">
-                  <%= campaing.decorated_created_at %>
-                </time>
-              </div>
-            </header>
-            <footer>
-              <p class="status">
-                <strong>Status:</strong> 
-                <%= campaing.status %>
-              </p>
-              <div class="action-btn">
-                <a href="/boostcampaings/<%= campaing.id %>/edit" class="btn btn-xs btn-gray">  Edit</a>
-                  <%= 
-                  # link_to 'Delete', @campaing, method: :delete, data: { confirm: 'Are you sure you want to delete this alert?' }
-
-                  # link_to 'Delete', 
-                  #   {:action =>'destroy', :id => campaing.id,:confirm =>'Are you sure?'},:method =>:delete,:class=>'btn btn-xs btn-danger'
-                  %>
-                  <%= link_to 'Boost', new_campaing_boostcampaing_path(campaing), :class=>'btn btn-xs btn-danger'
-                %>
-                  <%= link_to "delete", {:controller => :boostcampaings,
-                        :action => 'destroy', :id => campaing.id }, :method => :delete,:class=>'btn btn-xs btn-danger',
-                        data: { confirm: 'Are you sure you want to delete this alert?' } 
-                  %>
-              </div>            
-            </footer>
-          </div>              
-        </div>
-        <% end %>             
-      </div>
-    <!-- END Job detail -->
-  </div>
-  <div class="row">
-      <!-- Job detail -->
-      <div class="col-md-12">
         <% @jobs.each do |job| %>
         <div class="col-md-6">
           <div class="item-block">
@@ -162,17 +105,14 @@
               </p>
               <div class="action-btn">
                 <a href="/jobs/<%= job.id %>/edit" class="btn btn-xs btn-gray">  Edit</a>
+                  <% if job.status != "BOOSTING"%>
+                  <%= link_to 'Boost', new_job_boostcampaing_path(job), :class=>'btn btn-xs btn-danger' %>
                   <%= 
-                  # link_to 'Delete', @job, method: :delete, data: { confirm: 'Are you sure you want to delete this alert?' }
-
-                  # link_to 'Delete', 
-                  #   {:action =>'destroy', :id => job.id,:confirm =>'Are you sure?'},:method =>:delete,:class=>'btn btn-xs btn-danger'
-                  %>
-                  <%= link_to 'Boost', new_job_boostcampaing_path(job), :class=>'btn btn-xs btn-danger'
-                %>
-                  <%= link_to "delete", {:controller => :jobs,
-                        :action => 'destroy', :id => job.id }, :method => :delete,:class=>'btn btn-xs btn-danger',
-                        data: { confirm: 'Are you sure you want to delete this alert?' } 
+                  #link_to 'Boost', new_job_boostcampaing_path(job), :class=>'btn btn-xs btn-danger'
+                   %>
+                <% end %>                
+                  <%= link_to "delete", {:controller => :jobs,:action => 'destroy', :id => job.id }, :method => :delete,:class=>'btn btn-xs btn-danger',
+                    data: { confirm: 'Are you sure you want to delete this alert?' } 
                   %>
               </div>            
             </footer>

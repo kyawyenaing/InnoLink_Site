@@ -7,7 +7,7 @@ class Job < ActiveRecord::Base
   belongs_to :company
 
   enum job_type: { FULLTIME: 0, PARTTIME: 1 , FREELANCE: 2, INTERNSHIP: 3 }
-  enum status: { PENDING: 0, APPROVED: 1 , BOOSTED: 2}
+  enum status: { PENDING: 0, APPROVED: 1 , BOOSTING: 2, BOOSTE_EXPIRED: 3}
   validates_presence_of :title, :company_id, :job_type, 
     :category_id, :salary_range_id, :city_id, :description, :requirement, 
     :how_to,:status
@@ -40,14 +40,14 @@ class Job < ActiveRecord::Base
 # for job by company
   def self.comp_jobs( company_id, page = 1 )
     num_jobs = 5
-    Job.where("status = ?",1).where(['company_id = ?', company_id])
+    Job.where("status != ?",0).where(['company_id = ?', company_id])
       .order(created_at: :DESC)
       .page(page).per(num_jobs)
   end
 ##########################################################################
 # comp_jobs_count
   def self.comp_jobs_count( company_id )
-    Job.where("status = ?",1).where(['company_id = ?', company_id])
+    Job.where("status != ?",0).where(['company_id = ?', company_id])
       .order(created_at: :DESC)
       .count
   end

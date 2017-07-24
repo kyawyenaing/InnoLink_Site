@@ -1,0 +1,77 @@
+<!-- Page header -->
+  <header class="page-header m-b-none">      
+      <div class="container page-name">
+        <h1 class="text-center">View Jobs Offer</h1>
+        <p class="lead text-center padder-bt-xxl">
+           <%= Job.count %>Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.
+        </p>
+      </div>
+  </header>
+<!-- END Page header -->
+<!-- Main container -->
+    <main>
+      <section class="no-padding-top bg-alt">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 text-center">
+            <h5>User Request Boost</h5>
+              <%= paginate @boosts %>                           
+            </div>
+          </div>
+          <div class="row">
+              <% @boosts.each do |boost| %>            
+              <div class="col-xs-12">
+                <div class="item-block">
+                  <header>
+                    <a href="#">
+                      <img src="<%= asset_path('logo-google.jpg') %>" alt="" width="160">
+                    </a>
+                    <div class="hgroup">
+                      <h4>
+                      <a href="#">
+                      <%= boost.job.title  %>
+                      </a>                               
+                      </h4>
+                      <span class="glyphicon glyphicon-user"></span>              
+                      Request by <b><%= boost.user.email %></b>
+                    </div>
+                    <div class="header-meta">
+                      <span class="location">            
+                        <%= boost.job.city.name %>
+                      </span>                      
+                      <time datetime="2016-03-10 20:00">
+                      Boost For:
+                        <%= boost.boosted_date %>
+                      </time>
+                    </div>
+                  </header>
+                  <footer>
+                    <p class="status">
+                      <strong>Requested at:</strong> 
+                      <%= 
+                      boost.decorated_created_at 
+                      %>
+                    </p>
+
+                    <div class="action-btn">
+                      <a href="boosts/<%= boost.id %>/edit" class="btn btn-xs btn-gray btn-primary"> Edit Boost </a>
+                    </div>
+                    
+                  </footer>
+                </div>
+              </div>              
+              <% end %> 
+              <!-- END company detail --> 
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center">           
+              <%= paginate @boosts %>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+<!-- END Main container -->
+

@@ -1,19 +1,19 @@
 <!-- Page header -->
-    <header class="page-header m-b-none">      
+  <header class="page-header m-b-none">      
       <div class="container page-name">
-        <h1 class="text-center">Admin Panel To Manage All Activities</h1>
+        <h1 class="text-center">View Jobs Offer</h1>
         <p class="lead text-center padder-bt-xxl">
-          You are now logined by admin role. Now, you can manage all activities.
+           <%= Job.count %>Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.
         </p>
       </div>
-    </header>
+  </header>
 <!-- END Page header -->
 <!-- Main container -->
     <main>
       <section class="no-padding-top bg-alt">
         <div class="container">
 
-          <div class="row">
+          <!-- <div class="row">
               <div class="col-xs-4 text-center">
               <br>
                 <a href="/admin/campaings" class="btn btn-sm btn-primary">Manage campaings</a>
@@ -30,7 +30,7 @@
                 :class=>"btn btn-primary btn-sm" 
                 %>
               </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col-xs-12 text-center">
             <h5>User Added campaings</h5>
@@ -43,7 +43,7 @@
               <div class="col-xs-12">
                 <div class="item-block">
                   <header>
-                    <a href="/admin/boostcampaings/<%= campaing.id %>">
+                    <a href="/boostcampaings/<%= campaing.id %>">
                       <img src="<%= asset_path('logo-google.jpg') %>" alt="" width="160">
                     </a>
                     <div class="hgroup">
@@ -60,8 +60,13 @@
                         <%= campaing.job.city.name %>
                       </span>
                       <time datetime="2016-03-10 20:00">
-                      Added at:
-                        <%= campaing.decorated_created_at %>
+                      From:
+                        <%= campaing.start_date %>
+                      </time>
+                      <br>
+                      <time datetime="2016-03-10 20:00">
+                      To:
+                        <%= campaing.end_date %>
                       </time>
                     </div>
                   </header>
@@ -74,7 +79,7 @@
                     </p>
 
                     <div class="action-btn">
-                      <a href="/admin/boostcampaings/<%= campaing.id %>/edit" class="btn btn-xs btn-gray btn-primary">Confirm</a>
+                      <a href="boostcampaings/<%= campaing.id %>/edit" class="btn btn-xs btn-gray btn-primary"> Edit Boost </a>
                       <%= 
                       # link_to 'Delete', {:action =>'destroy', :id => campaing.id}, 
                       #   :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'

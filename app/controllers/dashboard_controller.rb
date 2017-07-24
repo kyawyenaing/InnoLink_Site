@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
     @jobs = Job.comp_jobs(@company.id, params[:page])
     @count = Job.comp_jobs_count(@company.id)
     @pending = Job.comp_pending_count(@company.id)
-    @campaings = Boostcampaing.coming_boost( current_user.id , params[:page])
+    @campaings = Boostcampaing.boost_campaing_list( current_user.id , params[:page])
   end
 
 end

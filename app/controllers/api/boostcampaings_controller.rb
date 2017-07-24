@@ -19,8 +19,8 @@ class Api::BoostcampaingsController < ApplicationController
 	    	@campaing = Boostcampaing.new(campaing_params)
 	      	@campaing.total_budget = @total_budget
 	      	@campaing.user_id = params[:boostcampaing][:user_id].to_i
-	      	@user.budget -= @total_budget
-	      	@user.save
+	      	# @user.budget -= @total_budget
+	      	# @user.save
 	      	if @campaing.save
 	        	@latest = Boostcampaing.last
 	        	@i = @latest.start_date
@@ -29,6 +29,7 @@ class Api::BoostcampaingsController < ApplicationController
 	         		@boost.job_id = @latest.job_id
 	         		@boost.boosted_date = @i
 	         		@boost.daily_budget = @daily_amount
+	         		@boost.campaing_id = @latest.id
 	         		@boost.save
 	         		@i += 1
 	       		end

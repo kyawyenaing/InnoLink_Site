@@ -34,34 +34,37 @@
           <div class="row">
             <div class="col-xs-12 text-center">
             <h5>User Added campaings</h5>
-              <%= paginate @campaings %>                           
+              <%= paginate @boosts %>                           
             </div>
           </div>
           <div class="row">
             <!-- company detail -->
-              <% @campaings.each do |campaing| %>            
+              <% @boosts.each do |boost| %>            
               <div class="col-xs-12">
                 <div class="item-block">
                   <header>
-                    <a href="/admin/boostcampaings/<%= campaing.id %>">
+                    <a href="/admin/boosts/<%= boost.id %>">
                       <img src="../assets/logo-campaing.png" alt="" width="160">
                     </a>
                     <div class="hgroup">
                       <h4>
-                      <a href="/admin/boostcampaings/<%= campaing.id %>">
-                      <%= campaing.job.title  %>
+                      <a href="/admin/boosts/<%= boost.id %>">
+                      <%= boost.job.title  %>
                       </a>                               
                       </h4>
                       <span class="glyphicon glyphicon-user"></span>              
-                      Request by <b><%= campaing.user.email %></b>
+                      Request by <b>
+                      <%= 
+                      # boost.user.email 
+                      %></b>
                     </div>
                     <div class="header-meta">
                       <span class="location">            
-                        <%= campaing.job.city.name %>
+                        <%= boost.job.city.name %>
                       </span>
                       <time datetime="2016-03-10 20:00">
                       Added at:
-                        <%= campaing.decorated_created_at %>
+                        <%= boost.decorated_created_at %>
                       </time>
                     </div>
                   </header>
@@ -69,12 +72,12 @@
                     <p class="status">
                       <strong>Status:</strong> 
                       <%= 
-                      campaing.status 
+                      # campaing.status 
                       %>
                     </p>
 
                     <div class="action-btn">
-                      <a href="/admin/boostcampaings/<%= campaing.id %>/edit" class="btn btn-xs btn-gray btn-primary">Confirm</a>
+                      <a href="/admin/boosts/<%= boost.id %>/edit" class="btn btn-xs btn-gray btn-primary">Confirm</a>
                       <%= 
                       # link_to 'Delete', {:action =>'destroy', :id => campaing.id}, 
                       #   :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
@@ -89,43 +92,42 @@
           </div>
           <div class="row">
             <div class="col-xs-12 text-center">           
-              <%= paginate @campaings %>
+              <%= paginate @boosts %>
             </div>
           </div>
 
           <div class="row">
             <div class="col-xs-12 text-center">
             <h5>User Edited campaings</h5>
-              <%= paginate @campaings %>                           
+              <%= paginate @boosts %>                           
             </div>
           </div>
           <div class="row">
-            <!-- company detail -->
-              <% @edited_campaings.each do |edited_campaing| %>            
+              <% @edited_boosts.each do |edited_boost| %>            
               <div class="col-xs-12">
                 <div class="item-block">
                   <header>
-                    <a href="/admin/campaings/<%= edited_campaing.id %>">
+                    <a href="/admin/campaings/<%= edited_boost.id %>">
                       <img src="../assets/logo-campaing.png" alt="" width="160">
                     </a>
                     <div class="hgroup">
                       <h4>
-                      <a href="/admin/campaings/<%= edited_campaing.id %>">
-                      <%= edited_campaing.job.title  %>
+                      <a href="/admin/campaings/<%= edited_boost.id %>">
+                      <%= edited_boost.job.title  %>
                       </a>                               
                       </h4>
                       <span class="glyphicon glyphicon-user"></span>              
                       <h5><%= 
-                      #edited_campaing.website 
+                      #edited_boost.website 
                       %></h5>
                     </div>
                     <div class="header-meta">
                       <span class="location">            
-                        <%= edited_campaing.job.city.name %>
+                        <%= edited_boost.job.city.name %>
                       </span>
                       <time datetime="2016-03-10 20:00">
                       Edited at:
-                        <%= edited_campaing.job.decorated_updated_at %>
+                        <%= edited_boost.job.decorated_updated_at %>
                       </time>
                     </div>
                   </header>
@@ -133,13 +135,13 @@
                     <p class="status">
                       <strong>Status:</strong> 
                       <% 
-                      edited_campaing.status 
+                      # edited_boost.status 
                       %>
                     </p>
 
                     <div class="action-btn">
-                      <a href="/admin/campaings/<%= edited_campaing.id %>/edit" class="btn btn-xs btn-gray">Edit</a>
-                      <%= link_to 'Delete', {:action =>'destroy', :id => edited_campaing.id}, 
+                      <a href="/admin/campaings/<%= edited_boost.id %>/edit" class="btn btn-xs btn-gray">Edit</a>
+                      <%= link_to 'Delete', {:action =>'destroy', :id => edited_boost.id}, 
                         :confirm =>'Are you sure?', :method =>:delete,:class=>'btn btn-xs btn-danger'
                         %>
                     </div>
@@ -148,11 +150,11 @@
                 </div>
               </div>              
               <% end %> 
-              <!-- END company detail --> 
+              END company detail 
           </div>
           <div class="row">
             <div class="col-xs-12 text-center">           
-              <%= paginate @edited_campaings %>
+              <%= paginate @edited_boosts %>
             </div>
           </div>
 

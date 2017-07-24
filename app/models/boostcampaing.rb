@@ -1,7 +1,8 @@
 class Boostcampaing < ActiveRecord::Base
 	belongs_to :job
 	belongs_to :user
-	enum status: { REQUEST_TO_BOOST: 0, CONFIRM: 1}
+	has_many :boost
+	enum status: { REQUEST_TO_BOOST: 0, CONFIRM: 1, EDITED: 2}
 	validates_presence_of :job_id, :start_date, :end_date, :status
 
 	def self.get_list( page )
@@ -10,7 +11,7 @@ class Boostcampaing < ActiveRecord::Base
 	      .page(page).per(number)
 	end
 
-	def self.coming_boost( user_id , page )
+	def self.boost_campaing_list( user_id , page )
 		number = 5
 		Boostcampaing.where("user_id =?", user_id).order( created_at: :DESC )
 	      .page(page).per(number)
