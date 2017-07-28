@@ -34,7 +34,8 @@ class BoostcampaingsController < ApplicationController
     	        if @boost.save
     		        respond_to do |format|
     		        flash[:notic] = ""
-    		  			format.html { redirect_to boostcampaings_path, notice: 'You have sent boost request.' }
+    		  			# format.html { redirect_to boostcampaings_path, notice: 'You have sent boost request.' }
+    		  			format.html { redirect_to boosts_path, notice: 'You have sent boost request.' }
     		  		end
     	      	end     
 	      	end
@@ -47,24 +48,24 @@ class BoostcampaingsController < ApplicationController
 	  	@campaing = Boostcampaing.find(params[:id])    
 	end
 
-	def update
-	  @campaing = Boostcampaing.find(params[:id])    
-	  # respond_to do |format|
-	    if @campaing.update(campaing_params)	 
-	    @jobs = Job.where("id =?", @l_boosts.job_id)   	
-	    @boosts = Boost.where("campaing_id =?", @campaing.id)
-	    render :text=> @boosts.inspect
-	   # @boosts.each do |b|
-	   # 	render :text=> @b.inspect
-	   # end
-	  #     flash[:notic] = ""
-	  #     format.html { redirect_to boostcampaings_path, notice: 'campaing was successfully updated.' }
-	  #   else
-	  #     format.html { render :edit }
-	    end
-	  # end
+	# def update
+	#   @campaing = Boostcampaing.find(params[:id])    
+	#   respond_to do |format|
+	#     if @campaing.update(campaing_params)	 
+	#     @jobs = Job.where("id =?", @l_boosts.job_id)   	
+	#     @boosts = Boost.where("campaing_id =?", @campaing.id)
+	#     render :text=> @boosts.inspect
+	#    @boosts.each do |b|
+	#    	render :text=> @b.inspect
+	#    end
+	#       flash[:notic] = ""
+	#       format.html { redirect_to boostcampaings_path, notice: 'campaing was successfully updated.' }
+	#     else
+	#       format.html { render :edit }
+	#     end
+	#   end
 
-	end
+	# end
 
 
 	private
