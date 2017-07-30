@@ -1,74 +1,59 @@
 <!-- Page header -->
-<header class="page-header">
-  <div class="container page-name">
-    <h1 class="text-center">
-     Create Your Company
-    </h1>
-    <p class="lead text-center">
-       Create a new vacancy for your company and put it online.
-     </p>
-    <a href="#" class="text-center block text-dark text-u-l">
-     View your job offer list
-   </a>
+<section class="container page-name">
+  <h2 class="text-center">Create Your Company</h2>
+
   <%= simple_form_for Company.new do |form| %>
-  <div class="container">
-
-    <div class="row">
-
-      <div class="form-group col-xs-12 col-sm-6"> 
-        <%= 
-          form.input :name, label: false,
-          input_html:{class: 'form-control input-lg' },
-          placeholder:"Company Name" 
-        %>            
-      </div>
-      <div class="form-group col-xs-12 col-sm-6">
-        <%= form.input :website, label: false, input_html:{class: 'form-control input-lg' },placeholder:"Company Website"
-        %>
-      </div>  
-
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-6"> 
+      <%= 
+        form.input :name, label: false,
+        input_html:{class: 'form-control input-lg' },
+        placeholder:"Company Name" 
+      %>            
     </div>
-    <div class="row">
-
-      <div class="form-group col-xs-12 col-sm-6">
-        <%= 
-        form.collection_select :category_id,Category.all,
-          :id,:name,{prompt: 'Select Company Category'},
-          {:class=> 'form-control selectpicker'}
-        %>
-      </div>      
-      <div class="form-group col-xs-12 col-sm-6 col-md-4">
-        <div class="input-group input-group-sm">
-          <span class="input-group-addon">
-            <i class="fa fa-map-marker"></i>
-          </span>
-          <%=     
-            form.select :city_id, @cities.collect{ |u| [u.name, u.id] },{include_blank: 'Select City'},{:class=>'form-control selectpicker'} 
-          %>
-        </div>        
-      </div>         
-      <div class="form-group col-xs-12">
-        <%= form.input :address, as: :text, label: false, :input_html =>{class: 'form-control',placeholder:"Your Company's Address",:cols => 20, :rows => 5 } 
-        %>
-      </div>
-      <div class="form-group col-xs-12">
-        <%= form.input :about, as: :text,label:false, :input_html =>{class: 'form-control',placeholder:"About Your Company",:cols => 20,:rows => 5 } 
-        %>
-      </div>
-      <div class="form-group col-xs-12">
-        <p class="text-center">
-          <%= form.button :submit,class: "btn btn-success btn-md" %>
-        </p>  
-      </div>
-
-    </div>
-
+    <div class="form-group col-xs-12 col-sm-6">
+      <%= form.input :website, label: false, input_html:{class: 'form-control input-lg' },placeholder:"Company Website"
+      %>
+    </div> 
   </div>
-<% end %>
-</header>
-     <!-- END Page header -->
- <!-- END Main container -->
- <!-- Back to top button -->
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-6">
+      <%= 
+      form.collection_select :category_id,Category.all,
+        :id,:name,{prompt: 'Select Company Category'},
+        {:class=> 'form-control selectpicker'}
+      %>
+    </div>      
+    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+      <div class="input-group input-group-sm">
+        <span class="input-group-addon">
+          <i class="fa fa-map-marker"></i>
+        </span>
+        <%=     
+          form.select :city_id, @cities.collect{ |u| [u.name, u.id] },{include_blank: 'Select City'},{:class=>'form-control selectpicker'} 
+        %>
+      </div>        
+    </div>         
+    <div class="form-group col-xs-12">
+      <%= form.input :address, as: :text, label: false, :input_html =>{class: 'form-control',placeholder:"Your Company's Address",:cols => 20, :rows => 5 } 
+      %>
+    </div>
+    <div class="form-group col-xs-12">
+      <%= form.input :about, as: :text,label:false, :input_html =>{class: 'form-control',placeholder:"About Your Company",:cols => 20,:rows => 5 } 
+      %>
+    </div>
+    <div class="form-group col-xs-12">
+      <p class="text-center">
+        <%= form.button :submit,class: "btn btn-success btn-md" %>
+      </p>  
+    </div>
+  </div>
+  <% end %>
+</section>
+
+<!-- END Page header -->
+<!-- END Main container -->
+<!-- Back to top button -->
 <a id="scroll-up" href="#">
   <i class="ti-angle-up"></i>
 </a>

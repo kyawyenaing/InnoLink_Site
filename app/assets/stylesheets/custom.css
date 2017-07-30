@@ -125,7 +125,7 @@ body {
 	margin-bottom:6px
 }
 section {
-	padding: 50px 0;
+	padding: 75px 0;
 }
 .section-sub-header {
 	text-align: left;
@@ -133,4 +133,7 @@ section {
 }
 .site-header mark {
 	color: #29aafe;
+}
+.item-block {
+    margin-top: 10px;
 }

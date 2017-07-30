@@ -1,37 +1,31 @@
 <!-- Page header -->
-  <header class="page-header m-b-none">      
+  <!-- <header class="page-header m-b-none">      
       <div class="container page-name">
         <h1 class="text-center">View Jobs Offer</h1>
         <p class="lead text-center padder-bt-xxl">
            <%= Job.count %>Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.
         </p>
       </div>
-  </header>
+  </header> -->
 <!-- END Page header -->
 <!-- Main container -->
   <main>
-      <section class="no-padding-top bg-alt">
+      <section class="bg-alt">
         <div class="container">
 
           <div class="row">
-
-          <div class="col-xs-6 text-left">
-              <br>
+            <div class="col-md-6">
               <%= link_to "Manage Your Boosted Jobs", 
               boosts_path, 
-              :class=>"btn btn-primary btn-sm" 
+              :class=>"btn btn-primary btn-sm btn-inline" 
               %>
-            </div>
-
-            <div class="col-xs-6 text-right">
-              <br>
               <%= link_to "Create New Company", 
               new_company_path, 
-              :class=>"btn btn-primary btn-sm" 
+              :class=>"btn btn-success btn-sm btn-inline" 
               %>
             </div>
-
           </div>
+
           <div class="row">
 
             <div class="col-xs-12 text-center">  
