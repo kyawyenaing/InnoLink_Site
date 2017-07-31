@@ -8,13 +8,14 @@ task :first_task => :environment do
   #   # boost.update_attribute(:average_rating, boost.reviews.average("rating"))
   # end
   # boosts = Boost.last
-  boosts = Boost.where("boosted_date ?=", date.now())
-  # boosts.each do |boost|
-  	job = Job.find(boosts.job_id)
-  	job.boost_start = boosts.boosted_date
-  	job.boost_end= boosts.boosted_date
-  	job.boost_budget = boosts.daily_budget
+  time = Date.today
+  boosts = Boost.where("boosted_date =? ", time)
+  boosts.each do |boost|
+  	job = Job.find(boost.job_id)
+  	job.boost_start = boost.boosted_date
+  	job.boost_end= boost.boosted_date
+  	job.boost_budget = boost.daily_budget
   	job.save
-  	puts "Your job #{job.title}"
-  # end
+  	puts "Your job #{job.boost_budget}"
+  end
 end
