@@ -2,10 +2,7 @@ class Admin::CompaniesController < ApplicationController
 	before_action :authenticate_user!
 	load_and_authorize_resource
 	before_filter :verify_admin
-	private
-	def verify_admin
-	  redirect_to root_url unless current_user.try(:admin?)
-	end	
+	
 	def index
 		@cities = City.get_list
 		@companies = Company.get_list(params[:page])
@@ -65,4 +62,9 @@ class Admin::CompaniesController < ApplicationController
 	def company_params
 		params.require(:company).permit(:name, :website, :category_id, :city_id, :address, :about)
 	end
+
+	private
+	def verify_admin
+	  redirect_to root_url unless current_user.try(:admin?)
+	end	
 end

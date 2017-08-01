@@ -2,10 +2,7 @@ class Admin::BoostcampaingsController < ApplicationController
 	before_action :authenticate_user!
 	load_and_authorize_resource
 	before_filter :verify_admin
-	private
-	def verify_admin
-	  redirect_to root_url unless current_user.try(:admin?)
-	end
+
 	def index
 		@campaings = Boostcampaing.get_list(params[:page])
 		@edited_campaings = Boostcampaing.edited_campaings(params[:page])
@@ -30,5 +27,10 @@ class Admin::BoostcampaingsController < ApplicationController
 	private
 	def campaing_params
 		params.require(:boostcampaing).permit(:job_id,:start_date,:end_date,:total_budget,:status, :user_id)
+	end
+
+	private
+	def verify_admin
+	  redirect_to root_url unless current_user.try(:admin?)
 	end
 end

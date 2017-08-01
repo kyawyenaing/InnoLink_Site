@@ -1,4 +1,120 @@
-<%= render("jobs/job_preview") %>
+  <!-- Site header -->
+    <header class="site-header size-lg text-center">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-xs-12">
+          <form class="header-job-search">
+            <div class="input-keyword">             
+              <%= text_field_tag :title,params[:title],{:class=>"form-control",placeholder:"View By Job Title" }%>         
+            </div>
+            <div class="input-location">
+              <%= select_tag :city_id, options_from_collection_for_select(City.all, :id, :name, params[:city_id]),{:class=>'form-control',include_blank: 'View By City'} %>
+            </div>
+            <div class="btn-search">
+              <button class="btn btn-primary" type="submit">
+                Find jobs
+              </button>
+            </div>
+          </form>
+        </div>
+        </div>
+
+    </div>
+    </header>
+  <!-- END Site header -->
+<!-- Main container -->
+<main>
+<!-- Recent jobs -->
+<section>
+  <div class="container">
+
+      <div class="row item-blocks-connected">
+
+          <div class="col-md-6">
+              <div class="col-xs-12">              
+                   <%= paginate @jobs %>  
+                  We found <%= @count %> total jobs
+                <% @jobs.each do |job| %>
+                <a class="item-block" href="/jobs/<%= job.id %>" class="job">
+                    <header>
+                      <img src="assets/logo-google.jpg" alt="">
+                      <div class="hgroup">
+                        <h4><%= job.title %></h4>
+                        <h6><%= job.company.name %></h6>  
+                        <% if job.job_type == "FULLTIME" %>
+                        <span class="label label-success">
+                          <%= job.job_type %>           
+                        </span>
+                        <% end %>
+                        <% if job.job_type == "PARTTIME" %>
+                          <span class="label label-warning">
+                           <%= job.job_type %>                 
+                          </span>
+                        <% end %>
+                        <% if job.job_type == "FREELANCE" %>
+                          <span class="label label-info">
+                            <%= job.job_type %>                  
+                          </span>
+                        <% end %>
+                        <% if job.job_type == "INTERNSHIP" %>
+                          <span class="label label-danger">
+                            <%= job.job_type %>                 
+                          </span>
+                        <% end %>                                 
+                      </div>                      
+                      <div class="header-meta">
+                        <span class="location">
+                          <%= job.city.name %>
+                        </span>
+                        <time datetime="2016-03-10 20:00">
+                          <%= job.decorated_created_at %>
+                        </time>
+                        <br/>                                       
+                      </div>                      
+                    </header>                    
+                  </a>                  
+                <% end %>  
+                <%= paginate @jobs %>              
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="col-xs-12">
+                  <%= paginate @companies %>  
+                  Total Companies = <%= Company.count %>
+                <% @companies.each do |company| %>
+                <a class="item-block" href="/companies/<%= company.id %>" id="company" class="company">
+                    <header>
+                      <img src="assets/logo-google.jpg" alt="">
+                      <div class="hgroup">
+                        <h4><%= company.name %></h4>
+                        <h5><%= company.website %></h5>                              
+                      </div>                      
+                      <div class="header-meta">
+                        <span class="location">
+                          <%= company.city.name %>
+                        </span>
+                        <time datetime="2016-03-10 20:00">
+                          <%= company.decorated_created_at %>
+                        </time>
+                        <br/>                                         
+                      </div>                      
+                    </header>                    
+                  </a>                  
+                <% end %>  
+                <%= paginate @companies %>              
+              </div>
+          </div>
+
+      </div>
+  </div>
+</section>
+<!-- END Recent jobs -->
+
+</main>
+<!-- END Main container -->
+
 <!-- Back to top button -->
 <a id="scroll-up" href="#">
   <i class="ti-angle-up"></i>

@@ -30,7 +30,7 @@ class JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])    
-    @city = City.get_list
+    @cities = City.get_list
     @companies = Company.my_company(current_user.id, params[:page])
   end
 

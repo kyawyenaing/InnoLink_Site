@@ -1,11 +1,8 @@
 class Admin::JobsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
+
   before_filter :verify_admin
-  private
-  def verify_admin
-    redirect_to root_url unless current_user.try(:admin?)
-  end
   def index
     @cities = City.get_list
     @jobs = Job.pending_jobs(params[:page])
@@ -48,6 +45,11 @@ class Admin::JobsController < ApplicationController
     params.require(:job).permit(:title, :company_name, :company_website, :job_type, 
     :category_id, :salary_range_id, :city_id, :description, :requirement, 
     :how_to,:user_id,:company_id,:status)
+  end
+
+  private
+  def verify_admin
+    redirect_to root_url unless current_user.try(:admin?)
   end
 
 end
