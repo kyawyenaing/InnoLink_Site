@@ -14,21 +14,21 @@
         <div class="container">
 
           <div class="row">
-              <div class="col-xs-4 text-center">
+              <div class="col-xs-3 text-center">
               <br>
                 <a href="/admin/companies" class="btn btn-sm btn-primary">Manage Companies</a>
               </div>
-              <div class="col-xs-4 text-center">
+              <div class="col-xs-3 text-center">
               <br>
                 <a href="/admin/jobs" class="btn btn-sm btn-primary">Manage Jobs</a>
               </div>
-              
-              <div class="col-xs-4 text-center">
-                <br>
-                <%= 
-                link_to "Add New Company",new_company_path, 
-                :class=>"btn btn-primary btn-sm" 
-                %>
+              <div class="col-xs-3 text-center">
+              <br>
+                <a href="/admin/boostcampaings" class="btn btn-sm btn-primary">Manage Boost Campaings</a>
+              </div>
+              <div class="col-xs-3 text-center">
+              <br>
+                <a href="/admin/boosts" class="btn btn-sm btn-primary">Manage Boosts</a>
               </div>
           </div>
           <div class="row">
@@ -44,7 +44,7 @@
                 <div class="item-block">
                   <header>
                     <a href="/admin/companies/<%= company.id %>">
-                      <img src="../assets/logo-company.png" alt="" width="160">
+                      <img src="../assets/logo-job.png" alt="" width="160">
                     </a>
                     <div class="hgroup">
                       <h4>
@@ -106,7 +106,7 @@
                 <div class="item-block">
                   <header>
                     <a href="/admin/companies/<%= edited_company.id %>">
-                      <img src="../assets/logo-company.png" alt="" width="160">
+                      <img src="../assets/logo-job.png" alt="" width="160">
                     </a>
                     <div class="hgroup">
                       <h4>
