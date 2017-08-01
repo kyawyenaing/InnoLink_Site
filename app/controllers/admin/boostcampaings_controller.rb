@@ -1,22 +1,21 @@
 class Admin::BoostcampaingsController < ApplicationController 
 	before_action :authenticate_user!
 	load_and_authorize_resource
+	before_filter :verify_admin
+	private
+	def verify_admin
+	  redirect_to root_url unless current_user.try(:admin?)
+	end
 	def index
 		@campaings = Boostcampaing.get_list(params[:page])
 		@edited_campaings = Boostcampaing.edited_campaings(params[:page])
 	end
 
 	def edit
-		if current_user.role_id != 1
-			redirect_to new_user_session_path
-		end
 	  	@campaing = Boostcampaing.find(params[:id])    
 	end
 
 	def update
-		if current_user.role_id != 1
-			redirect_to new_user_session_path
-		end
 	  @campaing = Boostcampaing.find(params[:id])    
 	  respond_to do |format|
 	    if @campaing.update(campaing_params)

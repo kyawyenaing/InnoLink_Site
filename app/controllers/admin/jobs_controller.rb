@@ -1,11 +1,12 @@
 class Admin::JobsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
-  
+  before_filter :verify_admin
+  private
+  def verify_admin
+    redirect_to root_url unless current_user.try(:admin?)
+  end
   def index
-    if current_user.role_id != 1
-      redirect_to new_user_session_path
-    end
     @cities = City.get_list
     @jobs = Job.pending_jobs(params[:page])
     @companies = Company.get_list(params[:page])
@@ -14,18 +15,12 @@ class Admin::JobsController < ApplicationController
   end
 
   def edit
-    if current_user.role_id != 1
-      redirect_to new_user_session_path
-    end
     @job = Job.find(params[:id])    
     @city = City.get_list
     @companies = Company.my_company(current_user.id, params[:page])
   end
 
   def update
-    if current_user.role_id != 1
-      redirect_to new_user_session_path
-    end
     @job = Job.find(params[:id])    
     @job.status = 1
     respond_to do |format|
@@ -39,20 +34,14 @@ class Admin::JobsController < ApplicationController
   end
 
   def show
-    if current_user.role_id != 1
-      redirect_to new_user_session_path
-    end
     @job = Job.find(params[:id])
   end
 
-  # def destroy
-  #   if current_user.role_id != 1
-  #     redirect_to new_user_session_path
-  #   end
-  #   @job = Job.find params[:id]
-  #   @job.destroy
-  #   redirect_to admin_jobs_path
-  # end
+  def destroy
+    @job = Job.find params[:id]
+    @job.destroy
+    redirect_to admin_jobs_path
+  end
 
   private
   def job_params

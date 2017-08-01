@@ -27,5 +27,7 @@ json.array!(@jobs) do |job|
 	json.job_company job.company.name
 	json.job_city job.city.name
 	json.job_type job.job_type
+	json.status job.status
+	json.boost_budget job.boost_budget
 	json.job_created_at job.created_at
 end

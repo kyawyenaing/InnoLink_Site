@@ -1,11 +1,12 @@
 class Admin::CompaniesController < ApplicationController
 	before_action :authenticate_user!
 	load_and_authorize_resource
-	
+	before_filter :verify_admin
+	private
+	def verify_admin
+	  redirect_to root_url unless current_user.try(:admin?)
+	end	
 	def index
-		if current_user.role_id != 1
-			redirect_to new_user_session_path
-		end
 		@cities = City.get_list
 		@companies = Company.get_list(params[:page])
 		@edited_companies = Company.edited_companies(params[:page])
@@ -38,17 +39,11 @@ class Admin::CompaniesController < ApplicationController
 	# end
 
 	def edit
-		if current_user.role_id != 1
-			redirect_to new_user_session_path
-		end
 	  @company = Company.find(params[:id])    
 	  @cities = City.get_list
 	end
 
 	def update
-		if current_user.role_id != 1
-			redirect_to new_user_session_path
-		end
 	  @company = Company.find(params[:id])    
 	  respond_to do |format|
 	    if @company.update(company_params)
@@ -61,9 +56,6 @@ class Admin::CompaniesController < ApplicationController
 	end
 
 	def show
-		if current_user.role_id != 1
-			redirect_to new_user_session_path
-		end
 		@company = Company.find(params[:id])
 		@jobs = Job.comp_jobs(@company.id, params[:page])
 		@count = Job.comp_jobs_count(@company.id)
