@@ -12,15 +12,15 @@
   <%= 
   #simple_form_for [@job, @campaing] do |form|
   %>
-  <%= simple_form_for [:admin,@campaing] do |form| %>
+  <%= simple_form_for [:admin,@boost] do |form| %>
   <div class="container">
     <div class="row">
       <div class="form-group col-xs-6 col-sm-12">
         <%=
-        form.input :job_id, :as => :hidden, :input_html => { :value => @campaing.job_id }
+        form.input :job_id, :as => :hidden, :input_html => { :value => @boost.job_id }
         %>
         <%=
-        form.input :user_id, :as => :hidden, :input_html => { :value => @campaing.user_id }
+        form.input :user_id, :as => :hidden, :input_html => { :value => @boost.user_id }
         %>
       </div>
       <div class="form-group col-xs-6 col-sm-12">

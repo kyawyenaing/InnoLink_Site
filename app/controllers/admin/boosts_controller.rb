@@ -9,15 +9,15 @@ class Admin::BoostsController < ApplicationController
 	end
 
 	def edit
-	  	@campaing = Boost.find(params[:id])    
+	  	@boost = Boost.find(params[:id])    
 	end
 
 	def update
-	  @campaing = Boost.find(params[:id])    
+	  @boost = Boost.find(params[:id])    
 	  respond_to do |format|
-	    if @campaing.update(boost_params)
+	    if @boost.update(boost_params)
 	      flash[:notic] = ""
-	      format.html { redirect_to admin_boosts_path, notice: 'campaing was successfully updated.' }
+	      format.html { redirect_to admin_boosts_path, notice: 'Boosting was successfully updated.' }
 	    else
 	      format.html { render :edit }
 	    end
