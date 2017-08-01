@@ -15,6 +15,7 @@ task :first_task => :environment do
   	job.boost_start = boost.boosted_date
   	job.boost_end= boost.boosted_date
   	job.boost_budget = boost.daily_budget
+    job.status = 2
   	job.save
   	puts "Your job #{job.boost_budget}"
   end
