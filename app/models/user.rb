@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   belongs_to :role
   has_many :jobs
 
+  before_create :set_default_role
+
   def assign_role
     self.role = Role.find_by name: "Regular" if self.role.nil?
   end
@@ -22,6 +24,12 @@ class User < ActiveRecord::Base
 
   def regular?
     self.role.name == "Regular"
+  end
+
+private
+  def set_default_role
+    role = Role.find_by_name("Owner")
+    self.role_id = role.id
   end
   
 end
