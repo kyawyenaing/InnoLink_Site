@@ -1,14 +1,4 @@
-<!-- Page header -->
-  <!-- <header class="page-header m-b-none">      
-      <div class="container page-name">
-        <h1 class="text-center">View Jobs Offer</h1>
-        <p class="lead text-center padder-bt-xxl">
-           <%= Job.count %>Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.
-        </p>
-      </div>
-  </header> -->
-<!-- END Page header -->
-<!-- Main container -->
+
   <main>
       <section class="bg-alt">
         <div class="container">
@@ -39,22 +29,23 @@
               <% @companies.each do |company| %>
                 <div class="item-block">
                   <header>
+                    <!--
                     <a href="/dashboard/<%= company.id %>">
                       <img src="assets/logo-job.png" alt="" width="160">
                     </a>
+                    -->
+                    
                     <div class="hgroup">
                       <h4>
                       <a href="/dashboard/<%= company.id %>">
                       <%= company.name  %>
                       </a>                               
                       </h4>
-                      <% if company.user_id == current_user.id %>
-                      <span class="glyphicon glyphicon-user">    
-                      </span>                            
-                      <% end %>  
-                      <h5><a href="<%= company.website %>">
+                      <h5>
+                        <a href="<%= company.website %>">
                           <%= company.website %>                        
-                      </a></h5>
+                        </a>
+                      </h5>
                     </div>
                     <div class="header-meta">
                       <span class="location">            
@@ -66,10 +57,12 @@
                     </div>
                   </header>
                   <footer>
+                    <!--
                     <p class="status">
                       <strong>Status:</strong> 
                       
                     </p>
+                    -->
                     <div class="action-btn">
                       <% if company.user_id == current_user.id %>
                       <a href="/companies/<%= company.id %>/edit" class="btn btn-xs btn-gray">
