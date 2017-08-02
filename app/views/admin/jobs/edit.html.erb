@@ -35,12 +35,13 @@
        <%= form.input :description, as: :text, label: false, :input_html =>{class: 'form-control',placeholder:"Your Job Description", :cols => 20, :rows => 5 } 
        %>
       </div>         
-      <div class="form-group col-xs-12 col-sm-6 col-md-4">  
+      <div class="form-group col-xs-12 col-sm-6 col-md-4"> 
         <div class="input-group input-group-sm">
          <span class="input-group-addon">
           <i class="fa fa-briefcase"></i>
          </span>
-         <%= form.collection_radio_buttons :job_type, Job.job_types,:first,:first %>
+         <%= form.collection_select :job_type,Job.job_types,:first, :first, 
+         :input_html =>{class: 'form-control'} %>
         </div>
       </div>
       <div class="form-group col-xs-12 col-sm-6 col-md-4">    

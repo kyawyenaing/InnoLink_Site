@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     resources :salaries
     resources :companies
     resources :jobs   
-    resources :boos
+    # resources :boosts
     resources :boostcampaings  
-    resources :boosts  
+    # resources :boosts  
     
     #will show the companies of current_user
     get "dashboard/:user_id" => "dashboard#index"
@@ -40,7 +40,9 @@ Rails.application.routes.draw do
     post "boost_job" => "boostcampaings#boost_job"
     
     #
+    get "boosts/:user_id" => "boosts#index"
     post "boosted_job/edit/:id" => "boosts#update"
+    
     
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
