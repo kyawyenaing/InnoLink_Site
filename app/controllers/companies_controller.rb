@@ -9,9 +9,6 @@ class CompaniesController < ApplicationController
 	def new
 		@company = Company.new
 		@cities = City.get_list
-		if !user_signed_in?
-		  redirect_to new_user_session_path
-		end
 	end
 
 	def create
