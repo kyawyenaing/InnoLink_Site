@@ -11,9 +11,8 @@ Rails.application.routes.draw do
     resources :salaries
     resources :companies
     resources :jobs   
-    # resources :boosts
     resources :boostcampaings  
-    # resources :boosts  
+    resources :boosts  
     
     #will show the companies of current_user
     get "dashboard/:user_id" => "dashboard#index"

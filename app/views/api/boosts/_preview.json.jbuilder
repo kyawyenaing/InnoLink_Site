@@ -1,5 +1,5 @@
 json.id boost.id
-json.job_id boost.job_id
+json.job_title boost.job.title
 json.boosted_date boost.boosted_date
 json.daily_budget boost.daily_budget
 json.campaing_id boost.campaing_id
