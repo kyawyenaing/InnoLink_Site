@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'httparty'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
@@ -33,7 +32,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'cancancan', '~> 1.10'
-gem 'filterrific'
 gem 'simple_form'
 gem 'kaminari'
 gem 'devise'

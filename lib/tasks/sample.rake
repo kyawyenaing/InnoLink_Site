@@ -1,5 +1,7 @@
 require 'rake'
 
+
+
 task :first_task => :environment do
   desc "TODO"
   # boosts = Job.all
@@ -17,6 +19,7 @@ task :first_task => :environment do
   	job.boost_budget = boost.daily_budget
     job.status = 2
   	job.save
+
   	puts "Your job #{job.boost_budget}"
   end
 end
